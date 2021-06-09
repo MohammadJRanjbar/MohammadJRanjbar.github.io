@@ -8,7 +8,7 @@ redirect_from:
 ---
 
 {% include base_path %}
-You can download my full CV [here] (https://github.com/MohammadJRanjbar/MohammadJRanjbar.github.io/blob/master/images/CV.pdf)
+You can download my full CV <a href="https://github.com/MohammadJRanjbar/MohammadJRanjbar.github.io/blob/master/images/CV.pdf">here</a>
 
 Education
 ======
