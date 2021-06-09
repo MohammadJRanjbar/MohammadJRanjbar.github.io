@@ -5,4 +5,4 @@ excerpt: "Workshop on Deep Learning for Driverless cars<br/><img src='/images/C1
 collection: Certificates and Workshops
 ---
 
-excerpt: "Workshop on Deep Learning for Driverless cars<br/><img src='/images/C1.jpg', width="250" height="150">"
+Test
