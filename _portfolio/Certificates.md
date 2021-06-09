@@ -4,4 +4,4 @@ collection: certificates
 ---
 
 
-"Workshop on Deep Learning for Driverless cars<br/><img src='/images/C1.jpg'>"
+Workshop on Deep Learning for Driverless cars<br/><img src='/images/C1.jpg' width="250" height="150">
