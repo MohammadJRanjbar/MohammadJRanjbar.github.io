@@ -16,7 +16,7 @@ Education
 
 Work experience
 ======
-* Programmer at Swimbot team at FIRA Academy, january 2021 - March 2021
+* Member of the team which created Swimbot at FIRA Academy, March 2021
 
 * Research Assistant at Computer Intelligence and Large Scale System Research Lab, 2020 - Present
 
