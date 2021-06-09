@@ -5,8 +5,13 @@ permalink: /certificates/
 author_profile: true
 ---
 
-** Workshop on Deep Learning for Driverless cars **
-The 7th International Conference on Robotics and Mechatronics<br/>
-<img src='/images/C1.jpg' width="500" height="300">
+{% include base_path %}
 
+
+{% for post in site.portfolio %}
+  {% include archive-single.html %}
+{% endfor %}
 ---
+
+
+
