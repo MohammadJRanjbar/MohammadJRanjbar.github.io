@@ -36,5 +36,4 @@ Skills
 Teaching
 ======
 * Teacher at Amirkabir Robotics and Programming School (FIRA Academy) 2020 - Present
-  * Course name: An Introduction to Machine Learning and Computer Vision
-
+  * Course name: An Introduction to Machine Learning and Computer Vision [(link to Course)](https://github.com/MohammadJRanjbar/My-Machine-Learning-and-Computer-Vision-Course)
