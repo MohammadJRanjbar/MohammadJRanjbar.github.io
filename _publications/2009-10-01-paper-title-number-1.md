@@ -1,7 +1,7 @@
 ---
 title: "Snake game with voice control motion detection and hand gesture recognition"
 collection: Projects
-date: 2020
+date: 2020-04-00
 permalink: /projects/Snake-game-with-voice-control-motion-detection-and-hand-gesture-recognition
 excerpt: 'Controlling the snake game with voice, Motion and hand gesture.'
 ---
