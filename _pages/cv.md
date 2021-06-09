@@ -26,7 +26,7 @@ Work experience
 
 Skills
 ======
-* Python 
+* **Python**
   * Tensorflow, Keras, NLTK, OpenCV, SciPy, Scikit-learn, Pandas, Matplotlib, Numpy, Pygame, Pyaudio, Threading , PyQt, Xlsxwriter
 * C/C++, C#, Matlab, VHDL, Assembly, HTML, LaTeX
 * Simulation Tools and HardWares: ARM(STM32) Arduino, Raspberry Pi, NodeMCU,  Simulink, Proteus, H SPICE, Advanced Design System.
