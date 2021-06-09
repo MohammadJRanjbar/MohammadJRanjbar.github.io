@@ -3,7 +3,7 @@ title: "SWIMBot Robot"
 collection: projects
 permalink: /projects/SWIMBot-Robot
 date: 2021-04-01
-excerpt: 'Controlling the snake game with voice, Motion and hand gesture.'
+excerpt: 'SwimBot'
 ---
 SWIMBot is a platform for implementing various applications such as Image processing, mapping, obstacle avoidance, smart control and wireless control. Due to versatile plugin acceptance, it can be customized for various needs.
 
