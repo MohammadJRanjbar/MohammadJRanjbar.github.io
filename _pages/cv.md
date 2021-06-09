@@ -11,49 +11,27 @@ redirect_from:
 
 Education
 ======
-* B.S. in GitHub, GitHub University, 2012
-* M.S. in Jekyll, GitHub University, 2014
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
+* Bachelor of Science in Electrical Engineering, Amirkabir University of Technology(AUT) – Tehran Polytechnic, 2016-2021
+  *  Thesis Title: Facial Expression Recognition
 
 Work experience
 ======
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+* R Swimbot team at FIRA Academy january, 2021 - March 2021
 
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
-  
+* Research Assistant at Computer Intelligence and Large Scale System Research Lab, 2020 - Present
+
+*  Member of executive committee at Innovation Center of Amirkabir University of Technology, September 2019 - December 2020
+*  Intern at Canavat electric Iranian Arvand, Summer 2020
+*  Freelance Graphic Designers, 2016 - 2018 
 Skills
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* Programming/Scripting: Python (Tensorflow, Keras, NLTK, OpenCV, SciPy, Scikit-learn, Pandas, Matplotlib, Numpy, Pygame, Pyaudio, Threading , PyQt, Xlsxwriter), C/C++, C#, Matlab, VHDL, Assembly, HTML, \LaTeX
+* Simulation Tools and HardWares: ARM(STM32) Arduino, Raspberry Pi, NodeMCU,  Simulink, Proteus, H SPICE, Advanced Design System.
+* IDEs/Tools: Jupyter Notebook, Google Colab,  Visual Studio, Keil5, STM32 Cube MX, Microsoft Office, Word, Excel, PowerPoint, Adobe Photoshop, Adobe Premiere, Adobe Animate, After Effects, Unity, Git, Docker
 
-Publications
-======
-  <ul>{% for post in site.publications %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks %}
-    {% include archive-single-talk-cv.html %}
-  {% endfor %}</ul>
-  
+
 Teaching
 ======
-  <ul>{% for post in site.teaching %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+* Teacher at Amirkabir Robotics and Programming School (FIRA Academy) 2020 - Present
+  * Course name: An Introduction to Machine Learning and Computer Vision
+
