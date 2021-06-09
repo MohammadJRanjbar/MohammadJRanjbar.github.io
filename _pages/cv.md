@@ -26,7 +26,9 @@ Work experience
 
 Skills
 ======
-* Programming/Scripting: Python (Tensorflow, Keras, NLTK, OpenCV, SciPy, Scikit-learn, Pandas, Matplotlib, Numpy, Pygame, Pyaudio, Threading , PyQt, Xlsxwriter), C/C++, C#, Matlab, VHDL, Assembly, HTML, \LaTeX
+* Python 
+  * Tensorflow, Keras, NLTK, OpenCV, SciPy, Scikit-learn, Pandas, Matplotlib, Numpy, Pygame, Pyaudio, Threading , PyQt, Xlsxwriter
+* C/C++, C#, Matlab, VHDL, Assembly, HTML, LaTeX
 * Simulation Tools and HardWares: ARM(STM32) Arduino, Raspberry Pi, NodeMCU,  Simulink, Proteus, H SPICE, Advanced Design System.
 * IDEs/Tools: Jupyter Notebook, Google Colab,  Visual Studio, Keil5, STM32 Cube MX, Microsoft Office, Word, Excel, PowerPoint, Adobe Photoshop, Adobe Premiere, Adobe Animate, After Effects, Unity, Git, Docker
 
