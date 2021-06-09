@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "MohammadJ Ranjbar"
+title: "Mohammad Javad Ranjbar"
 excerpt: "About me"
 author_profile: true
 redirect_from: 
