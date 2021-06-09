@@ -23,6 +23,7 @@ Work experience
 *  Member of executive committee at Innovation Center of Amirkabir University of Technology, September 2019 - December 2020
 *  Intern at Canavat electric Iranian Arvand, Summer 2020
 *  Freelance Graphic Designers, 2016 - 2018 
+
 Skills
 ======
 * Programming/Scripting: Python (Tensorflow, Keras, NLTK, OpenCV, SciPy, Scikit-learn, Pandas, Matplotlib, Numpy, Pygame, Pyaudio, Threading , PyQt, Xlsxwriter), C/C++, C#, Matlab, VHDL, Assembly, HTML, \LaTeX
