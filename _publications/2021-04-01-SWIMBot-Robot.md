@@ -1,5 +1,5 @@
 ---
-title: "SWIMBotRRR Robot"
+title: "SWIMBot Robot"
 collection: projects
 permalink: /projects/SWIMBot-Robot
 date: 2021-04-01
