@@ -1,7 +1,7 @@
 ---
-title: "Self driving Car"
+title: "Self Driving Car"
 collection: projects
-permalink: /projects/Self-driving-Car
+permalink: /projects/Self-Driving-Car
 date: 2020-09-01
 ---
 Using OpenCV to detect lanes and control the car movement in the Avis Engine simulator.
