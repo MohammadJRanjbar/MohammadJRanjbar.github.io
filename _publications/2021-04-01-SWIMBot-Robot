@@ -1,9 +1,9 @@
 ---
-title: "Self driving Car"
+title: "SWIMBot Robot"
 collection: projects
-permalink: /projects/Self-driving-Car
-date: 2020-09-01
+permalink: /projects/SWIMBot-Robot
+date: 2021-04-01
 ---
-Using OpenCV to detect lanes and control the car movement in the Avis Engine simulator.
+SWIMBot is a platform for implementing various applications such as Image processing, mapping, obstacle avoidance, smart control and wireless control. Due to versatile plugin acceptance, it can be customized for various needs.
 
-[Check the Github repository](https://github.com/MohammadJRanjbar/My-Machine-Learning-and-Computer-Vision-Course)
+[Check the Github repository](https://github.com/amirsheikh/swimbot)
