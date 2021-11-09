@@ -17,10 +17,9 @@ Education
 
 Work experience
 ======
+* Research Assistant at DML lab at Sharif University of Technology, October 2021 - Present
+* Research Assistant at Computer Intelligence and Large Scale System Research Lab at Amirkabir university of technology, 2020 - Present
 * Member of the team which created Swimbot at FIRA Academy, March 2021
-
-* Research Assistant at Computer Intelligence and Large Scale System Research Lab, 2020 - Present
-
 *  Member of executive committee at Innovation Center of Amirkabir University of Technology, September 2019 - December 2020
 *  Intern at Canavat electric Iranian Arvand, Summer 2020
 *  Freelance Graphic Designers, 2016 - 2018 
@@ -36,5 +35,7 @@ Skills
 
 Teaching
 ======
+* Teaching Assistant at Amirkabir university of technology
+  * Course name:  Introduction to Computational Intelligence Course
 * Teacher at Amirkabir Robotics and Programming School (FIRA Academy) April 2020 - April 2021
   * Course name: An Introduction to Machine Learning and Computer Vision [(link to Course)](https://github.com/MohammadJRanjbar/My-Machine-Learning-and-Computer-Vision-Course)
