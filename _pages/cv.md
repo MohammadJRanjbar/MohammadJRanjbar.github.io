@@ -17,8 +17,8 @@ Education
 
 Work experience
 ======
-* Research Assistant at DML lab at Sharif University of Technology, October 2021 - Present
-* Research Assistant at Computer Intelligence and Large Scale System Research Lab at Amirkabir university of technology, 2020 - Present
+* Research Assistant at DML lab at Sharif University of Technology, October 2021 - January 2022
+* Research Assistant at Computer Intelligence and Large Scale System Research Lab at Amirkabir university of technology, 2020 - 2022
 * Member of the team which created Swimbot at FIRA Academy, March 2021
 *  Member of executive committee at Innovation Center of Amirkabir University of Technology, September 2019 - December 2020
 *  Intern at Canavat electric Iranian Arvand, Summer 2020
