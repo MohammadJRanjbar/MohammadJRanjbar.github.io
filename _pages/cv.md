@@ -12,6 +12,7 @@ You can download my full CV <a href="https://github.com/MohammadJRanjbar/Mohamma
 
 Education
 ======
+* Master of Science in Computer Engineering, University of Tehran(AUT), 2022-Present
 * Bachelor of Science in Electrical Engineering, Amirkabir University of Technology(AUT) – Tehran Polytechnic, 2016-2021
   *  Thesis Title: Facial Expression Recognition
 
@@ -28,10 +29,15 @@ Skills
 ======
 * **Programming/Scripting**: Python
   * Tensorflow, Keras, NLTK, OpenCV, SciPy, Scikit-learn, Pandas, Matplotlib, Numpy, Pygame, Pyaudio, Threading , PyQt, Xlsxwriter
-* C/C++, C#, Matlab, VHDL, Assembly, HTML, MySQL, LaTeX
+* C/C++, R, C#, Matlab, VHDL, Assembly, HTML, MySQL, LaTeX
 * **Simulation Tools and HardWares**: ARM(STM32) Arduino, Raspberry Pi, NodeMCU,  Simulink, Proteus, H SPICE, Advanced Design System.
 * **IDEs/Tools**: Jupyter Notebook, Google Colab,  Visual Studio, Keil5, STM32 Cube MX, Microsoft Office, Word, Excel, PowerPoint, Adobe Photoshop, Adobe Premiere, Adobe Animate, After Effects, Unity, Git, Docker
 * **General Business Skills**: Good Research & Development skills, Able to function well under pressure, Good team work capabilities, Fast & willing learner – Always eager and open to learn new skills, Good presentation skills, High sense of responsibility, Able to handle multiple responsibilities
+
+Publications
+======
+* Mohammad Javad Ranjbar, MB. Menhaj, H. Taheri. "Social robots: an open-source architecture for personal
+assistant robots". (Accepted to be presented in The 10th RSI International Conference on Robotics and Mechatronics) 
 
 Teaching
 ======
