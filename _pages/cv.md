@@ -18,7 +18,7 @@ Education
 
 Work experience
 ======
-* Research assistant at Natural Language Processing lab January 2023 - Present
+* Research assistant at Natural Language Processing lab, January 2023 - Present
 * Research Assistant at DML lab at Sharif University of Technology, October 2021 - January 2022
 * Research Assistant at Computer Intelligence and Large Scale System Research Lab at Amirkabir university of technology, 2020 - 2022
 * Member of the team which created Swimbot at FIRA Academy, March 2021
