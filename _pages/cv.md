@@ -18,6 +18,7 @@ Education
 
 Work experience
 ======
+* Research assistant at Natural Language Processing lab January 2023 - Present
 * Research Assistant at DML lab at Sharif University of Technology, October 2021 - January 2022
 * Research Assistant at Computer Intelligence and Large Scale System Research Lab at Amirkabir university of technology, 2020 - 2022
 * Member of the team which created Swimbot at FIRA Academy, March 2021
@@ -28,10 +29,10 @@ Work experience
 Skills
 ======
 * **Programming/Scripting**: Python
-  * Tensorflow, Keras, NLTK, OpenCV, SciPy, Scikit-learn, Pandas, Matplotlib, Numpy, Pygame, Pyaudio, Threading , PyQt, Xlsxwriter
+  * Pytorch , Tensorflow, Keras, NLTK, OpenCV, SciPy, Scikit-learn, Pandas, Matplotlib, Numpy, Pygame, Pyaudio, Threading , PyQt, Xlsxwriter
 * C/C++, R, C#, Matlab, VHDL, Assembly, HTML, MySQL, LaTeX
 * **Simulation Tools and HardWares**: ARM(STM32) Arduino, Raspberry Pi, NodeMCU,  Simulink, Proteus, H SPICE, Advanced Design System.
-* **IDEs/Tools**: Jupyter Notebook, Google Colab,  Visual Studio, Keil5, STM32 Cube MX, Microsoft Office, Word, Excel, PowerPoint, Adobe Photoshop, Adobe Premiere, Adobe Animate, After Effects, Unity, Git, Docker
+* **IDEs/Tools**: Jupyter Notebook, Google Colab,  Visual Studio, Keil5, STM32 Cube MX, Microsoft Office, Word, Excel, PowerPoint, Adobe Photoshop, Adobe Premiere, Adobe Animate, After Effects, Unity, Git, Docker, Rasa
 * **General Business Skills**: Good Research & Development skills, Able to function well under pressure, Good team work capabilities, Fast & willing learner – Always eager and open to learn new skills, Good presentation skills, High sense of responsibility, Able to handle multiple responsibilities
 
 Publications
@@ -41,7 +42,10 @@ assistant robots". (Accepted to be presented in The 10th RSI International Confe
 
 Teaching
 ======
+* Teaching Assistant at University of Tehran, Spring and Fall 2023
+  * Course name: Machine Learning
+  * Course name: Satanical Inference
 * Teaching Assistant at Amirkabir university of technology
   * Course name:  Introduction to Computational Intelligence Course
-* Teacher at Amirkabir Robotics and Programming School (FIRA Academy) April 2020 - April 2021
+* Teacher at Amirkabir Robotics and Programming School (FIRA Academy), April 2020 - April 2021
   * Course name: An Introduction to Machine Learning and Computer Vision [(link to Course)](https://github.com/MohammadJRanjbar/My-Machine-Learning-and-Computer-Vision-Course)
