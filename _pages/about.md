@@ -31,12 +31,13 @@ redirect_from:
             <ul>
                 <li>
                     <strong>Master of Science in Computer Software Engineering</strong><br />
-                    - University of Tehran<br />
+                    <span style="color: silver;">University of Tehran</span><br />
                 </li>
                 <li>
                     <strong>Bachelor of Science in Electrical Engineering</strong><br />
-                    - Amirkabir University of Technology<br />
+                    <span style="color: silver;">Amirkabir University of Technology</span><br />
                 </li>
+
             </ul>
         </div>
     </div>
