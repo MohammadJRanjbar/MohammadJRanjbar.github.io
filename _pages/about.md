@@ -12,7 +12,8 @@ redirect_from:
     <p>I am a final-year master's student in Computer Software Engineering at the University of Tehran, specializing in developing text-to-speech models. My research, guided by <a href="https://scholar.google.se/citations?user=m5tCFEoAAAAJ&hl=en" target="_blank">Dr. Faili</a> and <a href="https://scholar.google.com/citations?user=E-QpN74AAAAJ&hl=en" target="_blank">Dr. Shakery</a>, focuses on creating a zero-shot text-to-speech model for the Persian language. Additionally, I contribute to the Natural Language Processing Lab, where I am involved in various projects including <a href="https://sofiamind.ir/" target="_blank">SOFIA</a>, a retrieval-augmented generation (RAG) based chatbot designed for customer service.</p>
 
     <p>Before joining the University of Tehran, I earned my Bachelor's degree in Electrical Engineering from <a href="https://ee.aut.ac.ir/" target="_blank">Amirkabir University of Technology (AUT)</a>. During my undergraduate studies, I worked as a research assistant in the Intelligence and Large Scale System Research Lab, focusing on facial expression recognition under the guidance of <a href="https://scholar.google.com/citations?user=0EN-JbQAAAAJ&hl=en" target="_blank">Dr. Menhaj</a> and <a href="https://scholar.google.com/citations?user=4hByEOYAAAAJ&hl=en" target="_blank">Dr. Taheri</a>.</p>
-    
+<br />
+</div>
     <div style="display: flex; justify-content: space-between;">
         <div style="flex: 1; margin-right: 20px;">
             <h2>Research Interests</h2>
@@ -25,19 +26,19 @@ redirect_from:
                 <li>Speech Recognition</li>
             </ul>
         </div>
-        <div style="flex: 1; margin-left: 20px;">
+        <div style="flex: 1; margin-left: 10px;">
             <h2>Education</h2>
             <ul>
                 <li>
-                    <strong>Master of Science in Computer Software Engineering</strong> — University of Tehran<br />
-                    Overall GPA: 4/4 (19.07/20) | 2022 – Present<br />
+                    <strong>Master of Science in Computer Software Engineering</strong><br />
+                    University of Tehran<br />
                 </li>
                 <li>
-                    <strong>Bachelor of Science in Electrical Engineering</strong> — Amirkabir University of Technology<br />
-                    Last 2 years GPA: 3.64/4 (17.1) via 67 passed credits | 2016 – 2021<br />
+                    <strong>Bachelor of Science in Electrical Engineering</strong><br />
+                    Amirkabir University of Technology<br />
                 </li>
             </ul>
         </div>
     </div>
-</div>
+
 <br />
