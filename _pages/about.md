@@ -15,7 +15,7 @@ redirect_from:
 <br />
 
     <div style="display: flex; justify-content: space-between;">
-        <div style="flex: 1; margin-right: 5px;">
+        <div style="flex: 1; margin-right: 1000px;">
             <h2>Research Interests</h2>
             <ul>
                 <li>Machine Learning</li>
@@ -26,15 +26,15 @@ redirect_from:
                 <li>Speech Recognition</li>
             </ul>
         </div>
-        <div style="flex: 1; margin-left: 5px;">
+        <div style="flex: 1; margin-left: 1px;">
             <h2>Education</h2>
             <ul>
                 <li>
-                    <strong>Master of Science in Computer Software Engineering</strong>, 2022-present<br />
+                    <strong>Master of Science in Computer Software Engineering</strong>, 2022 -- Present<br />
                     <span style="color: silver;">University of Tehran</span><br />
                 </li>
                 <li>
-                    <strong>Bachelor of Science in Electrical Engineering</strong>, 2016-2021<br />
+                    <strong>Bachelor of Science in Electrical Engineering</strong>, 2016 -- 2021<br />
                     <span style="color: silver;">Amirkabir University of Technology</span><br />
                 </li>
 
