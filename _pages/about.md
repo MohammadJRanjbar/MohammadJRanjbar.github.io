@@ -15,7 +15,7 @@ redirect_from:
 <br />
 
     <div style="display: flex; justify-content: space-between;">
-        <div style="flex: 1; margin-right: 1000px;">
+        <div style="flex: 1; margin-right: 1px;">
             <h2>Research Interests</h2>
             <ul>
                 <li>Machine Learning</li>
