@@ -26,16 +26,16 @@ redirect_from:
                 <li>Speech Recognition</li>
             </ul>
         </div>
-        <div style="flex: 1; margin-left: 10px;">
+        <div style="flex: 1; margin-left: 5px;">
             <h2>Education</h2>
             <ul>
                 <li>
                     <strong>Master of Science in Computer Software Engineering</strong><br />
-                    University of Tehran<br />
+                    - University of Tehran<br />
                 </li>
                 <li>
                     <strong>Bachelor of Science in Electrical Engineering</strong><br />
-                    Amirkabir University of Technology<br />
+                    - Amirkabir University of Technology<br />
                 </li>
             </ul>
         </div>
