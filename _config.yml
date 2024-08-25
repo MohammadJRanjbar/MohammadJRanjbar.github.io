@@ -7,10 +7,10 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Mohammad Ranjbar"
+title                    : "Mohammad's Homepage"
 title_separator          : "-"
 name                     : &name "Mohammad Javad Ranjbar"
-description              : &description "Student in Master of Computer Engineering"
+description              : &description "Speech Synthesis and Natural Language Processing Researcher"
 url                      : https://mohammadjranjbar.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "https://mohammadjranjbar.github.io"
@@ -85,6 +85,9 @@ author:
   bio              : "Electrical and computer engineer"
   location         : "Tehran, Iran"
   github           : "MohammadJRanjbar"
+  employer         : "University of Tehran"
+  email            : "mohammadjavadranjbarkalahroodi@gmail.com"
+
 
 
 # Reading Files
