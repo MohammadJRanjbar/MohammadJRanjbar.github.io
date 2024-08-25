@@ -14,27 +14,31 @@ redirect_from:
     <p>Before joining the University of Tehran, I earned my Bachelor's degree in Electrical Engineering from <a href="https://ee.aut.ac.ir/" target="_blank">Amirkabir University of Technology (AUT)</a>. During my undergraduate studies, I worked as a research assistant in the Intelligence and Large Scale System Research Lab, focusing on facial expression recognition under the guidance of <a href="https://scholar.google.com/citations?user=0EN-JbQAAAAJ&hl=en" target="_blank">Dr. Menhaj</a> and <a href="https://scholar.google.com/citations?user=4hByEOYAAAAJ&hl=en" target="_blank">Dr. Taheri</a>.</p>
     
 </div>
+    <div style="display: flex; justify-content: space-between;">
+        <div style="flex: 1; margin-right: 20px;">
+            <h2>Research Interests</h2>
+            <ul>
+                <li>Machine Learning</li>
+                <li>Deep Learning</li>
+                <li>Computer Vision</li>
+                <li>Speech Synthesis</li>
+                <li>Natural Language Processing</li>
+                <li>Speech Recognition</li>
+            </ul>
+        </div>
+        <div style="flex: 1; margin-left: 20px;">
+            <h2>Education</h2>
+            <ul>
+                <li>
+                    <strong>Master of Science in Computer Software Engineering</strong> — University of Tehran<br />
+                    Overall GPA: 4/4 (19.07/20) | 2022 – Present<br />
+                </li>
+                <li>
+                    <strong>Bachelor of Science in Electrical Engineering</strong> — Amirkabir University of Technology<br />
+                    Last 2 years GPA: 3.64/4 (17.1) via 67 passed credits | 2016 – 2021<br />
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 <br />
-
-
-<h2>Research Interests</h2>
-<ul>
-    <li>Machine Learning</li>
-    <li>Deep Learning</li>
-    <li>Computer Vision</li>
-    <li>Speech Synthesis</li>
-    <li>Natural Language Processing</li>
-    <li>Speech Recognition</li>
-</ul>
-
-<h2>Education</h2>
-<ul>
-    <li>
-        <strong>Master of Science in Computer Software Engineering</strong> — University of Tehran,<br />
-        Overall GPA: 4/4 (19.07/20) | 2022 – Present<br />
-    </li>
-    <li>
-        <strong>Bachelor of Science in Electrical Engineering</strong> — Amirkabir University of Technology<br />
-        Last 2 years GPA: 3.64/4 (17.1) via 67 passed credits | 2016 – 2021<br />
-    </li>
-</ul>
