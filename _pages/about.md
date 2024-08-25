@@ -13,7 +13,7 @@ redirect_from:
 
     <p>Before joining the University of Tehran, I earned my Bachelor's degree in Electrical Engineering from <a href="https://ee.aut.ac.ir/" target="_blank">Amirkabir University of Technology (AUT)</a>. During my undergraduate studies, I worked as a research assistant in the Intelligence and Large Scale System Research Lab, focusing on facial expression recognition under the guidance of <a href="https://scholar.google.com/citations?user=0EN-JbQAAAAJ&hl=en" target="_blank">Dr. Menhaj</a> and <a href="https://scholar.google.com/citations?user=4hByEOYAAAAJ&hl=en" target="_blank">Dr. Taheri</a>.</p>
 <br />
-</div>
+
     <div style="display: flex; justify-content: space-between;">
         <div style="flex: 1; margin-right: 20px;">
             <h2>Research Interests</h2>
@@ -40,5 +40,5 @@ redirect_from:
             </ul>
         </div>
     </div>
-
+</div>
 <br />
