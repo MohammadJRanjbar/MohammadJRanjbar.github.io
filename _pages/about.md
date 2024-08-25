@@ -18,12 +18,12 @@ redirect_from:
         <div style="flex: 1; margin-right: 1px;">
             <h2>Research Interests</h2>
             <ul>
-                <li>Machine Learning</li>
-                <li>Deep Learning</li>
-                <li>Computer Vision</li>
-                <li>Speech Synthesis</li>
-                <li>Natural Language Processing</li>
-                <li>Speech Recognition</li>
+              <li>Speech Synthesis</li>
+              <li>Natural Language Processing</li>
+              <li>Speech Recognition</li>
+              <li>Foundation Models</li>
+              <li>Large Language Models</li>
+              <li>Machine Learning</li>
             </ul>
         </div>
         <div style="flex: 1; margin-left: 1px;">
