@@ -82,11 +82,11 @@ analytics:
 author:
   name             : "Mohammad Ranjbar"
   avatar           : "profile.jpg"
-  bio              : "Electrical and computer engineer"
-  location         : "Tehran, Iran"
+  bio              : "Speech Synthesis and Natural Language Processing Researcher"
   employer         : "University of Tehran"
   github           : "MohammadJRanjbar"
-  linkedin         : "in/mohammadj"
+  website          : "https://mohammadjranjbar.github.io/"        # Optional: personal or professional website
+  linkedin         : "mohammadj"
   email            : "mohammadjavadranjbarkalahroodi@gmail.com"
 
 
