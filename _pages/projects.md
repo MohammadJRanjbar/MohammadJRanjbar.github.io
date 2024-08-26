@@ -1,8 +1,9 @@
 ---
 layout: page
-permalink: /projects/
 title: Projects
+permalink: /projects/
 description: Pulling latest stats from GitHub.
+author_profile: true
 nav: true
 nav_order: 3
 ---
