@@ -29,7 +29,7 @@ nav_order: 3
     
     <!-- First Column -->
     <div style="flex: 1; min-width: 300px;">
-      {% for index in (0..half_repos-1) %}
+      {% for index in (0, half_repos-1) %}
         {% assign repo = site.data.repositories.github_repos[index] %}
         {% include repository/repo.html repository=repo %}
       {% endfor %}
@@ -37,7 +37,7 @@ nav_order: 3
     
     <!-- Second Column -->
     <div style="flex: 1; min-width: 300px;">
-      {% for index in (half_repos..total_repos-1) %}
+      {% for index in (half_repos, total_repos-1) %}
         {% assign repo = site.data.repositories.github_repos[index] %}
         {% include repository/repo.html repository=repo %}
       {% endfor %}
