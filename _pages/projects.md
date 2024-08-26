@@ -1,5 +1,5 @@
 ---
-layout: custom_projects
+layout: splash
 title: projects
 permalink: /projects/
 author_profile: true
