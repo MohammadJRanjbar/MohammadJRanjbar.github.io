@@ -3,9 +3,6 @@ layout: archive
 title: projects
 permalink: /projects/
 author_profile: true
-description: Pulling latest stats from GitHub.
-nav: true
-nav_order: 3
 ---
 
 ### My stats
