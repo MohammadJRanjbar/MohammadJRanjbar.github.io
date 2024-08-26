@@ -3,8 +3,6 @@ layout: archive
 title: projects
 permalink: /projects/
 author_profile: true
-nav: true
-nav_order: 4
 ---
 
 ### My stats
@@ -25,22 +23,12 @@ nav_order: 4
 
 {% if site.data.repositories.github_repos %}
 <div class="repositories d-flex flex-wrap justify-content-between">
-  <div class="column">
-    {% assign unique_repos = site.data.repositories.github_repos | uniq %}
-    {% assign half = unique_repos.size | divided_by: 2 %}
-    {% for repo in unique_repos %}
-      {% if forloop.index <= half %}
-        {% include repository/repo.html repository=repo %}
-      {% endif %}
-    {% endfor %}
-  </div>
-  <div class="column">
-    {% for repo in unique_repos %}
-      {% if forloop.index > half %}
-        {% include repository/repo.html repository=repo %}
-      {% endif %}
-    {% endfor %}
-  </div>
+  {% assign unique_repos = site.data.repositories.github_repos | uniq %}
+  {% for repo in unique_repos %}
+    <div class="col-md-6">
+      {% include repository/repo.html repository=repo %}
+    </div>
+  {% endfor %}
 </div>
 {% endif %}
 
