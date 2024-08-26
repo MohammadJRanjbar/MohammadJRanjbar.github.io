@@ -1,5 +1,5 @@
 ---
-layout: compress
+layout: talk
 title: projects
 permalink: /projects/
 author_profile: true
