@@ -21,25 +21,26 @@ nav_order: 3
 
 ### Some repositories I have contributed to
 
-{% if site.data.repositories.github_repos %}
+{% if site.data.repositories.github_repos or site.data.repositories2.github_repos %}
 <div style="display: flex; flex-wrap: wrap; justify-content: center;">
 
   <!-- First Column -->
-  <div style="flex: 1; min-width: 300px; padding: 10px;">
+  <div style="flex: 1 1 300px; padding: 10px;">
     {% for repo in site.data.repositories.github_repos %}
       {% include repository/repo.html repository=repo %}
     {% endfor %}
   </div>
 
-  
   <!-- Second Column -->
-  <div style="flex: 1; min-width: 300px; padding: 10px;">
-      {% for repo in site.data.repositories2.github_repos %}
-        {% include repository/repo.html repository=repo %}
-      {% endfor %}
-    </div>
+  <div style="flex: 1 1 300px; padding: 10px;">
+    {% for repo in site.data.repositories2.github_repos %}
+      {% include repository/repo.html repository=repo %}
+    {% endfor %}
+  </div>
+
 </div>
 {% endif %}
+
 
 
 
