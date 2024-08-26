@@ -1,10 +1,11 @@
 ---
 layout: page
 title: Projects
-permalink: /projects/
-author_profile: true
+description: Pulling latest stats from GitHub.
 nav: true
 nav_order: 3
+permalink: /projects/
+author_profile: true
 ---
 
 ### My stats
