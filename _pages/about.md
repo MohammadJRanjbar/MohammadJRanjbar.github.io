@@ -41,5 +41,9 @@ redirect_from:
             </ul>
         </div>
     </div>
+    <h2>Publications</h2>
+    <ul>
+        <li>MJ. Ranjbar, MB. Menhaj, H. Taheri. "Social Robots: An Open-Source Framework for Personal Assistant Robots." Published in Proceedings of the 10th RSI International Conference on Robotics and Mechatronics (ICRoM 2022).</li>
+    </ul>
 </div>
 <br />
