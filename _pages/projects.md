@@ -1,5 +1,5 @@
 ---
-layout: archive-taxonomy
+layout: custom_projects
 title: projects
 permalink: /projects/
 author_profile: true
