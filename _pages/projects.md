@@ -3,6 +3,8 @@ layout: page
 title: Projects
 permalink: /projects/
 author_profile: true
+nav: true
+nav_order: 3
 ---
 
 ### My stats
