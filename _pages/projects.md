@@ -24,21 +24,12 @@ nav_order: 4
 ### Some repositories I have contributed to
 
 {% if site.data.repositories.github_repos %}
-<div class="repositories d-flex flex-wrap justify-content-between align-items-center">
+<div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-center">
   {% assign unique_repos = site.data.repositories.github_repos | uniq %}
-  {% assign half_size = unique_repos.size | divided_by: 2 %}
-  
-  <div class="col-md-6">
-    {% for repo in unique_repos limit: half_size %}
-      {% include repository/repo.html repository=repo %}
-    {% endfor %}
-  </div>
-  
-  <div class="col-md-6">
-    {% for repo in unique_repos offset: half_size %}
-      {% include repository/repo.html repository=repo %}
-    {% endfor %}
-  </div>
+  {% for repo in unique_repos %}
+    {% include repository/repo.html repository=repo %}
+  {% endfor %}
 </div>
 {% endif %}
+
 
