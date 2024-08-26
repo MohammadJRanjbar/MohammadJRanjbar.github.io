@@ -29,14 +29,14 @@ nav_order: 3
     
     <!-- First Column -->
     <div style="flex: 1; min-width: 300px; padding: 10px;">
-      {% for repo in site.data.repositories.github_repos | slice: 0, half_repos %}
+      {% for repo in site.data.repositories.github_repos | slice: 0, 4 %}
         {% include repository/repo.html repository=repo %}
       {% endfor %}
     </div>
     
     <!-- Second Column -->
     <div style="flex: 1; min-width: 300px; padding: 10px;">
-      {% for repo in site.data.repositories.github_repos | slice: half_repos, total_repos %}
+      {% for repo in site.data.repositories.github_repos | slice: 4, 8 %}
         {% include repository/repo.html repository=repo %}
       {% endfor %}
     </div>
