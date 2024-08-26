@@ -6,10 +6,13 @@
   {% assign show_owner = true %}
 {% endif %}
 
-<div style="display: flex; justify-content: center; align-items: center;">
-<div class="repo p-2 text-center">
-  <a href="https://github.com/{{ include.repository }}">
-    <img class="repo-img-light w-100" alt="{{ include.repository }}" src="https://github-readme-stats.vercel.app/api/pin/?username={{ repo_url.first }}&repo={{ repo_url.last }}&count_private=true&theme={{ site.repo_theme_light }}&show_owner={{ show_owner }}">
-  </a>
+<div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-center">
+  {% for repo in site.data.repositories.github_repos %}
+    <div class="repo p-2 text-center">
+      <a href="https://github.com/{{ repo.repository }}">
+        <img class="repo-img-light w-100" alt="{{ repo.repository }}" src="https://github-readme-stats.vercel.app/api/pin/?username={{ repo.repo_url.first }}&repo={{ repo.repo_url.last }}&count_private=true&theme={{ site.repo_theme_light }}&show_owner={{ show_owner }}">
+      </a>
+    </div>
+  {% endfor %}
 </div>
-</div>
+
