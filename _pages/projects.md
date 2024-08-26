@@ -1,10 +1,8 @@
 ---
-layout: default
+layout: archive-taxonomy
 title: projects
 permalink: /projects/
 author_profile: true
-nav: true
-nav_order: 4
 ---
 
 ### My stats
