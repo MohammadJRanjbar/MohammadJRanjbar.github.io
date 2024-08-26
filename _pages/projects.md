@@ -22,10 +22,10 @@ author_profile: true
 ### Some repositories I have contributed to
 
 {% if site.data.repositories.github_repos %}
-<div class="repositories d-flex flex-wrap justify-content-between">
+<div class="repositories row">
   {% assign unique_repos = site.data.repositories.github_repos | uniq %}
   {% for repo in unique_repos %}
-    <div class="col-md-6">
+    <div class="col-md-6 mb-4">
       {% include repository/repo.html repository=repo %}
     </div>
   {% endfor %}
