@@ -36,7 +36,7 @@ nav_order: 3
     
     <!-- Second Column -->
     <div style="flex: 1; min-width: 300px; padding: 10px;">
-      {% for repo in site.data.repositories.github_repos | slice: half_repos %}
+      {% for repo in site.data.repositories.github_repos | slice: half_repos, total_repos %}
         {% include repository/repo.html repository=repo %}
       {% endfor %}
     </div>
