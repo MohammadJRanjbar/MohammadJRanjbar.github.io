@@ -1,13 +1,15 @@
 ---
 layout: page
-title: "Projects"
-permalink: /projects/
+permalink: /repositories/
+title: Repositories
+description: Pulling latest stats from GitHub.
 author_profile: true
+nav: true
+nav_order: 3
 ---
 
+### My stats
 
-My stats
-======
 {% if site.data.repositories.github_users %}
 <div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-center">
   {% for user in site.data.repositories.github_users %}
@@ -18,8 +20,7 @@ My stats
 
 ---
 
-Some repositories I have contributed to
-======
+### Some repositories I have contributed to
 
 {% if site.data.repositories.github_repos %}
 <div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-center">
