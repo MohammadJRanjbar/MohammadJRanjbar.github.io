@@ -43,7 +43,7 @@ redirect_from:
     </div>
     <h2>Selected publications</h2>
     <ul>
-        <li>MJ. Ranjbar, MB. Menhaj, H. Taheri. <a href="https://ieeexplore.ieee.org/document/10025253" target="_blank">Social Robots: An Open-Source َrchitecture for Personal Assistant Robots.</a>, Published in Proceedings of the 10th RSI International Conference on Robotics and Mechatronics(<a href="https://icrom.ir/" target="_blank">ICRoM</a> 2022).</li>
+        <li>MJ. Ranjbar, MB. Menhaj, H. Taheri. <a href="https://ieeexplore.ieee.org/document/10025253" target="_blank">Social Robots: An Open-Source َrchitecture for Personal Assistant Robots.</a>, Published in Proceedings of the 10th RSI International Conference on Robotics and Mechatronics (<a href="https://icrom.ir/" target="_blank">ICRoM 2022</a>).</li>
     </ul>
 </div>
 <br />
