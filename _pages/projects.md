@@ -1,9 +1,9 @@
 ---
 layout: page
+author_profile: true
 permalink: /projects/
 title: Projects
 description: Pulling latest stats from GitHub.
-author_profile: true
 nav: true
 nav_order: 3
 ---
