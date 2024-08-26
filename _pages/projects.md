@@ -29,27 +29,20 @@ nav_order: 3
     
     <!-- First Column -->
     <div style="flex: 1; min-width: 300px;">
-      <h3>First Column (0 to {{ half_repos }})</h3>
-      {% for repo in site.data.repositories.github_repos | slice: 0, half_repos %}
+      {% for index in (0..half_repos-1) %}
+        {% assign repo = site.data.repositories.github_repos[index] %}
         {% include repository/repo.html repository=repo %}
       {% endfor %}
     </div>
     
     <!-- Second Column -->
     <div style="flex: 1; min-width: 300px;">
-      <h3>Second Column ({{ half_repos }} to {{ total_repos }})</h3>
-      {% for repo in site.data.repositories.github_repos | slice: half_repos, total_repos %}
+      {% for index in (half_repos..total_repos-1) %}
+        {% assign repo = site.data.repositories.github_repos[index] %}
         {% include repository/repo.html repository=repo %}
       {% endfor %}
     </div>
     
-  </div>
-
-  <!-- Debugging Information -->
-  <div style="margin-top: 20px;">
-    <h3>Debugging Information:</h3>
-    <p>Total Repositories: {{ total_repos }}</p>
-    <p>Half Repositories: {{ half_repos }}</p>
   </div>
 {% endif %}
 
