@@ -1,7 +1,7 @@
 ---
 layout: page
-permalink: /repositories/
-title: Repositories
+permalink: /projects/
+title: Projects
 description: Pulling latest stats from GitHub.
 author_profile: true
 nav: true
