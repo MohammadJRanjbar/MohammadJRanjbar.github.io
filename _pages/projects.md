@@ -3,12 +3,11 @@ layout: page
 title: "Projects"
 permalink: /projects/
 author_profile: true
-redirect_from:
-  - /projects
 ---
 
-### My stats
 
+My stats
+======
 {% if site.data.repositories.github_users %}
 <div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-center">
   {% for user in site.data.repositories.github_users %}
@@ -19,7 +18,8 @@ redirect_from:
 
 ---
 
-### Some repositories I have contributed to
+Some repositories I have contributed to
+======
 
 {% if site.data.repositories.github_repos %}
 <div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-center">
