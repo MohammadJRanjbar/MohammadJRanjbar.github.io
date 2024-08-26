@@ -5,7 +5,7 @@ permalink: /projects/
 author_profile: true
 description: Pulling latest stats from GitHub.
 nav: true
-nav_order: 3
+nav_order: 4
 ---
 
 ### My stats
@@ -14,6 +14,7 @@ nav_order: 3
 <div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-center">
   {% assign unique_users = site.data.repositories.github_users | uniq %}
   {% for user in unique_users %}
+    <pre>{{ user | jsonify }}</pre>
     {% include repository/repo_user.html username=user %}
   {% endfor %}
 </div>
