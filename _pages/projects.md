@@ -1,5 +1,5 @@
 ---
-layout: splash
+layout: compress
 title: projects
 permalink: /projects/
 author_profile: true
