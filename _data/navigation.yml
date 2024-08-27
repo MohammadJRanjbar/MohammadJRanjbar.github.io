@@ -14,4 +14,4 @@ main:
     url: /certificates/
     
   - title: "CV"
-    url: https://github.com/MohammadJRanjbar/MohammadJRanjbar.github.io/raw/master/images/CV.pdf
+    url: /CV.pdf
