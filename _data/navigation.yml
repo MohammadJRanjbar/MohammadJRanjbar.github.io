@@ -1,11 +1,17 @@
 # main links links
 main:
+
+  - title: "About"
+    url: /about/    
+
+  - title: "Projects"
+    url: /projects/    
+    
   - title: "Repositories"
     url: /repositories/    
     
-  - title: "CV"
-    url: https://github.com/MohammadJRanjbar/MohammadJRanjbar.github.io/raw/master/images/CV.pdf
-    
   - title: "Certificates"
     url: /certificates/
-
+    
+  - title: "CV"
+    url: https://github.com/MohammadJRanjbar/MohammadJRanjbar.github.io/raw/master/images/CV.pdf
