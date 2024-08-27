@@ -4,7 +4,7 @@ main:
     url: /repositories/    
     
   - title: "CV"
-    url: /cv/
+    url: https://github.com/MohammadJRanjbar/MohammadJRanjbar.github.io/raw/master/images/CV.pdf
     
   - title: "Certificates"
     url: /certificates/
