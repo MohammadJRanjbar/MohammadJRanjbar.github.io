@@ -1,6 +1,6 @@
 ---
 title: "Natural Language Processing"
-collection: certificates
+collection: projects
 excerpt: "An online non-credit course authorized by DeepLearning.AI and offered through Coursera."
 ---
 
