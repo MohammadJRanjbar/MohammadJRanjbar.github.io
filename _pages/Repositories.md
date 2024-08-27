@@ -1,12 +1,12 @@
 ---
 layout: archive
-title: Repositories
 permalink: /repositories/
 author_profile: true
 nav: true
 nav_order: 3
 ---
----
+
+
 
 GitHub Stats
 ====
