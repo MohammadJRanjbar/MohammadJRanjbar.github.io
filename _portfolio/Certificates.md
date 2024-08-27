@@ -1,7 +1,7 @@
 ---
 title: "The 7th International Conference on Robotics and Mechatronics"
 collection: certificates
-excerpt: 'I was Member of secretariat team'
+excerpt: 'Member of Student Committe'
 ---
 
 
