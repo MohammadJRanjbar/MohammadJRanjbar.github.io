@@ -1,6 +1,6 @@
 ---
 title: "The 7th International Conference on Robotics and Mechatronics"
-collection: portfolio
+collection: certificates
 excerpt: 'Member of Student Committe'
 ---
 
