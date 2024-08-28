@@ -9,7 +9,7 @@ With the ever-increasing progress of robotics and machine learning and their viv
 An example of interacting with this robot can be seen in this demonstration:
 
 <video width="360" height="640" controls>
-  <source src="Robot.mp4" type="video/mp4">
+  <source src="/Robot.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
