@@ -698,31 +698,13 @@
                 <li><strong>Clinical Focus:</strong> ~70% clinical case scenarios, 30% basic science questions, reflecting real-world medical practice</li>
                 <li><strong>Rich Metadata:</strong> Specialty labels, clinical flags, patient demographics when available for granular analysis</li>
                 <li><strong>Bilingual Excellence:</strong> Original Persian with high-quality English translations using state-of-the-art models</li>
-                <li><strong>Expert Validation:</strong> All questions verified by medical professionals ensuring accuracy and relevance</li>
+
             </ul>
         </section>
 
-        <div class="warning">
-            <strong>⚠️ Access Note:</strong> Access to the dataset is temporarily restricted while our paper is under review. We will make the dataset publicly available shortly after the first round of reviews. Thank you for your patience and interest in advancing Persian medical AI research.
-        </div>
 
-        <section class="section">
-            <h2>Dataset Structure</h2>
-            <p>Each question in PersianMedQA follows a standardized structure with rich metadata:</p>
-            <div class="code-block">
-{
-    "id": "string",                    # unique question identifier
-    "question": "string",              # question text
-    "options": ["str", "str", "str", "str"],  # always 4 multiple choices
-    "answer_idx": 0-3,                # correct option index
-    "specialty": "string",            # medical specialty (e.g., Cardiology, Radiology)
-    "is_clinical": bool,              # clinical case vs basic science
-    "patient_age": "integer | null",  # patient age if mentioned in question
-    "patient_gender": "male | female | null",  # patient gender if mentioned
-    "language": "fa" | "en"           # Persian (original) or English (translated)
-}
-            </div>
-        </section>
+
+
 
         <section class="section">
             <h2>Example Question</h2>
@@ -742,31 +724,7 @@
             </div>
         </section>
 
-        <section class="section">
-            <h2>How to Load</h2>
-            <p>Loading PersianMedQA is straightforward with the Hugging Face datasets library:</p>
-            <div class="code-block">
-from datasets import load_dataset
 
-# Load the complete dataset
-ds = load_dataset("MohammadJRanjbar/PersianMedQA")
-
-# Or load specific splits
-train_ds = load_dataset("MohammadJRanjbar/PersianMedQA", split="train")      # 14,549 questions
-val_ds = load_dataset("MohammadJRanjbar/PersianMedQA", split="validation")   # 1,000 questions  
-test_ds = load_dataset("MohammadJRanjbar/PersianMedQA", split="test")        # 5,236 questions
-
-# Example: Print first question
-print(test_ds[0])
-
-# Filter by language
-persian_questions = test_ds.filter(lambda x: x["language"] == "fa")
-english_questions = test_ds.filter(lambda x: x["language"] == "en")
-
-# Filter by specialty
-cardiology_questions = test_ds.filter(lambda x: x["specialty"] == "Cardiology")
-            </div>
-        </section>
 
         <section class="section" id="results">
             <h2>Evaluation Results</h2>
@@ -849,24 +807,18 @@ cardiology_questions = test_ds.filter(lambda x: x["specialty"] == "Cardiology")
         <section class="section" id="citation">
             <h2>Reference</h2>
             <div class="card">
-                <p>The paper is currently under review. Meanwhile, here is the arXiv version:</p>
+                <p>The paper is under review. Meanwhile, here is the arXiv version:</p>
+                <p><strong>Ranjbar Kalahroodi, M. J., Sheikholselami, A., Karimi, S., Ranjbar Kalahroodi, S., Faili, H., & Shakery, A. (2025).</strong></p>
+                <p><strong>PersianMedQA: Language-Centric Evaluation of LLMs in the Persian Medical Domain.</strong></p>
+                <p><strong>arXiv preprint arXiv:2506.00250.</strong></p>
+                <p><a href="https://arxiv.org/abs/2506.00250" style="color: var(--primary); text-decoration: none;">https://arxiv.org/abs/2506.00250</a></p>
                 
-                <p>Ranjbar Kalahroodi, M. J., Sheikholselami, A., Karimi, S., Ranjbar Kalahroodi, S., Faili, H., & Shakery, A. (2025).<br>
-                PersianMedQA: Language-Centric Evaluation of LLMs in the Persian Medical Domain.<br>
-                arXiv preprint arXiv:2506.00250.</p>
-                
-                <p><a href="https://arxiv.org/abs/2506.00250" style="color: var(--primary); text-decoration: none; font-weight: 600;">https://arxiv.org/abs/2506.00250</a></p>
-
-                <h3>BibTeX Citation</h3>
+                <h3>Citation Format</h3>
                 <div class="code-block">
 @article{ranjbar2025persianmedqa,
     title = {PersianMedQA: Language-Centric Evaluation of LLMs in the Persian Medical Domain},
-    author = {Mohammad Javad Ranjbar Kalahroodi and 
-              Amirhossein Sheikholselami and 
-              Sepehr Karimi and 
-              Sepideh Ranjbar Kalahroodi and 
-              Heshaam Faili and 
-              Azadeh Shakery},
+    author = {Mohammad Javad Ranjbar Kalahroodi and Amirhossein Sheikholselami and 
+              Sepehr Karimi and Sepideh Ranjbar Kalahroodi and Heshaam Faili and Azadeh Shakery},
     journal = {arXiv preprint arXiv:2506.00250},
     year = {2025},
     url = {https://arxiv.org/abs/2506.00250},
@@ -874,6 +826,3 @@ cardiology_questions = test_ds.filter(lambda x: x["specialty"] == "Cardiology")
     eprint = {2506.00250},
     primaryClass = {cs.CL}
 }
-                </div>
-            </div>
-        </section>
