@@ -4,386 +4,869 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PersianMedQA — A Large-Scale Persian Medical Question Answering Dataset</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #14967F;
+            --primary-dark: #095D7E;
+            --accent: #E2FCD6;
+            --accent-light: #F1F9FF;
+            --neutral: #CCECEE;
+            --surface: rgba(255, 255, 255, 0.95);
+            --text: #2c3e50;
+            --text-light: #7f8c8d;
+            --gradient-primary: linear-gradient(135deg, #14967F 0%, #095D7E 100%);
+            --gradient-accent: linear-gradient(135deg, #E2FCD6 0%, #CCECEE 100%);
+            --gradient-hero: linear-gradient(135deg, #F1F9FF 0%, #E2FCD6 50%, #CCECEE 100%);
+            --shadow-sm: 0 2px 8px rgba(20, 150, 127, 0.1);
+            --shadow-md: 0 8px 25px rgba(20, 150, 127, 0.15);
+            --shadow-lg: 0 15px 35px rgba(20, 150, 127, 0.2);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Georgia', 'Times New Roman', serif;
-            line-height: 1.6;
-            color: #095D7E;
-            background: linear-gradient(135deg, #F1F9FF 0%, #E2FCD6 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--gradient-hero);
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 900px;
+        /* Floating Background Elements */
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+        }
+
+        .shape:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            background: var(--primary);
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            background: var(--primary-dark);
+            top: 60%;
+            right: 15%;
+            animation-delay: -5s;
+        }
+
+        .shape:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            bottom: 20%;
+            left: 20%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(10px) rotate(240deg); }
+        }
+
+        /* Header */
+        .header {
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(20, 150, 127, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 0 30px rgba(20, 150, 127, 0.1);
-            border-radius: 15px;
-            margin-top: 20px;
-            margin-bottom: 20px;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        h1 {
-            font-size: 2.5em;
-            color: #14967F;
-            margin-bottom: 10px;
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
             text-align: center;
-            border-bottom: 3px solid #CCECEE;
-            padding-bottom: 15px;
+            padding: 4rem 0;
+            position: relative;
         }
 
-        .subtitle {
-            font-size: 1.2em;
-            color: #095D7E;
-            text-align: center;
-            margin-bottom: 30px;
-            font-style: italic;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
         }
 
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-weight: 400;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Highlight Box */
         .highlight-box {
-            background: linear-gradient(135deg, #E2FCD6, #CCECEE);
-            border-left: 5px solid #14967F;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(20, 150, 127, 0.15);
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(20, 150, 127, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out 0.4s both;
         }
 
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .highlight-box p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .highlight-box p:first-child {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        /* Statistics Grid */
         .stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 25px 0;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
         }
 
-        .stat-item {
-            background: #F1F9FF;
-            padding: 15px;
-            border-radius: 8px;
+        .stat-card {
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
             text-align: center;
-            border: 2px solid #A8DDA8;
+            border: 1px solid rgba(20, 150, 127, 0.2);
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-card:hover::before {
+            transform: scaleX(1);
         }
 
         .stat-number {
-            font-size: 2em;
-            font-weight: bold;
-            color: #14967F;
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            display: block;
         }
 
         .stat-label {
-            color: #095D7E;
-            font-size: 0.9em;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 0.95rem;
         }
 
+        .lang-badges {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .lang-badge {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Section Styling */
         .section {
-            margin: 30px 0;
+            margin: 4rem 0;
+            animation: fadeInUp 1s ease-out;
         }
 
         .section h2 {
-            color: #14967F;
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #CCECEE;
-            padding-bottom: 8px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .section h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
         }
 
         .section h3 {
-            color: #095D7E;
-            font-size: 1.3em;
-            margin: 20px 0 10px 0;
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            margin: 2rem 0 1rem 0;
+            font-weight: 600;
         }
 
-        p {
-            margin-bottom: 15px;
-            text-align: justify;
+        /* Enhanced Cards */
+        .card {
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(20, 150, 127, 0.2);
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
         }
 
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Code Blocks */
         .code-block {
-            background: #095D7E;
-            color: #F1F9FF;
-            padding: 15px;
-            border-radius: 8px;
-            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: #e2e8f0;
+            padding: 2rem;
+            border-radius: 15px;
+            font-family: 'JetBrains Mono', monospace;
             overflow-x: auto;
-            margin: 15px 0;
-            border-left: 5px solid #14967F;
+            margin: 2rem 0;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            box-shadow: var(--shadow-md);
+            position: relative;
         }
 
+        .code-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+        }
+
+        /* Enhanced Buttons */
         .button {
             display: inline-block;
-            background: linear-gradient(135deg, #14967F, #095D7E);
+            background: var(--gradient-primary);
             color: white;
-            padding: 12px 25px;
+            padding: 1rem 2rem;
             text-decoration: none;
-            border-radius: 25px;
-            margin: 10px 10px 10px 0;
+            border-radius: 50px;
+            margin: 0.5rem;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(20, 150, 127, 0.3);
+            box-shadow: var(--shadow-md);
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .button:hover::before {
+            left: 100%;
         }
 
         .button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(20, 150, 127, 0.4);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
         }
 
-        .news-item {
-            background: #F1F9FF;
-            border-left: 4px solid #A8DDA8;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .news-date {
-            font-weight: bold;
-            color: #14967F;
+        /* Enhanced Table */
+        .table-container {
+            background: var(--surface);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin: 2rem 0;
+            border: 1px solid rgba(20, 150, 127, 0.2);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #CCECEE;
         }
 
         th {
-            background: #14967F;
+            background: var(--gradient-primary);
             color: white;
-            font-weight: bold;
+            padding: 1.5rem 1rem;
+            font-weight: 600;
+            text-align: left;
         }
 
-        tr:hover {
-            background: #F1F9FF;
+        td {
+            padding: 1.25rem 1rem;
+            border-bottom: 1px solid rgba(20, 150, 127, 0.1);
+            transition: background-color 0.3s ease;
         }
 
+        tr:hover td {
+            background: var(--accent-light);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Warning Box */
         .warning {
-            background: linear-gradient(135deg, #FFC000, #ED7D31);
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
             color: white;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border-left: 5px solid #D64550;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-md);
+            border-left: 5px solid #d63447;
         }
 
+        /* Example Box */
         .example-box {
-            background: #CCECEE;
-            border: 2px solid #A8DDA8;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
+            background: var(--surface);
+            border: 2px solid var(--neutral);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-md);
+            position: relative;
         }
 
-        .lang-badge {
-            background: #14967F;
+        .example-box::before {
+            content: 'Example';
+            position: absolute;
+            top: -12px;
+            left: 2rem;
+            background: var(--gradient-primary);
             color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8em;
-            margin: 0 5px;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
 
+        /* Footer */
         .footer {
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(20, 150, 127, 0.2);
+            margin-top: 4rem;
+            padding: 3rem 2rem;
             text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 2px solid #CCECEE;
-            color: #095D7E;
+            color: var(--text-light);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .hero {
+                padding: 2rem 0;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .highlight-box, .card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Scroll Animations */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-left {
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .animate-right {
+            animation: slideInRight 1s ease-out;
+        }
+
+        /* List Styling */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            background: var(--surface);
+            margin: 1rem 0;
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .feature-list li:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Mobile hamburger menu */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            margin: 3px 0;
+            transition: 0.3s;
         }
 
         @media (max-width: 768px) {
-            .container {
-                margin: 10px;
-                padding: 20px;
+            .nav-links {
+                display: none;
             }
             
-            h1 {
-                font-size: 2em;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
+            .mobile-menu {
+                display: flex;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>PersianMedQA</h1>
-        <p class="subtitle">Language-Centric Evaluation of LLMs in the Persian Medical Domain</p>
+    <div class="bg-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
 
-        <div class="highlight-box">
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="logo">PersianMedQA</a>
+            <ul class="nav-links">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#dataset">Dataset</a></li>
+                <li><a href="#results">Results</a></li>
+                <li><a href="#access">Access</a></li>
+                <li><a href="#citation">Citation</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <h1>PersianMedQA</h1>
+            <p class="subtitle">Language-Centric Evaluation of LLMs in the Persian Medical Domain</p>
+        </section>
+
+        <div class="highlight-box" id="overview">
             <p><strong>PersianMedQA is a large-scale, expert-validated multiple-choice question answering dataset covering 23 medical specialties, collected from 14 years of Iranian residency and pre-residency board examinations.</strong></p>
             
-            <p>This dataset enables comprehensive evaluation of large language models in medical reasoning tasks, with questions available in both Persian (original) and high-quality English translations.</p>
+            <p>This dataset enables comprehensive evaluation of large language models in medical reasoning tasks, with questions available in both Persian (original) and high-quality English translations. Our work represents the first comprehensive Persian medical QA benchmark, bridging the gap between multilingual AI and specialized medical knowledge.</p>
         </div>
 
         <div class="stats">
-            <div class="stat-item">
-                <div class="stat-number">20,785</div>
+            <div class="stat-card">
+                <span class="stat-number">20,785</span>
                 <div class="stat-label">Total Questions</div>
             </div>
-            <div class="stat-item">
-                <div class="stat-number">23</div>
+            <div class="stat-card">
+                <span class="stat-number">23</span>
                 <div class="stat-label">Medical Specialties</div>
             </div>
-            <div class="stat-item">
-                <div class="stat-number">14</div>
+            <div class="stat-card">
+                <span class="stat-number">14</span>
                 <div class="stat-label">Years of Exams</div>
             </div>
-            <div class="stat-item">
-                <div class="stat-number">2</div>
-                <div class="stat-label">Languages<br><span class="lang-badge">fa</span><span class="lang-badge">en</span></div>
+            <div class="stat-card">
+                <span class="stat-number">2</span>
+                <div class="stat-label">Languages</div>
+                <div class="lang-badges">
+                    <span class="lang-badge">Persian</span>
+                    <span class="lang-badge">English</span>
+                </div>
             </div>
         </div>
 
-        <div class="section">
+        <section class="section" id="dataset">
             <h2>Dataset Features</h2>
-            <ul style="margin-left: 30px; color: #095D7E;">
-                <li><strong>Comprehensive Coverage:</strong> Questions span 23 medical specialties from cardiology to radiology</li>
-                <li><strong>Clinical Focus:</strong> ~70% clinical case scenarios, 30% basic science questions</li>
-                <li><strong>Rich Metadata:</strong> Specialty labels, clinical flags, patient demographics when available</li>
-                <li><strong>Bilingual:</strong> Original Persian with high-quality English translations</li>
-                <li><strong>Expert Validation:</strong> All questions verified by medical professionals</li>
+            <ul class="feature-list">
+                <li><strong>Comprehensive Coverage:</strong> Questions span 23 medical specialties from cardiology to radiology, ensuring broad domain representation</li>
+                <li><strong>Clinical Focus:</strong> ~70% clinical case scenarios, 30% basic science questions, reflecting real-world medical practice</li>
+                <li><strong>Rich Metadata:</strong> Specialty labels, clinical flags, patient demographics when available for granular analysis</li>
+                <li><strong>Bilingual Excellence:</strong> Original Persian with high-quality English translations using state-of-the-art models</li>
+                <li><strong>Expert Validation:</strong> All questions verified by medical professionals ensuring accuracy and relevance</li>
             </ul>
-        </div>
+        </section>
 
         <div class="warning">
-            <strong>⚠️ Access Note:</strong> Access to the dataset is temporarily restricted while our paper is under review. We will make the dataset publicly available shortly after the first round of reviews. Thank you for your patience and interest.
+            <strong>⚠️ Access Note:</strong> Access to the dataset is temporarily restricted while our paper is under review. We will make the dataset publicly available shortly after the first round of reviews. Thank you for your patience and interest in advancing Persian medical AI research.
         </div>
 
-        <div class="section">
+        <section class="section">
             <h2>Dataset Structure</h2>
+            <p>Each question in PersianMedQA follows a standardized structure with rich metadata:</p>
             <div class="code-block">
 {
-    "id": "string",                    # unique question id
+    "id": "string",                    # unique question identifier
     "question": "string",              # question text
-    "options": ["str", "str", "str", "str"],  # always 4 choices
+    "options": ["str", "str", "str", "str"],  # always 4 multiple choices
     "answer_idx": 0-3,                # correct option index
-    "specialty": "string",            # e.g. Cardiology, Radiology
-    "is_clinical": bool,              # clinical vs basic science
-    "patient_age": "integer | null",  # patient age if mentioned
+    "specialty": "string",            # medical specialty (e.g., Cardiology, Radiology)
+    "is_clinical": bool,              # clinical case vs basic science
+    "patient_age": "integer | null",  # patient age if mentioned in question
     "patient_gender": "male | female | null",  # patient gender if mentioned
-    "language": "fa" | "en"           # Persian or English
+    "language": "fa" | "en"           # Persian (original) or English (translated)
 }
             </div>
-        </div>
+        </section>
 
-        <div class="section">
+        <section class="section">
             <h2>Example Question</h2>
             <div class="example-box">
-                <h3>Persian Example:</h3>
-                <p><strong>Question:</strong> بیمار ۴۸ سالهای با درد قفسه سینه ... مؤثرترین اقدام درمانی کدام است؟</p>
+                <h3>Persian Clinical Case:</h3>
+                <p><strong>Question:</strong> بیمار ۴۸ سالهای با درد قفسه سینه حاد و تغییرات ECG مشخص کننده STEMI مراجعه کرده است. مؤثرترین اقدام درمانی کدام است؟</p>
                 <p><strong>Options:</strong></p>
-                <ol style="margin-left: 30px;">
+                <ol style="margin-left: 2rem; color: var(--text-light);">
                     <li>تجویز فیبرینولیتیک و در صورت لزوم آنژیوپلاستی اورژانس</li>
                     <li>تجویز فیبرینولیتیک</li>
-                    <li><strong>آنژیوپلاستی اورژانس</strong> ← Correct Answer</li>
+                    <li><strong style="color: var(--primary);">آنژیوپلاستی اورژانس</strong> ← Correct Answer</li>
                     <li>تجویز فیبرینولیتیک و آنژیوپلاستی ۴۸ ساعت بعد</li>
                 </ol>
-                <p><strong>Metadata:</strong> Specialty: Cardiology | Clinical: Yes | Patient: 48-year-old male</p>
+                <div style="background: var(--accent-light); padding: 1rem; border-radius: 10px; margin-top: 1rem;">
+                    <p><strong>Metadata:</strong> Specialty: Cardiology | Clinical: Yes | Patient: 48-year-old male</p>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div class="section">
+        <section class="section">
             <h2>How to Load</h2>
+            <p>Loading PersianMedQA is straightforward with the Hugging Face datasets library:</p>
             <div class="code-block">
 from datasets import load_dataset
 
-# Load the dataset
-ds = load_dataset("MohammadJRanjbar/PersianMedQA", split="test")
-print(ds[0])
+# Load the complete dataset
+ds = load_dataset("MohammadJRanjbar/PersianMedQA")
 
-# Available splits: train (14,549), validation (1,000), test (5,236)
+# Or load specific splits
+train_ds = load_dataset("MohammadJRanjbar/PersianMedQA", split="train")      # 14,549 questions
+val_ds = load_dataset("MohammadJRanjbar/PersianMedQA", split="validation")   # 1,000 questions  
+test_ds = load_dataset("MohammadJRanjbar/PersianMedQA", split="test")        # 5,236 questions
+
+# Example: Print first question
+print(test_ds[0])
+
+# Filter by language
+persian_questions = test_ds.filter(lambda x: x["language"] == "fa")
+english_questions = test_ds.filter(lambda x: x["language"] == "en")
+
+# Filter by specialty
+cardiology_questions = test_ds.filter(lambda x: x["specialty"] == "Cardiology")
             </div>
-        </div>
+        </section>
 
-        <div class="section">
+        <section class="section" id="results">
             <h2>Evaluation Results</h2>
-            <p>Performance of various language models on PersianMedQA test set:</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Model</th>
-                        <th>Accuracy (Persian)</th>
-                        <th>Accuracy (English)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>GPT-4.1</td>
-                        <td><strong>83.1%</strong></td>
-                        <td><strong>83.3%</strong></td>
-                    </tr>
-                    <tr>
-                        <td>Gemini 2.5 Flash</td>
-                        <td>82.4%</td>
-                        <td>83.7%</td>
-                    </tr>
-                    <tr>
-                        <td>Llama 3.1-405B-Instruct</td>
-                        <td>69.3%</td>
-                        <td>75.8%</td>
-                    </tr>
-                    <tr>
-                        <td>Meditron3-8B</td>
-                        <td>39.7%</td>
-                        <td>51.6%</td>
-                    </tr>
-                    <tr>
-                        <td>Dorna2-Llama3-8B</td>
-                        <td>36.0%</td>
-                        <td>53.1%</td>
-                    </tr>
-                </tbody>
-            </table>
-            <p><em>See the paper for complete leaderboard, chain-of-thought experiments, ensembling, and selective-answering analysis.</em></p>
-        </div>
+            <p>We evaluated various state-of-the-art language models on PersianMedQA, revealing interesting patterns in multilingual medical reasoning:</p>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Accuracy (Persian)</th>
+                            <th>Accuracy (English)</th>
+                            <th>Language Gap</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>GPT-4.1</strong></td>
+                            <td><strong>83.1%</strong></td>
+                            <td><strong>83.3%</strong></td>
+                            <td>+0.2%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gemini 2.5 Flash</strong></td>
+                            <td>82.4%</td>
+                            <td><strong>83.7%</strong></td>
+                            <td>+1.3%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Llama 3.1-405B-Instruct</strong></td>
+                            <td>69.3%</td>
+                            <td>75.8%</td>
+                            <td>+6.5%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Meditron3-8B</strong></td>
+                            <td>39.7%</td>
+                            <td>51.6%</td>
+                            <td>+11.9%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dorna2-Llama3-8B</strong></td>
+                            <td>36.0%</td>
+                            <td>53.1%</td>
+                            <td>+17.1%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><em>See our paper for comprehensive analysis including chain-of-thought experiments, ensembling strategies, and selective-answering performance.</em></p>
+        </section>
 
-        <div class="section">
+        <section class="section" id="access">
             <h2>Access the Dataset</h2>
-            <p>The dataset will be available through Hugging Face Datasets:</p>
-            <a href="https://huggingface.co/datasets/MohammadJRanjbar/PersianMedQA" class="button">🤗 Hugging Face Dataset</a>
-            <a href="https://arxiv.org/abs/2506.00250" class="button">📄 Paper (arXiv)</a>
-        </div>
+            <div class="card">
+                <p>The dataset will be made available through multiple channels to ensure maximum accessibility for the research community:</p>
+                <div style="text-align: center; margin: 2rem 0;">
+                    <a href="https://huggingface.co/datasets/MohammadJRanjbar/PersianMedQA" class="button">🤗 Hugging Face Dataset</a>
+                    <a href="https://arxiv.org/abs/2506.00250" class="button">📄 Paper (arXiv)</a>
+                </div>
+            </div>
+        </section>
 
-        <div class="section">
-            <h2>Intended Uses</h2>
-            <ul style="margin-left: 30px; color: #095D7E;">
-                <li>Benchmarking multilingual and domain-specific language models on medical reasoning</li>
-                <li>Few-shot and zero-shot evaluation of Persian QA capabilities</li>
-                <li>Research on translation effects and cross-lingual performance</li>
-                <li>Cultural context analysis in medical AI systems</li>
-            </ul>
+        <section class="section">
+            <h2>Intended Uses & Applications</h2>
+            <div class="card animate-left">
+                <ul class="feature-list">
+                    <li><strong>Benchmarking:</strong> Evaluate multilingual and domain-specific language models on high-stakes medical reasoning tasks</li>
+                    <li><strong>Few-shot Learning:</strong> Test zero-shot and few-shot capabilities of Persian QA systems</li>
+                    <li><strong>Cross-lingual Research:</strong> Investigate translation effects and cross-lingual transfer in medical domains</li>
+                    <li><strong>Cultural Context:</strong> Analyze cultural and linguistic nuances in medical AI systems</li>
+                    <li><strong>Educational Tools:</strong> Develop AI-powered medical education platforms for Persian-speaking regions</li>
+                </ul>
+            </div>
             
             <div class="warning">
-                <strong>⚠️ Important:</strong> This dataset is for research purposes only. It must not be used to provide real-world medical advice or clinical deployment.
+                <strong>⚠️ Important Disclaimer:</strong> This dataset is designed exclusively for research purposes. It must not be used to provide real-world medical advice, clinical decision-making, or deployment in healthcare systems without proper validation and regulatory approval.
             </div>
-        </div>
+        </section>
 
-        <div class="section">
-            <h2>Citation</h2>
-            <p>If you use PersianMedQA in your work, please cite:</p>
-            <div class="code-block">
+        <section class="section" id="citation">
+            <h2>Reference</h2>
+            <div class="card">
+                <p>The paper is currently under review. Meanwhile, here is the arXiv version:</p>
+                
+                <p>Ranjbar Kalahroodi, M. J., Sheikholselami, A., Karimi, S., Ranjbar Kalahroodi, S., Faili, H., & Shakery, A. (2025).<br>
+                PersianMedQA: Language-Centric Evaluation of LLMs in the Persian Medical Domain.<br>
+                arXiv preprint arXiv:2506.00250.</p>
+                
+                <p><a href="https://arxiv.org/abs/2506.00250" style="color: var(--primary); text-decoration: none; font-weight: 600;">https://arxiv.org/abs/2506.00250</a></p>
+
+                <h3>BibTeX Citation</h3>
+                <div class="code-block">
 @article{ranjbar2025persianmedqa,
     title = {PersianMedQA: Language-Centric Evaluation of LLMs in the Persian Medical Domain},
-    author = {Mohammad Javad Ranjbar Kalahroodi and Amirhossein Sheikholselami and 
-              Sepehr Karimi and Sepideh Ranjbar Kalahroodi and Heshaam Faili and Azadeh Shakery},
+    author = {Mohammad Javad Ranjbar Kalahroodi and 
+              Amirhossein Sheikholselami and 
+              Sepehr Karimi and 
+              Sepideh Ranjbar Kalahroodi and 
+              Heshaam Faili and 
+              Azadeh Shakery},
     journal = {arXiv preprint arXiv:2506.00250},
     year = {2025},
     url = {https://arxiv.org/abs/2506.00250},
@@ -391,27 +874,6 @@ print(ds[0])
     eprint = {2506.00250},
     primaryClass = {cs.CL}
 }
+                </div>
             </div>
-        </div>
-
-        <div class="section">
-            <h2>License</h2>
-            <p>PersianMedQA is released under <strong>Creative Commons Attribution 4.0 International (CC BY 4.0)</strong>. You may share, remix, adapt, and build upon the data for any purpose, even commercially, provided that you give appropriate credit.</p>
-        </div>
-
-        <div class="section">
-            <h2>Contact</h2>
-            <p>Questions or issues? Contact the authors:</p>
-            <p><strong>Authors:</strong> Mohammad Javad Ranjbar Kalahroodi, Amirhossein Sheikholselami, Sepehr Karimi, Sepideh Ranjbar Kalahroodi, Heshaam Faili, Azadeh Shakery</p>
-            <p><strong>Email:</strong> { mohammadJRanjbar | ah.sheikh | sepehrkarimi | hfaili | shakery }@ut.ac.ir</p>
-            <a href="https://github.com/MohammadJRanjbar/MohammadJRanjbar.github.io/issues" class="button">Report Issues</a>
-            <a href="https://mohammadJranjbar.github.io/" class="button">Main Page</a>
-        </div>
-
-        <div class="footer">
-            <p>© 2025 PersianMedQA Authors | University of Tehran</p>
-            <p><em>Advancing Persian Language AI in Healthcare</em></p>
-        </div>
-    </div>
-</body>
-</html>
+        </section>
