@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PersianMedQA — A Large-Scale Persian Medical Question Answering Dataset</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #095D7E;
+            background: linear-gradient(135deg, #F1F9FF 0%, #E2FCD6 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 0 30px rgba(20, 150, 127, 0.1);
+            border-radius: 15px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #14967F;
+            margin-bottom: 10px;
+            text-align: center;
+            border-bottom: 3px solid #CCECEE;
+            padding-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #095D7E;
+            text-align: center;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #E2FCD6, #CCECEE);
+            border-left: 5px solid #14967F;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(20, 150, 127, 0.15);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .stat-item {
+            background: #F1F9FF;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #A8DDA8;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #14967F;
+        }
+
+        .stat-label {
+            color: #095D7E;
+            font-size: 0.9em;
+        }
+
+        .section {
+            margin: 30px 0;
+        }
+
+        .section h2 {
+            color: #14967F;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #CCECEE;
+            padding-bottom: 8px;
+        }
+
+        .section h3 {
+            color: #095D7E;
+            font-size: 1.3em;
+            margin: 20px 0 10px 0;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .code-block {
+            background: #095D7E;
+            color: #F1F9FF;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 15px 0;
+            border-left: 5px solid #14967F;
+        }
+
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #14967F, #095D7E);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 10px 10px 10px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(20, 150, 127, 0.3);
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(20, 150, 127, 0.4);
+        }
+
+        .news-item {
+            background: #F1F9FF;
+            border-left: 4px solid #A8DDA8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .news-date {
+            font-weight: bold;
+            color: #14967F;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #CCECEE;
+        }
+
+        th {
+            background: #14967F;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background: #F1F9FF;
+        }
+
+        .warning {
+            background: linear-gradient(135deg, #FFC000, #ED7D31);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid #D64550;
+        }
+
+        .example-box {
+            background: #CCECEE;
+            border: 2px solid #A8DDA8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .lang-badge {
+            background: #14967F;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin: 0 5px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #CCECEE;
+            color: #095D7E;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PersianMedQA</h1>
+        <p class="subtitle">Language-Centric Evaluation of LLMs in the Persian Medical Domain</p>
+
+        <div class="highlight-box">
+            <p><strong>PersianMedQA is a large-scale, expert-validated multiple-choice question answering dataset covering 23 medical specialties, collected from 14 years of Iranian residency and pre-residency board examinations.</strong></p>
+            
+            <p>This dataset enables comprehensive evaluation of large language models in medical reasoning tasks, with questions available in both Persian (original) and high-quality English translations.</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">20,785</div>
+                <div class="stat-label">Total Questions</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">23</div>
+                <div class="stat-label">Medical Specialties</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">14</div>
+                <div class="stat-label">Years of Exams</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2</div>
+                <div class="stat-label">Languages<br><span class="lang-badge">fa</span><span class="lang-badge">en</span></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Dataset Features</h2>
+            <ul style="margin-left: 30px; color: #095D7E;">
+                <li><strong>Comprehensive Coverage:</strong> Questions span 23 medical specialties from cardiology to radiology</li>
+                <li><strong>Clinical Focus:</strong> ~70% clinical case scenarios, 30% basic science questions</li>
+                <li><strong>Rich Metadata:</strong> Specialty labels, clinical flags, patient demographics when available</li>
+                <li><strong>Bilingual:</strong> Original Persian with high-quality English translations</li>
+                <li><strong>Expert Validation:</strong> All questions verified by medical professionals</li>
+            </ul>
+        </div>
+
+        <div class="warning">
+            <strong>⚠️ Access Note:</strong> Access to the dataset is temporarily restricted while our paper is under review. We will make the dataset publicly available shortly after the first round of reviews. Thank you for your patience and interest.
+        </div>
+
+        <div class="section">
+            <h2>Dataset Structure</h2>
+            <div class="code-block">
+{
+    "id": "string",                    # unique question id
+    "question": "string",              # question text
+    "options": ["str", "str", "str", "str"],  # always 4 choices
+    "answer_idx": 0-3,                # correct option index
+    "specialty": "string",            # e.g. Cardiology, Radiology
+    "is_clinical": bool,              # clinical vs basic science
+    "patient_age": "integer | null",  # patient age if mentioned
+    "patient_gender": "male | female | null",  # patient gender if mentioned
+    "language": "fa" | "en"           # Persian or English
+}
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Example Question</h2>
+            <div class="example-box">
+                <h3>Persian Example:</h3>
+                <p><strong>Question:</strong> بیمار ۴۸ سالهای با درد قفسه سینه ... مؤثرترین اقدام درمانی کدام است؟</p>
+                <p><strong>Options:</strong></p>
+                <ol style="margin-left: 30px;">
+                    <li>تجویز فیبرینولیتیک و در صورت لزوم آنژیوپلاستی اورژانس</li>
+                    <li>تجویز فیبرینولیتیک</li>
+                    <li><strong>آنژیوپلاستی اورژانس</strong> ← Correct Answer</li>
+                    <li>تجویز فیبرینولیتیک و آنژیوپلاستی ۴۸ ساعت بعد</li>
+                </ol>
+                <p><strong>Metadata:</strong> Specialty: Cardiology | Clinical: Yes | Patient: 48-year-old male</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>How to Load</h2>
+            <div class="code-block">
+from datasets import load_dataset
+
+# Load the dataset
+ds = load_dataset("MohammadJRanjbar/PersianMedQA", split="test")
+print(ds[0])
+
+# Available splits: train (14,549), validation (1,000), test (5,236)
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Evaluation Results</h2>
+            <p>Performance of various language models on PersianMedQA test set:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Accuracy (Persian)</th>
+                        <th>Accuracy (English)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>GPT-4.1</td>
+                        <td><strong>83.1%</strong></td>
+                        <td><strong>83.3%</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Gemini 2.5 Flash</td>
+                        <td>82.4%</td>
+                        <td>83.7%</td>
+                    </tr>
+                    <tr>
+                        <td>Llama 3.1-405B-Instruct</td>
+                        <td>69.3%</td>
+                        <td>75.8%</td>
+                    </tr>
+                    <tr>
+                        <td>Meditron3-8B</td>
+                        <td>39.7%</td>
+                        <td>51.6%</td>
+                    </tr>
+                    <tr>
+                        <td>Dorna2-Llama3-8B</td>
+                        <td>36.0%</td>
+                        <td>53.1%</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><em>See the paper for complete leaderboard, chain-of-thought experiments, ensembling, and selective-answering analysis.</em></p>
+        </div>
+
+        <div class="section">
+            <h2>Access the Dataset</h2>
+            <p>The dataset will be available through Hugging Face Datasets:</p>
+            <a href="https://huggingface.co/datasets/MohammadJRanjbar/PersianMedQA" class="button">🤗 Hugging Face Dataset</a>
+            <a href="https://arxiv.org/abs/2506.00250" class="button">📄 Paper (arXiv)</a>
+        </div>
+
+        <div class="section">
+            <h2>Intended Uses</h2>
+            <ul style="margin-left: 30px; color: #095D7E;">
+                <li>Benchmarking multilingual and domain-specific language models on medical reasoning</li>
+                <li>Few-shot and zero-shot evaluation of Persian QA capabilities</li>
+                <li>Research on translation effects and cross-lingual performance</li>
+                <li>Cultural context analysis in medical AI systems</li>
+            </ul>
+            
+            <div class="warning">
+                <strong>⚠️ Important:</strong> This dataset is for research purposes only. It must not be used to provide real-world medical advice or clinical deployment.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Citation</h2>
+            <p>If you use PersianMedQA in your work, please cite:</p>
+            <div class="code-block">
+@article{ranjbar2025persianmedqa,
+    title = {PersianMedQA: Language-Centric Evaluation of LLMs in the Persian Medical Domain},
+    author = {Mohammad Javad Ranjbar Kalahroodi and Amirhossein Sheikholselami and 
+              Sepehr Karimi and Sepideh Ranjbar Kalahroodi and Heshaam Faili and Azadeh Shakery},
+    journal = {arXiv preprint arXiv:2506.00250},
+    year = {2025},
+    url = {https://arxiv.org/abs/2506.00250},
+    archivePrefix = {arXiv},
+    eprint = {2506.00250},
+    primaryClass = {cs.CL}
+}
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>License</h2>
+            <p>PersianMedQA is released under <strong>Creative Commons Attribution 4.0 International (CC BY 4.0)</strong>. You may share, remix, adapt, and build upon the data for any purpose, even commercially, provided that you give appropriate credit.</p>
+        </div>
+
+        <div class="section">
+            <h2>Contact</h2>
+            <p>Questions or issues? Contact the authors:</p>
+            <p><strong>Authors:</strong> Mohammad Javad Ranjbar Kalahroodi, Amirhossein Sheikholselami, Sepehr Karimi, Sepideh Ranjbar Kalahroodi, Heshaam Faili, Azadeh Shakery</p>
+            <p><strong>Email:</strong> { mohammadJRanjbar | ah.sheikh | sepehrkarimi | hfaili | shakery }@ut.ac.ir</p>
+            <a href="https://github.com/MohammadJRanjbar/MohammadJRanjbar.github.io/issues" class="button">Report Issues</a>
+            <a href="https://mohammadJranjbar.github.io/" class="button">Main Page</a>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 PersianMedQA Authors | University of Tehran</p>
+            <p><em>Advancing Persian Language AI in Healthcare</em></p>
+        </div>
+    </div>
+</body>
+</html>
