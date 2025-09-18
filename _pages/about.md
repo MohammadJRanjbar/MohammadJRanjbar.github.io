@@ -43,7 +43,7 @@ redirect_from:
             </ul>
         </div>
     </div>
-    <h2>Recent Publications & Research</h2>
+    <h2>Publications</h2>
     <ul>
         <li><strong>MJ. Ranjbar</strong>, H. Faili, A. Shakery. ParsVoice: A Large-Scale Multi-Speaker Persian Speech Corpus for Text-to-Speech Synthesis. Under review at ICASSP 2026.</li>
         <li><strong>MJ. Ranjbar</strong>, A. Shakery, H. Faili. PersianPunc: Neural Punctuation Restoration for Persian Speech Recognition and Text Processing. Under preparation, 2025.</li>
