@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ParsVoice - Persian Zero-Shot TTS</title>
+    <title>ParsVoice - Persian Zero-Shot TTS Demo</title>
     <style>
         * {
             margin: 0;
@@ -12,137 +12,189 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: #ffffff;
-            min-height: 100vh;
-            padding: 40px 20px;
-            direction: rtl;
-            color: #2c3e50;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 50px;
-            padding-bottom: 30px;
-            border-bottom: 2px solid #e8eef2;
-        }
-
-        header h1 {
-            font-size: 3em;
-            margin-bottom: 15px;
-            color: #2c3e50;
-            font-weight: 700;
-        }
-
-        header .subtitle {
-            font-size: 1.3em;
-            color: #5a6c7d;
-            margin-bottom: 25px;
+            color: #1a1a1a;
             line-height: 1.6;
         }
 
-        .authors {
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 1.4em;
+            font-weight: 300;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+
+        .header .description {
             font-size: 1.1em;
-            color: #7f8c8d;
-            margin-top: 15px;
+            opacity: 0.85;
+            max-width: 800px;
+            margin: 20px auto 0;
         }
 
-        .authors .name {
-            color: #34495e;
-            font-weight: 500;
+        .reference {
+            background: #f8f9fa;
+            padding: 40px 20px;
+            border-bottom: 1px solid #e0e0e0;
         }
 
-        .affiliation {
+        .reference-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .reference h2 {
+            font-size: 1.3em;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .reference-title {
+            font-size: 1.15em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .reference-authors {
             font-size: 1em;
-            color: #95a5a6;
-            margin-top: 8px;
-            font-style: italic;
+            color: #555;
+            margin-bottom: 5px;
         }
 
-        .speech-grid {
+        .reference-institution {
+            font-size: 0.95em;
+            color: #777;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .intro h2 {
+            font-size: 2.2em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .intro p {
+            font-size: 1.15em;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .samples-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+            gap: 40px;
             margin-top: 40px;
         }
 
-        .speech-card {
-            background: #f8fafb;
+        .sample-card {
+            background: white;
+            border: 1px solid #e0e0e0;
             border-radius: 12px;
             padding: 30px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            border: 1px solid #e8eef2;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
-        .speech-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        .sample-card:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            transform: translateY(-2px);
         }
 
-        .speech-header {
+        .sample-header {
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 2px solid #e0e7ed;
+            border-bottom: 2px solid #f0f0f0;
         }
 
-        .speech-number {
-            font-size: 1.1em;
+        .sample-number {
+            font-size: 0.9em;
+            color: #667eea;
             font-weight: 600;
-            color: #5a6c7d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .transcript {
-            background: #ffffff;
+            background: #f8f9fa;
             padding: 20px;
             border-radius: 8px;
-            margin-bottom: 25px;
-            font-size: 1.1em;
-            line-height: 1.8;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .transcript-label {
+            font-size: 0.85em;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .transcript-text {
+            font-size: 1.05em;
             color: #2c3e50;
-            border: 1px solid #e8eef2;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            direction: rtl;
+            text-align: right;
+            line-height: 1.8;
         }
 
         .audio-section {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .audio-label {
+            font-size: 0.95em;
             font-weight: 600;
-            color: #34495e;
+            color: #2c3e50;
             margin-bottom: 10px;
-            font-size: 1em;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .audio-label .icon {
-            font-size: 1.2em;
+            display: block;
         }
 
         audio {
             width: 100%;
-            margin-top: 8px;
-            border-radius: 8px;
+            height: 40px;
             outline: none;
         }
 
         audio::-webkit-media-controls-panel {
-            background-color: #ecf0f1;
+            background-color: #f8f9fa;
         }
 
         .loading {
             text-align: center;
-            color: #7f8c8d;
+            padding: 60px 20px;
             font-size: 1.3em;
-            padding: 60px;
+            color: #667eea;
         }
 
         .error {
@@ -151,123 +203,145 @@
             padding: 20px;
             border-radius: 8px;
             text-align: center;
-            margin: 20px 0;
+            margin: 40px auto;
+            max-width: 600px;
             border: 1px solid #fcc;
         }
 
-        footer {
-            text-align: center;
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 2px solid #e8eef2;
-            color: #7f8c8d;
-            font-size: 0.95em;
+        .speaker-info {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 10px;
         }
 
         @media (max-width: 768px) {
-            header h1 {
+            .header h1 {
                 font-size: 2em;
             }
 
-            header .subtitle {
+            .header .subtitle {
                 font-size: 1.1em;
             }
 
-            .speech-grid {
+            .samples-grid {
                 grid-template-columns: 1fr;
             }
 
-            .speech-card {
-                padding: 20px;
+            .intro h2 {
+                font-size: 1.6em;
             }
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 80px;
+        }
+
+        footer p {
+            opacity: 0.8;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>ParsVoice</h1>
-            <p class="subtitle">اولین مدل فارسی تبدیل متن به گفتار بدون نمونه (Zero-Shot)</p>
-            <div class="authors">
-                <span class="name">محمدجواد رنجبر</span>، 
-                <span class="name">آزاده شاکری</span>، 
-                <span class="name">حشام فایلی</span>
-            </div>
-            <div class="affiliation">دانشگاه تهران</div>
-        </header>
-
-        <div id="loading" class="loading">در حال بارگذاری نمونه‌ها...</div>
-        <div id="error" style="display: none;"></div>
-        <div class="speech-grid" id="speechGrid"></div>
-
-        <footer>
-            <p>ParsVoice - First Persian Zero-Shot Text-to-Speech Model</p>
-            <p style="margin-top: 8px;">University of Tehran © 2025</p>
-        </footer>
+    <div class="header">
+        <h1>ParsVoice</h1>
+        <div class="subtitle">First Persian Zero-Shot Text-to-Speech Model</div>
+        <div class="description">
+            High-quality Persian speech synthesis with natural speaker similarity
+        </div>
     </div>
 
+    <div class="reference">
+        <div class="reference-content">
+            <h2>Reference</h2>
+            <div class="reference-title">ParsVoice: A Large-Scale Multi-Speaker Persian Speech Corpus for Text-to-Speech Synthesis (2025)</div>
+            <div class="reference-authors">Mohammad Javad Ranjbar, Azadeh Shakery, Heshaam Faili</div>
+            <div class="reference-institution">University of Tehran</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="intro">
+            <h2>Sample Demonstrations</h2>
+            <p>Listen to high-quality synthesized speech samples generated by our zero-shot TTS model</p>
+        </div>
+
+        <div id="loading" class="loading">Loading samples...</div>
+        <div id="error" style="display: none;"></div>
+        <div class="samples-grid" id="samplesGrid"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 ParsVoice - University of Tehran</p>
+    </footer>
+
     <script>
-        async function loadBestSpeeches() {
+        async function loadSamples() {
             try {
                 const response = await fetch('best_speeches.json');
                 if (!response.ok) throw new Error('Failed to load data');
                 
-                const speeches = await response.json();
+                const samples = await response.json();
                 
                 document.getElementById('loading').style.display = 'none';
                 
-                if (speeches.length === 0) {
-                    document.getElementById('error').innerHTML = '<div class="error">هیچ نمونه‌ای یافت نشد.</div>';
+                if (samples.length === 0) {
+                    document.getElementById('error').innerHTML = '<div class="error">No samples available at this time.</div>';
                     document.getElementById('error').style.display = 'block';
                     return;
                 }
                 
-                displaySpeeches(speeches);
+                displaySamples(samples);
             } catch (error) {
-                console.error('Error loading speeches:', error);
+                console.error('Error loading samples:', error);
                 document.getElementById('loading').style.display = 'none';
-                document.getElementById('error').innerHTML = '<div class="error">خطا در بارگذاری داده‌ها. لطفاً فایل best_speeches.json را بررسی کنید.</div>';
+                document.getElementById('error').innerHTML = '<div class="error">Error loading samples. Please ensure best_speeches.json is in the same directory.</div>';
                 document.getElementById('error').style.display = 'block';
             }
         }
 
-        function displaySpeeches(speeches) {
-            const grid = document.getElementById('speechGrid');
+        function displaySamples(samples) {
+            const grid = document.getElementById('samplesGrid');
             
-            speeches.forEach((speech, index) => {
+            samples.forEach((sample, index) => {
                 const card = document.createElement('div');
-                card.className = 'speech-card';
+                card.className = 'sample-card';
+                
+                const genderLabel = sample.speaker_gender === 'M' ? 'Male' : 'Female';
                 
                 card.innerHTML = `
-                    <div class="speech-header">
-                        <div class="speech-number">نمونه ${index + 1}</div>
+                    <div class="sample-header">
+                        <div class="sample-number">Sample ${index + 1}</div>
+                        <div class="speaker-info">${genderLabel} Speaker</div>
                     </div>
                     
                     <div class="transcript">
-                        ${speech.transcript}
+                        <div class="transcript-label">Transcript</div>
+                        <div class="transcript-text">${sample.transcript}</div>
                     </div>
                     
                     <div class="audio-section">
-                        <div class="audio-label">
-                            <span class="icon">🎤</span>
-                            <span>صدای مرجع</span>
-                        </div>
+                        <label class="audio-label">Reference Audio</label>
                         <audio controls preload="none">
-                            <source src="${speech.reference_audio}" type="audio/wav">
-                            <source src="${speech.reference_audio}" type="audio/mpeg">
-                            مرورگر شما از پخش صدا پشتیبانی نمی‌کند.
+                            <source src="${sample.reference_audio}" type="audio/wav">
+                            <source src="${sample.reference_audio}" type="audio/mpeg">
+                            Your browser does not support the audio element.
                         </audio>
                     </div>
                     
                     <div class="audio-section">
-                        <div class="audio-label">
-                            <span class="icon">🔊</span>
-                            <span>صدای تولید شده</span>
-                        </div>
+                        <label class="audio-label">Generated Audio</label>
                         <audio controls preload="none">
-                            <source src="${speech.generated_audio}" type="audio/wav">
-                            <source src="${speech.generated_audio}" type="audio/mpeg">
-                            مرورگر شما از پخش صدا پشتیبانی نمی‌کند.
+                            <source src="${sample.generated_audio}" type="audio/wav">
+                            <source src="${sample.generated_audio}" type="audio/mpeg">
+                            Your browser does not support the audio element.
                         </audio>
                     </div>
                 `;
@@ -276,7 +350,7 @@
             });
         }
 
-        document.addEventListener('DOMContentLoaded', loadBestSpeeches);
+        document.addEventListener('DOMContentLoaded', loadSamples);
     </script>
 </body>
 </html>
