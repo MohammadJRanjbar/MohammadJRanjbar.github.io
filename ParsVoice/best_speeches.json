@@ -1,0 +1,852 @@
+[
+  {
+    "audio_index": 2,
+    "speaker_id": "608c90836b6bfd03201be00b5f27dd600bde02f6fdbd11dec53a2b1b22d1ce81d4f0e5d714c83415408da3e36614d7f09e4ade04fe9b2e247ac09a83dc6e081c",
+    "generated_audio": "audio/generated/gen_1_fourties_female_speaker9019_03_01.wav",
+    "reference_audio": "audio/reference/ref_1_fourties_female_speaker4296_068.wav",
+    "transcript": "من هر روز در ایستگاه اتوبوس منتظر دوستم می‌مانم",
+    "speaker_gender": "female",
+    "speaker_age": "fourties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 3,
+    "speaker_id": "d08fd4eddcc1dec399f455cf04fd01ae7fa0c525ec18d28eb813a2b7fc43849d4767ad7f4c6b53fc92c0b7466bb71172d764e196cb40b86682a0783a0508ff2d",
+    "generated_audio": "audio/generated/gen_2_fourties_male_speaker1052_00_01.wav",
+    "reference_audio": "audio/reference/ref_2_fourties_male_speaker9417_054.wav",
+    "transcript": "من باید فردا صبح زود از خواب بیدار شوم تا به پروازم برسم",
+    "speaker_gender": "male",
+    "speaker_age": "fourties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 3,
+    "speaker_id": "e03fe543d414521a2470e6fc02f9c2569ce6f44f8eb62ed2e2c2ce3f9dade9e24d3eaebe563719f826415e867220935e76fe910c6b82081ea7de598ed0c90203",
+    "generated_audio": "audio/generated/gen_3_thirties_female_speaker1629_00_00.wav",
+    "reference_audio": "audio/reference/ref_3_thirties_female_speaker6211_051.wav",
+    "transcript": "من به دلیل آلرژی نمی‌توانم محصولات لبنی مصرف کنم",
+    "speaker_gender": "female",
+    "speaker_age": "thirties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 4,
+    "speaker_id": "01252e2548fd2726f6b14c1c8c31cf802e2bc12baa45e4c65b4ca918fd2c728604440785fa8c88752893bdf317cce8ec53268858aff36a08f0e674a45a17a13b",
+    "generated_audio": "audio/generated/gen_4_thirties_female_speaker6579_01_01.wav",
+    "reference_audio": "audio/reference/ref_4_thirties_female_speaker9158_046.wav",
+    "transcript": "او یک نقاش ماهر است و آثارش در گالری‌های معتبر به نمایش درآمده است",
+    "speaker_gender": "female",
+    "speaker_age": "thirties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 4,
+    "speaker_id": "34158065e6f39b5a2da8049adf87bdeb2709d424bba12269a96591ab0ee23cb06e845395cd54585adb8f5f9f49d7bbdda7a71ba8ece794a6e65fcb7b7a07a112",
+    "generated_audio": "audio/generated/gen_5_twenties_male_speaker5892_04_01.wav",
+    "reference_audio": "audio/reference/ref_5_twenties_male_speaker7822_039.wav",
+    "transcript": "من به گوش دادن به موسیقی کلاسیک در حین کار عادت دارم",
+    "speaker_gender": "male",
+    "speaker_age": "twenties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 4,
+    "speaker_id": "43e1b2f46272ca580cd33db71c45c0719dd9b260a969bf62f5ac176bc45f9f836bfe9bdf807b331e23c58f440eedee1f5a2971f751b091276c3ef36ce85d5976",
+    "generated_audio": "audio/generated/gen_6_twenties_male_speaker1933_03_01.wav",
+    "reference_audio": "audio/reference/ref_6_twenties_male_speaker2045_036.wav",
+    "transcript": "تولدت مبارک! امیدوارم سالی پر از شادی داشته باشی",
+    "speaker_gender": "male",
+    "speaker_age": "twenties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 4,
+    "speaker_id": "88a651d867b7c841f983b96591a1e961f76840bc7dd3d7fe398211fe0e1dcc8c972fdc948c4b80f77babb7593b4744e0a656d38209f751af9b4339bf67c466fc",
+    "generated_audio": "audio/generated/gen_7_fourties_male_speaker4532_02_01.wav",
+    "reference_audio": "audio/reference/ref_7_fourties_male_speaker7591_052.wav",
+    "transcript": "کودکان با شادی در پارک سرگرم بازی با یکدیگر بودند",
+    "speaker_gender": "male",
+    "speaker_age": "fourties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 6,
+    "speaker_id": "15bae0a9f3b41a4711e18ca1e5c8e2837674da822a774de76bcc9c3e485908ddccb2b024d2bbbaf20f03605f162623e2c10d5ee93ca7993e59b38ffa19a2cca3",
+    "generated_audio": "audio/generated/gen_8_thirties_male_speaker3202_04_01.wav",
+    "reference_audio": "audio/reference/ref_8_thirties_male_speaker6610_077.wav",
+    "transcript": "او همیشه با صبر و حوصله به مشکلات دیگران گوش می‌دهد",
+    "speaker_gender": "male",
+    "speaker_age": "thirties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 6,
+    "speaker_id": "3e59b8bc28db1d421f00cf3df75efb1f45a0aeabd6ed5e4744de0c4b730d33254a98b56b44d0591b25ddd4c639e75ed8240f82d93a8c1e8efc58cd91132d3c2a",
+    "generated_audio": "audio/generated/gen_9_twenties_male_speaker5528_00_01.wav",
+    "reference_audio": "audio/reference/ref_9_twenties_male_speaker5106_023.wav",
+    "transcript": "او با تلاش و پشتکار فراوان به تمام اهدافش رسید",
+    "speaker_gender": "male",
+    "speaker_age": "twenties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 8,
+    "speaker_id": "a31c25936a08040861a40f2b19965c9af3da0531e8d37befbf65c7892bb1bbda31fad8135ec78440c24e1cc62dc305cc8bfe171bd0e0edbd73249daf21bc034a",
+    "generated_audio": "audio/generated/gen_10_thirties_female_speaker4024_02_01.wav",
+    "reference_audio": "audio/reference/ref_10_thirties_female_speaker8673_048.wav",
+    "transcript": "این مستند به بررسی تاریخچه سینمای ایران می‌پردازد",
+    "speaker_gender": "female",
+    "speaker_age": "thirties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 12,
+    "speaker_id": "3461a3636e75fa42372756c9749db119706cbe5fd8a82da394f05ee8c9f7628dea94488924d25c9d3a0adaaa5df787c776291670842ad37ee9f65e44c7d7ffa2",
+    "generated_audio": "audio/generated/gen_11_twenties_female_speaker4186_01_01.wav",
+    "reference_audio": "audio/reference/ref_11_twenties_female_speaker9713_040.wav",
+    "transcript": "صدای خنده بچه‌ها در تمام کوچه پیچیده بود",
+    "speaker_gender": "female",
+    "speaker_age": "twenties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 13,
+    "speaker_id": "3461a3636e75fa42372756c9749db119706cbe5fd8a82da394f05ee8c9f7628dea94488924d25c9d3a0adaaa5df787c776291670842ad37ee9f65e44c7d7ffa2",
+    "generated_audio": "audio/generated/gen_12_twenties_female_speaker4186_01_01.wav",
+    "reference_audio": "audio/reference/ref_12_twenties_female_speaker9713_040.wav",
+    "transcript": "صدای خنده بچه‌ها در تمام کوچه پیچیده بود",
+    "speaker_gender": "female",
+    "speaker_age": "twenties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 21,
+    "speaker_id": "99d5d4f53f1fadbe8161ccb8a61df2254c8902d8febdfc9542ffef1e367a791548affc4a2cc8cd39e2e439cac2efa35f532846c36094372919e8c4fd49acfe36",
+    "generated_audio": "audio/generated/gen_13_twenties_female_speaker3312_00_01.wav",
+    "reference_audio": "audio/reference/ref_13_twenties_female_speaker2503_043.wav",
+    "transcript": "من هر روز در ایستگاه اتوبوس منتظر دوستم می‌مانم",
+    "speaker_gender": "female",
+    "speaker_age": "twenties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 23,
+    "speaker_id": "a31c25936a08040861a40f2b19965c9af3da0531e8d37befbf65c7892bb1bbda31fad8135ec78440c24e1cc62dc305cc8bfe171bd0e0edbd73249daf21bc034a",
+    "generated_audio": "audio/generated/gen_14_thirties_female_speaker4024_02_01.wav",
+    "reference_audio": "audio/reference/ref_14_thirties_female_speaker8673_048.wav",
+    "transcript": "این مستند به بررسی تاریخچه سینمای ایران می‌پردازد",
+    "speaker_gender": "female",
+    "speaker_age": "thirties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 24,
+    "speaker_id": "99d5d4f53f1fadbe8161ccb8a61df2254c8902d8febdfc9542ffef1e367a791548affc4a2cc8cd39e2e439cac2efa35f532846c36094372919e8c4fd49acfe36",
+    "generated_audio": "audio/generated/gen_15_twenties_female_speaker3312_00_01.wav",
+    "reference_audio": "audio/reference/ref_15_twenties_female_speaker2503_043.wav",
+    "transcript": "من هر روز در ایستگاه اتوبوس منتظر دوستم می‌مانم",
+    "speaker_gender": "female",
+    "speaker_age": "twenties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 27,
+    "speaker_id": "01252e2548fd2726f6b14c1c8c31cf802e2bc12baa45e4c65b4ca918fd2c728604440785fa8c88752893bdf317cce8ec53268858aff36a08f0e674a45a17a13b",
+    "generated_audio": "audio/generated/gen_16_thirties_female_speaker6579_01_01.wav",
+    "reference_audio": "audio/reference/ref_16_thirties_female_speaker9158_046.wav",
+    "transcript": "او یک نقاش ماهر است و آثارش در گالری‌های معتبر به نمایش درآمده است",
+    "speaker_gender": "female",
+    "speaker_age": "thirties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 27,
+    "speaker_id": "608c90836b6bfd03201be00b5f27dd600bde02f6fdbd11dec53a2b1b22d1ce81d4f0e5d714c83415408da3e36614d7f09e4ade04fe9b2e247ac09a83dc6e081c",
+    "generated_audio": "audio/generated/gen_17_fourties_female_speaker9019_03_01.wav",
+    "reference_audio": "audio/reference/ref_17_fourties_female_speaker4296_068.wav",
+    "transcript": "من هر روز در ایستگاه اتوبوس منتظر دوستم می‌مانم",
+    "speaker_gender": "female",
+    "speaker_age": "fourties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 32,
+    "speaker_id": "99d5d4f53f1fadbe8161ccb8a61df2254c8902d8febdfc9542ffef1e367a791548affc4a2cc8cd39e2e439cac2efa35f532846c36094372919e8c4fd49acfe36",
+    "generated_audio": "audio/generated/gen_18_twenties_female_speaker3312_00_01.wav",
+    "reference_audio": "audio/reference/ref_18_twenties_female_speaker2503_043.wav",
+    "transcript": "من هر روز در ایستگاه اتوبوس منتظر دوستم می‌مانم",
+    "speaker_gender": "female",
+    "speaker_age": "twenties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 32,
+    "speaker_id": "a31c25936a08040861a40f2b19965c9af3da0531e8d37befbf65c7892bb1bbda31fad8135ec78440c24e1cc62dc305cc8bfe171bd0e0edbd73249daf21bc034a",
+    "generated_audio": "audio/generated/gen_19_thirties_female_speaker4024_02_01.wav",
+    "reference_audio": "audio/reference/ref_19_thirties_female_speaker8673_048.wav",
+    "transcript": "این مستند به بررسی تاریخچه سینمای ایران می‌پردازد",
+    "speaker_gender": "female",
+    "speaker_age": "thirties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 35,
+    "speaker_id": "3461a3636e75fa42372756c9749db119706cbe5fd8a82da394f05ee8c9f7628dea94488924d25c9d3a0adaaa5df787c776291670842ad37ee9f65e44c7d7ffa2",
+    "generated_audio": "audio/generated/gen_20_twenties_female_speaker4186_01_01.wav",
+    "reference_audio": "audio/reference/ref_20_twenties_female_speaker9713_040.wav",
+    "transcript": "صدای خنده بچه‌ها در تمام کوچه پیچیده بود",
+    "speaker_gender": "female",
+    "speaker_age": "twenties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 36,
+    "speaker_id": "d35e377aa44e75b80a9a91efba31d89f409798767ca55fa22aa3885bb99dbd5131bf62b049b1741e4b3b08e4b788411911a0c299bba392d7f73b32b23d252225",
+    "generated_audio": "audio/generated/gen_21_thirties_male_speaker215_00_00.wav",
+    "reference_audio": "audio/reference/ref_21_thirties_male_speaker4766_076.wav",
+    "transcript": "من به یک استراحت کوتاه بعد از ناهار عادت دارم",
+    "speaker_gender": "male",
+    "speaker_age": "thirties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 38,
+    "speaker_id": "e861ae2e6cb3042015242180eb067e9bc284baa468a65b2c7d9c822629614b7c9e3e10c5538e1732ea67044f7cb91a488178df50ebc1975b6898dd6c45a19767",
+    "generated_audio": "audio/generated/gen_22_fifties_male_speaker3418_00_01.wav",
+    "reference_audio": "audio/reference/ref_22_fifties_male_speaker134_094.wav",
+    "transcript": "گربه روی مبل کنار پنجره خوابیده بود",
+    "speaker_gender": "male",
+    "speaker_age": "fifties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 40,
+    "speaker_id": "43e1b2f46272ca580cd33db71c45c0719dd9b260a969bf62f5ac176bc45f9f836bfe9bdf807b331e23c58f440eedee1f5a2971f751b091276c3ef36ce85d5976",
+    "generated_audio": "audio/generated/gen_23_twenties_male_speaker1933_03_01.wav",
+    "reference_audio": "audio/reference/ref_23_twenties_male_speaker2045_036.wav",
+    "transcript": "تولدت مبارک! امیدوارم سالی پر از شادی داشته باشی",
+    "speaker_gender": "male",
+    "speaker_age": "twenties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 43,
+    "speaker_id": "c7bce468b5cd7de2e1522b30214edb4bac69c6449080ef2bfc9593af82bd5fa118a01b53b11d1d1aaca7065b3407cf95f657a736d352ecef87746c1c6387a056",
+    "generated_audio": "audio/generated/gen_24_thirties_female_speaker8673_04_01.wav",
+    "reference_audio": "audio/reference/ref_24_thirties_female_speaker2703_047.wav",
+    "transcript": "او در حال نواختن یک قطعه موسیقی آرامش‌بخش با پیانو بود",
+    "speaker_gender": "female",
+    "speaker_age": "thirties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 46,
+    "speaker_id": "01252e2548fd2726f6b14c1c8c31cf802e2bc12baa45e4c65b4ca918fd2c728604440785fa8c88752893bdf317cce8ec53268858aff36a08f0e674a45a17a13b",
+    "generated_audio": "audio/generated/gen_25_thirties_female_speaker6579_01_01.wav",
+    "reference_audio": "audio/reference/ref_25_thirties_female_speaker9158_046.wav",
+    "transcript": "او یک نقاش ماهر است و آثارش در گالری‌های معتبر به نمایش درآمده است",
+    "speaker_gender": "female",
+    "speaker_age": "thirties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 46,
+    "speaker_id": "a31c25936a08040861a40f2b19965c9af3da0531e8d37befbf65c7892bb1bbda31fad8135ec78440c24e1cc62dc305cc8bfe171bd0e0edbd73249daf21bc034a",
+    "generated_audio": "audio/generated/gen_26_thirties_female_speaker4024_02_01.wav",
+    "reference_audio": "audio/reference/ref_26_thirties_female_speaker8673_048.wav",
+    "transcript": "این مستند به بررسی تاریخچه سینمای ایران می‌پردازد",
+    "speaker_gender": "female",
+    "speaker_age": "thirties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 48,
+    "speaker_id": "d396e2b0594a02ab000e892dd7fa7e4905da50b1992528755676ef1df1c5196458d466b39231882b00e6e2a572ca972289bfd29f05e361bdb56cf543a4bbde02",
+    "generated_audio": "audio/generated/gen_27_twenties_female_speaker4660_04_01.wav",
+    "reference_audio": "audio/reference/ref_27_twenties_female_speaker4050_042.wav",
+    "transcript": "من یک کارت پستال زیبا از دوستم در پاریس دریافت کردم",
+    "speaker_gender": "female",
+    "speaker_age": "twenties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 51,
+    "speaker_id": "99d5d4f53f1fadbe8161ccb8a61df2254c8902d8febdfc9542ffef1e367a791548affc4a2cc8cd39e2e439cac2efa35f532846c36094372919e8c4fd49acfe36",
+    "generated_audio": "audio/generated/gen_28_twenties_female_speaker3312_00_01.wav",
+    "reference_audio": "audio/reference/ref_28_twenties_female_speaker2503_043.wav",
+    "transcript": "من هر روز در ایستگاه اتوبوس منتظر دوستم می‌مانم",
+    "speaker_gender": "female",
+    "speaker_age": "twenties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 52,
+    "speaker_id": "bd2a50ba77e7fb3a1be523dbccc50a778ee563c1eb7e01d13ba53e04ad4ab2ec2d03b4c9ffa9910df6f378c1a2d9fc654bdc0e290daede361e6544fad9070549",
+    "generated_audio": "audio/generated/gen_29_fourties_male_speaker6093_01_00.wav",
+    "reference_audio": "audio/reference/ref_29_fourties_male_speaker6830_053.wav",
+    "transcript": "این قلعه تاریخی در بالای یک تپه بلند قرار دارد",
+    "speaker_gender": "male",
+    "speaker_age": "fourties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 54,
+    "speaker_id": "99d5d4f53f1fadbe8161ccb8a61df2254c8902d8febdfc9542ffef1e367a791548affc4a2cc8cd39e2e439cac2efa35f532846c36094372919e8c4fd49acfe36",
+    "generated_audio": "audio/generated/gen_30_twenties_female_speaker3312_00_01.wav",
+    "reference_audio": "audio/reference/ref_30_twenties_female_speaker2503_043.wav",
+    "transcript": "من هر روز در ایستگاه اتوبوس منتظر دوستم می‌مانم",
+    "speaker_gender": "female",
+    "speaker_age": "twenties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 55,
+    "speaker_id": "f75ff965cfbcf1796261a06c983ea8cbb49c38669a0ffe43f6215717e209429215e2b3e4687479719021a29c4c38556114516a8d23c4a4638fb849f3d71494ed",
+    "generated_audio": "audio/generated/gen_31_fourties_female_speaker6518_01_01.wav",
+    "reference_audio": "audio/reference/ref_31_fourties_female_speaker5302_067.wav",
+    "transcript": "من باید امروز بعد از ظهر همه لباس‌های کثیف را بشویم",
+    "speaker_gender": "female",
+    "speaker_age": "fourties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 56,
+    "speaker_id": "3461a3636e75fa42372756c9749db119706cbe5fd8a82da394f05ee8c9f7628dea94488924d25c9d3a0adaaa5df787c776291670842ad37ee9f65e44c7d7ffa2",
+    "generated_audio": "audio/generated/gen_32_twenties_female_speaker4186_01_01.wav",
+    "reference_audio": "audio/reference/ref_32_twenties_female_speaker9713_040.wav",
+    "transcript": "صدای خنده بچه‌ها در تمام کوچه پیچیده بود",
+    "speaker_gender": "female",
+    "speaker_age": "twenties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 57,
+    "speaker_id": "35a77fea89928e8f06cc9fe1788d48b1c5ac233ed1b31a4c8ba01b4a1e9d8c9f9e70593afe640f9075fe9bcce74acce2c77590b979db3842f6fdd1174f55ba7e",
+    "generated_audio": "audio/generated/gen_33_teens_male_speaker3780_00_00.wav",
+    "reference_audio": "audio/reference/ref_33_teens_male_speaker8_057.wav",
+    "transcript": "من یک کارت پستال زیبا از دوستم در پاریس دریافت کردم",
+    "speaker_gender": "male",
+    "speaker_age": "teens",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 58,
+    "speaker_id": "9d627c9e95b71d4863c784da1eed9bff219680f01fe99ce1263bcda34bcd6177ecd8d28abfcaa745f9522c3eacfe181497cc9b14aacfa9ac442f5ce143e2f79d",
+    "generated_audio": "audio/generated/gen_34_thirties_female_speaker5370_03_00.wav",
+    "reference_audio": "audio/reference/ref_34_thirties_female_speaker1972_045.wav",
+    "transcript": "او به سه زبان زنده دنیا مسلط است: فارسی انگلیسی و فرانسوی",
+    "speaker_gender": "female",
+    "speaker_age": "thirties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 59,
+    "speaker_id": "43e1b2f46272ca580cd33db71c45c0719dd9b260a969bf62f5ac176bc45f9f836bfe9bdf807b331e23c58f440eedee1f5a2971f751b091276c3ef36ce85d5976",
+    "generated_audio": "audio/generated/gen_35_twenties_male_speaker1933_03_00.wav",
+    "reference_audio": "audio/reference/ref_35_twenties_male_speaker2045_036.wav",
+    "transcript": "این چشمه آب معدنی خواص درمانی زیادی دارد",
+    "speaker_gender": "male",
+    "speaker_age": "twenties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 59,
+    "speaker_id": "e03fe543d414521a2470e6fc02f9c2569ce6f44f8eb62ed2e2c2ce3f9dade9e24d3eaebe563719f826415e867220935e76fe910c6b82081ea7de598ed0c90203",
+    "generated_audio": "audio/generated/gen_36_thirties_female_speaker1629_00_00.wav",
+    "reference_audio": "audio/reference/ref_36_thirties_female_speaker6211_051.wav",
+    "transcript": "من به دلیل آلرژی نمی‌توانم محصولات لبنی مصرف کنم",
+    "speaker_gender": "female",
+    "speaker_age": "thirties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 62,
+    "speaker_id": "88a651d867b7c841f983b96591a1e961f76840bc7dd3d7fe398211fe0e1dcc8c972fdc948c4b80f77babb7593b4744e0a656d38209f751af9b4339bf67c466fc",
+    "generated_audio": "audio/generated/gen_37_fourties_male_speaker4532_02_00.wav",
+    "reference_audio": "audio/reference/ref_37_fourties_male_speaker7591_052.wav",
+    "transcript": "این فروشگاه تخفیف‌های ویژه‌ای برای آخر فصل ارائه می‌دهد",
+    "speaker_gender": "male",
+    "speaker_age": "fourties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 64,
+    "speaker_id": "e03fe543d414521a2470e6fc02f9c2569ce6f44f8eb62ed2e2c2ce3f9dade9e24d3eaebe563719f826415e867220935e76fe910c6b82081ea7de598ed0c90203",
+    "generated_audio": "audio/generated/gen_38_thirties_female_speaker1629_00_00.wav",
+    "reference_audio": "audio/reference/ref_38_thirties_female_speaker6211_051.wav",
+    "transcript": "من به دلیل آلرژی نمی‌توانم محصولات لبنی مصرف کنم",
+    "speaker_gender": "female",
+    "speaker_age": "thirties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 67,
+    "speaker_id": "15bae0a9f3b41a4711e18ca1e5c8e2837674da822a774de76bcc9c3e485908ddccb2b024d2bbbaf20f03605f162623e2c10d5ee93ca7993e59b38ffa19a2cca3",
+    "generated_audio": "audio/generated/gen_39_thirties_male_speaker3202_04_00.wav",
+    "reference_audio": "audio/reference/ref_39_thirties_male_speaker6610_077.wav",
+    "transcript": "او ساعت‌هاست که در حال صحبت کردن با تلفن با دوستش است",
+    "speaker_gender": "male",
+    "speaker_age": "thirties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 68,
+    "speaker_id": "3461a3636e75fa42372756c9749db119706cbe5fd8a82da394f05ee8c9f7628dea94488924d25c9d3a0adaaa5df787c776291670842ad37ee9f65e44c7d7ffa2",
+    "generated_audio": "audio/generated/gen_40_twenties_female_speaker4186_01_01.wav",
+    "reference_audio": "audio/reference/ref_40_twenties_female_speaker9713_040.wav",
+    "transcript": "صدای خنده بچه‌ها در تمام کوچه پیچیده بود",
+    "speaker_gender": "female",
+    "speaker_age": "twenties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 69,
+    "speaker_id": "049805af96ba29190c4b76c34576531c638f2e37e845ef414f6a4a56ad90dadfdba6ac133ea32a8efaf13c201faceed40807cbf6eb28abe5e70a66c8f5fbc5ac",
+    "generated_audio": "audio/generated/gen_41_teens_male_speaker2078_01_01.wav",
+    "reference_audio": "audio/reference/ref_41_teens_male_speaker4352_056.wav",
+    "transcript": "من به گوش دادن به موسیقی کلاسیک در حین کار عادت دارم",
+    "speaker_gender": "male",
+    "speaker_age": "teens",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 69,
+    "speaker_id": "43e1b2f46272ca580cd33db71c45c0719dd9b260a969bf62f5ac176bc45f9f836bfe9bdf807b331e23c58f440eedee1f5a2971f751b091276c3ef36ce85d5976",
+    "generated_audio": "audio/generated/gen_42_twenties_male_speaker1933_03_01.wav",
+    "reference_audio": "audio/reference/ref_42_twenties_male_speaker2045_036.wav",
+    "transcript": "تولدت مبارک! امیدوارم سالی پر از شادی داشته باشی",
+    "speaker_gender": "male",
+    "speaker_age": "twenties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 71,
+    "speaker_id": "3461a3636e75fa42372756c9749db119706cbe5fd8a82da394f05ee8c9f7628dea94488924d25c9d3a0adaaa5df787c776291670842ad37ee9f65e44c7d7ffa2",
+    "generated_audio": "audio/generated/gen_43_twenties_female_speaker4186_01_01.wav",
+    "reference_audio": "audio/reference/ref_43_twenties_female_speaker9713_040.wav",
+    "transcript": "صدای خنده بچه‌ها در تمام کوچه پیچیده بود",
+    "speaker_gender": "female",
+    "speaker_age": "twenties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 71,
+    "speaker_id": "608c90836b6bfd03201be00b5f27dd600bde02f6fdbd11dec53a2b1b22d1ce81d4f0e5d714c83415408da3e36614d7f09e4ade04fe9b2e247ac09a83dc6e081c",
+    "generated_audio": "audio/generated/gen_44_fourties_female_speaker9019_03_01.wav",
+    "reference_audio": "audio/reference/ref_44_fourties_female_speaker4296_068.wav",
+    "transcript": "من هر روز در ایستگاه اتوبوس منتظر دوستم می‌مانم",
+    "speaker_gender": "female",
+    "speaker_age": "fourties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 71,
+    "speaker_id": "d396e2b0594a02ab000e892dd7fa7e4905da50b1992528755676ef1df1c5196458d466b39231882b00e6e2a572ca972289bfd29f05e361bdb56cf543a4bbde02",
+    "generated_audio": "audio/generated/gen_45_twenties_female_speaker4660_04_00.wav",
+    "reference_audio": "audio/reference/ref_45_twenties_female_speaker4050_042.wav",
+    "transcript": "او استعداد فوق‌العاده‌ای در یادگیری زبان‌های خارجی دارد",
+    "speaker_gender": "female",
+    "speaker_age": "twenties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 73,
+    "speaker_id": "01252e2548fd2726f6b14c1c8c31cf802e2bc12baa45e4c65b4ca918fd2c728604440785fa8c88752893bdf317cce8ec53268858aff36a08f0e674a45a17a13b",
+    "generated_audio": "audio/generated/gen_46_thirties_female_speaker6579_01_01.wav",
+    "reference_audio": "audio/reference/ref_46_thirties_female_speaker9158_046.wav",
+    "transcript": "او یک نقاش ماهر است و آثارش در گالری‌های معتبر به نمایش درآمده است",
+    "speaker_gender": "female",
+    "speaker_age": "thirties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 76,
+    "speaker_id": "e03fe543d414521a2470e6fc02f9c2569ce6f44f8eb62ed2e2c2ce3f9dade9e24d3eaebe563719f826415e867220935e76fe910c6b82081ea7de598ed0c90203",
+    "generated_audio": "audio/generated/gen_47_thirties_female_speaker1629_00_00.wav",
+    "reference_audio": "audio/reference/ref_47_thirties_female_speaker6211_051.wav",
+    "transcript": "من به دلیل آلرژی نمی‌توانم محصولات لبنی مصرف کنم",
+    "speaker_gender": "female",
+    "speaker_age": "thirties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 81,
+    "speaker_id": "35a77fea89928e8f06cc9fe1788d48b1c5ac233ed1b31a4c8ba01b4a1e9d8c9f9e70593afe640f9075fe9bcce74acce2c77590b979db3842f6fdd1174f55ba7e",
+    "generated_audio": "audio/generated/gen_48_teens_male_speaker3780_00_00.wav",
+    "reference_audio": "audio/reference/ref_48_teens_male_speaker8_057.wav",
+    "transcript": "من یک کارت پستال زیبا از دوستم در پاریس دریافت کردم",
+    "speaker_gender": "male",
+    "speaker_age": "teens",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 86,
+    "speaker_id": "c7bce468b5cd7de2e1522b30214edb4bac69c6449080ef2bfc9593af82bd5fa118a01b53b11d1d1aaca7065b3407cf95f657a736d352ecef87746c1c6387a056",
+    "generated_audio": "audio/generated/gen_49_thirties_female_speaker8673_04_00.wav",
+    "reference_audio": "audio/reference/ref_49_thirties_female_speaker2703_047.wav",
+    "transcript": "من یک بلیط بخت‌آزمایی خریدم و امیدوارم برنده شوم",
+    "speaker_gender": "female",
+    "speaker_age": "thirties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  },
+  {
+    "audio_index": 88,
+    "speaker_id": "e4732da6f19ba079e4215b3993c973faf9060bb0d785d9f222698963d78e306fbfe4eec817c7d03df1ed4fb6545f932f6edf99fb6429c7c0c50bc999151ccb76",
+    "generated_audio": "audio/generated/gen_50_thirties_male_speaker5642_03_01.wav",
+    "reference_audio": "audio/reference/ref_50_thirties_male_speaker1981_088.wav",
+    "transcript": "لطفاً یک لیوان آب خنک برای من بیاورید",
+    "speaker_gender": "male",
+    "speaker_age": "thirties",
+    "accent": "unknown",
+    "ratings": {
+      "naturalness": 5.0,
+      "similarity": 5.0,
+      "text_match": 5.0,
+      "average": 5.0
+    },
+    "num_evaluators": 1
+  }
+]

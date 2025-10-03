@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TTS Model Showcase - Best Results</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .stat-card .number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-card .label {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .speech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .speech-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .speech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .speech-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .speech-id {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .avg-rating {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .speaker-info {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            color: #666;
+            flex-wrap: wrap;
+        }
+
+        .speaker-info span {
+            background: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .transcript {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 1.05em;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .audio-section {
+            margin-bottom: 15px;
+        }
+
+        .audio-label {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 5px;
+            border-radius: 25px;
+        }
+
+        .ratings {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .rating-item {
+            text-align: center;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .rating-label {
+            font-size: 0.85em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .rating-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .evaluators {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .loading {
+            text-align: center;
+            color: white;
+            font-size: 1.5em;
+            padding: 50px;
+        }
+
+        .error {
+            background: #ff6b6b;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .speech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ratings {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>نمونه‌های برتر مدل تبدیل متن به گفتار</h1>
+            <p>بهترین نمونه‌های تولید شده با امتیاز بالای 4.5 در همه معیارها</p>
+        </header>
+
+        <div class="stats" id="stats"></div>
+        
+        <div id="loading" class="loading">در حال بارگذاری نمونه‌ها...</div>
+        <div id="error" style="display: none;"></div>
+        <div class="speech-grid" id="speechGrid"></div>
+    </div>
+
+    <script>
+        async function loadBestSpeeches() {
+            try {
+                const response = await fetch('best_speeches.json');
+                if (!response.ok) throw new Error('Failed to load data');
+                
+                const speeches = await response.json();
+                
+                document.getElementById('loading').style.display = 'none';
+                
+                if (speeches.length === 0) {
+                    document.getElementById('error').innerHTML = '<div class="error">هیچ نمونه‌ای با امتیاز بالای 4.5 یافت نشد.</div>';
+                    document.getElementById('error').style.display = 'block';
+                    return;
+                }
+                
+                displayStats(speeches);
+                displaySpeeches(speeches);
+            } catch (error) {
+                console.error('Error loading speeches:', error);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error').innerHTML = '<div class="error">خطا در بارگذاری داده‌ها.</div>';
+                document.getElementById('error').style.display = 'block';
+            }
+        }
+
+        function displayStats(speeches) {
+            const avgNaturalness = speeches.reduce((sum, s) => sum + s.ratings.naturalness, 0) / speeches.length;
+            const avgSimilarity = speeches.reduce((sum, s) => sum + s.ratings.similarity, 0) / speeches.length;
+            const avgTextMatch = speeches.reduce((sum, s) => sum + s.ratings.text_match, 0) / speeches.length;
+            
+            const statsHTML = `
+                <div class="stat-card">
+                    <div class="number">${speeches.length}</div>
+                    <div class="label">نمونه برتر</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">${avgNaturalness.toFixed(2)}</div>
+                    <div class="label">میانگین طبیعی بودن</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">${avgSimilarity.toFixed(2)}</div>
+                    <div class="label">میانگین شباهت</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">${avgTextMatch.toFixed(2)}</div>
+                    <div class="label">میانگین تطبیق متن</div>
+                </div>
+            `;
+            
+            document.getElementById('stats').innerHTML = statsHTML;
+        }
+
+        function displaySpeeches(speeches) {
+            const grid = document.getElementById('speechGrid');
+            
+            speeches.forEach((speech, index) => {
+                const card = document.createElement('div');
+                card.className = 'speech-card';
+                
+                card.innerHTML = `
+                    <div class="speech-header">
+                        <div class="speech-id">نمونه ${index + 1}</div>
+                        <div class="avg-rating">⭐ ${speech.ratings.average}</div>
+                    </div>
+                    
+                    <div class="speaker-info">
+                        <span>🎭 ${speech.speaker_id}</span>
+                        <span>👤 ${speech.speaker_gender === 'M' ? 'مرد' : 'زن'}</span>
+                        <span>📍 ${speech.accent || 'نامشخص'}</span>
+                    </div>
+                    
+                    <div class="transcript">
+                        "${speech.transcript}"
+                    </div>
+                    
+                    <div class="audio-section">
+                        <div class="audio-label">🎯 صدای مرجع (اصلی)</div>
+                        <audio controls preload="none">
+                            <source src="${speech.reference_audio}" type="audio/wav">
+                            <source src="${speech.reference_audio}" type="audio/mpeg">
+                            مرورگر شما از پخش صدا پشتیبانی نمی‌کند.
+                        </audio>
+                    </div>
+                    
+                    <div class="audio-section">
+                        <div class="audio-label">🤖 صدای تولید شده</div>
+                        <audio controls preload="none">
+                            <source src="${speech.generated_audio}" type="audio/wav">
+                            <source src="${speech.generated_audio}" type="audio/mpeg">
+                            مرورگر شما از پخش صدا پشتیبانی نمی‌کند.
+                        </audio>
+                    </div>
+                    
+                    <div class="ratings">
+                        <div class="rating-item">
+                            <div class="rating-label">طبیعی بودن</div>
+                            <div class="rating-value">${speech.ratings.naturalness}</div>
+                        </div>
+                        <div class="rating-item">
+                            <div class="rating-label">شباهت</div>
+                            <div class="rating-value">${speech.ratings.similarity}</div>
+                        </div>
+                        <div class="rating-item">
+                            <div class="rating-label">تطبیق متن</div>
+                            <div class="rating-value">${speech.ratings.text_match}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="evaluators">
+                        📊 ارزیابی شده توسط ${speech.num_evaluators} نفر
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', loadBestSpeeches);
+    </script>
+</body>
+</html>
