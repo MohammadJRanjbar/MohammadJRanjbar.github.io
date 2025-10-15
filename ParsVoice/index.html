@@ -10,111 +10,100 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: #ffffff;
             color: #1a1a1a;
             line-height: 1.6;
         }
-
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 60px 20px;
             text-align: center;
         }
-
         .header h1 {
             font-size: 3em;
             font-weight: 700;
             margin-bottom: 15px;
             letter-spacing: -0.5px;
         }
-
         .header .subtitle {
             font-size: 1.4em;
             font-weight: 300;
             opacity: 0.95;
             margin-bottom: 10px;
         }
-
         .header .description {
             font-size: 1.1em;
             opacity: 0.85;
             max-width: 800px;
             margin: 20px auto 0;
         }
-
         .reference {
             background: #f8f9fa;
             padding: 40px 20px;
             border-bottom: 1px solid #e0e0e0;
         }
-
         .reference-content {
             max-width: 900px;
             margin: 0 auto;
             text-align: center;
         }
-
         .reference h2 {
             font-size: 1.3em;
             color: #667eea;
             margin-bottom: 15px;
             font-weight: 600;
         }
-
         .reference-title {
             font-size: 1.15em;
             font-weight: 600;
             color: #2c3e50;
             margin-bottom: 8px;
         }
-
         .reference-authors {
             font-size: 1em;
             color: #555;
             margin-bottom: 5px;
         }
-
         .reference-institution {
             font-size: 0.95em;
             color: #777;
         }
-
+        .reference a:hover {
+            background: #667eea !important;
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 60px 20px;
         }
-
         .intro {
             text-align: center;
             margin-bottom: 60px;
         }
-
         .intro h2 {
             font-size: 2.2em;
             color: #2c3e50;
             margin-bottom: 15px;
             font-weight: 600;
         }
-
         .intro p {
             font-size: 1.15em;
             color: #555;
             max-width: 700px;
             margin: 0 auto;
         }
-
         .samples-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
             gap: 40px;
             margin-top: 40px;
         }
-
         .sample-card {
             background: white;
             border: 1px solid #e0e0e0;
@@ -123,18 +112,15 @@
             transition: all 0.3s ease;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
-
         .sample-card:hover {
             box-shadow: 0 8px 24px rgba(0,0,0,0.12);
             transform: translateY(-2px);
         }
-
         .sample-header {
             margin-bottom: 20px;
             padding-bottom: 15px;
             border-bottom: 2px solid #f0f0f0;
         }
-
         .sample-number {
             font-size: 0.9em;
             color: #667eea;
@@ -142,7 +128,6 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-
         .transcript {
             background: #f8f9fa;
             padding: 20px;
@@ -150,7 +135,6 @@
             margin: 20px 0;
             border-left: 4px solid #667eea;
         }
-
         .transcript-label {
             font-size: 0.85em;
             color: #667eea;
@@ -159,7 +143,6 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-
         .transcript-text {
             font-size: 1.05em;
             color: #2c3e50;
@@ -167,11 +150,9 @@
             text-align: right;
             line-height: 1.8;
         }
-
         .audio-section {
             margin-bottom: 25px;
         }
-
         .audio-label {
             font-size: 0.95em;
             font-weight: 600;
@@ -179,24 +160,20 @@
             margin-bottom: 10px;
             display: block;
         }
-
         audio {
             width: 100%;
             height: 40px;
             outline: none;
         }
-
         audio::-webkit-media-controls-panel {
             background-color: #f8f9fa;
         }
-
         .loading {
             text-align: center;
             padding: 60px 20px;
             font-size: 1.3em;
             color: #667eea;
         }
-
         .error {
             background: #fee;
             color: #c33;
@@ -207,7 +184,6 @@
             max-width: 600px;
             border: 1px solid #fcc;
         }
-
         .speaker-info {
             display: inline-block;
             background: #f0f0f0;
@@ -217,25 +193,20 @@
             color: #555;
             margin-top: 10px;
         }
-
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2em;
             }
-
             .header .subtitle {
                 font-size: 1.1em;
             }
-
             .samples-grid {
                 grid-template-columns: 1fr;
             }
-
             .intro h2 {
                 font-size: 1.6em;
             }
         }
-
         footer {
             background: #2c3e50;
             color: white;
@@ -243,7 +214,6 @@
             padding: 30px 20px;
             margin-top: 80px;
         }
-
         footer p {
             opacity: 0.8;
         }
@@ -254,34 +224,59 @@
         <h1>ParsVoice</h1>
         <div class="subtitle">First Persian Zero-Shot Text-to-Speech Model</div>
         <div class="description">
-            High-quality Persian speech synthesis with natural speaker similarity
+            The largest high-quality Persian speech dataset with 1,804 hours of clean audio from 470+ speakers. 
+            Achieving naturalness MOS of 3.6/5 and speaker similarity SMOS of 4.0/5.
         </div>
     </div>
-
     <div class="reference">
         <div class="reference-content">
             <h2>Reference</h2>
-            <div class="reference-title">ParsVoice: A Large-Scale Multi-Speaker Persian Speech Corpus for Text-to-Speech Synthesis (2025)</div>
-            <div class="reference-authors">Mohammad Javad Ranjbar, Azadeh Shakery, Heshaam Faili</div>
+            <div class="reference-title">ParsVoice: A Large-Scale Multi-Speaker Persian Speech Corpus for Text-to-Speech Synthesis</div>
+            <div class="reference-authors">Mohammad Javad Ranjbar Kalahroodi, Heshaam Faili, Azadeh Shakery</div>
             <div class="reference-institution">University of Tehran</div>
+            <div style="margin-top: 20px;">
+                <a href="https://arxiv.org/pdf/2510.10774" target="_blank" 
+                   style="display: inline-block; background: white; color: #667eea; padding: 10px 20px; 
+                          border-radius: 6px; text-decoration: none; font-weight: 600; margin: 5px;
+                          transition: all 0.3s ease; border: 2px solid white;">
+                    📄 Read Paper (arXiv:2510.10774)
+                </a>
+                <a href="https://huggingface.co/datasets/MohammadJRanjbar/ParsVoice" target="_blank"
+                   style="display: inline-block; background: white; color: #667eea; padding: 10px 20px; 
+                          border-radius: 6px; text-decoration: none; font-weight: 600; margin: 5px;
+                          transition: all 0.3s ease; border: 2px solid white;">
+                    🤗 Dataset on Hugging Face
+                </a>
+            </div>
         </div>
     </div>
-
     <div class="container">
         <div class="intro">
             <h2>Sample Demonstrations</h2>
             <p>Listen to high-quality synthesized speech samples generated by our zero-shot TTS model</p>
         </div>
-
         <div id="loading" class="loading">Loading samples...</div>
         <div id="error" style="display: none;"></div>
         <div class="samples-grid" id="samplesGrid"></div>
     </div>
-
+    <div style="background: #f8f9fa; padding: 40px 20px; margin-top: 40px;">
+        <div style="max-width: 900px; margin: 0 auto;">
+            <h3 style="color: #2c3e50; font-size: 1.3em; margin-bottom: 15px; text-align: center;">Citation</h3>
+            <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #667eea; 
+                        font-family: 'Courier New', monospace; font-size: 0.9em; color: #2c3e50; 
+                        overflow-x: auto; line-height: 1.6;">
+@article{ranjbar2024parsvoice,<br>
+&nbsp;&nbsp;title={ParsVoice: A Large-Scale Multi-Speaker Persian Speech Corpus for Text-to-Speech Synthesis},<br>
+&nbsp;&nbsp;author={Ranjbar Kalahroodi, Mohammad Javad and Faili, Heshaam and Shakery, Azadeh},<br>
+&nbsp;&nbsp;journal={arXiv preprint arXiv:2510.10774},<br>
+&nbsp;&nbsp;year={2024}<br>
+}
+            </div>
+        </div>
+    </div>
     <footer>
         <p>&copy; 2025 ParsVoice - University of Tehran</p>
     </footer>
-
     <script>
         async function loadSamples() {
             try {
@@ -306,7 +301,6 @@
                 document.getElementById('error').style.display = 'block';
             }
         }
-
         function displaySamples(samples) {
             const grid = document.getElementById('samplesGrid');
             
@@ -349,7 +343,6 @@
                 grid.appendChild(card);
             });
         }
-
         document.addEventListener('DOMContentLoaded', loadSamples);
     </script>
 </body>
