@@ -49,9 +49,9 @@ I am a recent M.Sc. graduate in Computer Software Engineering from the Universit
     <ul>
     
     <li><strong>MJ. Ranjbar</strong>, Mohammad Amini, Parmis Bathaeyian, Zhengjun Yue, H. Faili, A. Shakery. <em>PARSA-Bench: A Comprehensive Persian Audio-Language Model Benchmark.</em> Under preparation for submission to Interspeech 2026.</li>
-        <li><strong>MJ. Ranjbar</strong>, H. Faili, A. Shakery. ParsVoice: A Large-Scale Multi-Speaker Persian Speech Corpus for Text-to-Speech Synthesis. Under review at ICASSP 2026.</li>
-        <li><strong>MJ. Ranjbar</strong>, A. Shakery, H. Faili. PersianPunc: Neural Punctuation Restoration for Persian Speech Recognition and Text Processing. Under preparation, 2025.</li>
-        <li><strong>MJ. Ranjbar</strong>, A.H. Sheikh, S. Ranjbar Kalahroodi, S. Karimi, A. Shakery, H. Faili. <a href="https://arxiv.org/abs/2506.00250"  target="_blank"> PersianMedQA: Evaluating Large Language Models on a Persian-English Bilingual Medical Question Answering Benchmark</a>. Under review at AACL 2025.</li>
+        <li><strong>MJ. Ranjbar</strong>, H. Faili, A. Shakery. <a href= "https://arxiv.org/abs/2510.10774" targer="_blank"> ParsVoice: A Large-Scale Multi-Speaker Persian Speech Corpus for Text-to-Speech Synthesis</a>. Under preparation for submission to Interspeech 2026.</li>
+        <li><strong>MJ. Ranjbar</strong>, A. Shakery, H. Faili. PersianPunc: Neural Punctuation Restoration for Persian Speech Recognition and Text Processing. Under review at EACL SilkRoadNLP Workshop.</li>
+        <li><strong>MJ. Ranjbar</strong>, A.H. Sheikh, S. Ranjbar Kalahroodi, S. Karimi, A. Shakery, H. Faili. <a href="https://arxiv.org/abs/2506.00250"  target="_blank"> PersianMedQA: Evaluating Large Language Models on a Persian-English Bilingual Medical Question Answering Benchmark</a>. Under review at LREC 2026.</li>
         <li><strong>MJ. Ranjbar</strong>, MB. Menhaj, H. Taheri. <a href="https://ieeexplore.ieee.org/document/10025253" target="_blank">Social Robots: An Open-Source Framework for Personal Assistant Robots.</a> Published in ICRoM 2022.</li>
     </ul>
 </div>
