@@ -10,10 +10,9 @@ redirect_from:
 <br />
 <div style="text-align: justify;">
 <p>
-I am a recent M.Sc. graduate in Computer Software Engineering from the University of Tehran (GPA: 4.0/4.0), with a research focus on conversational AI and speech processing. My master’s thesis, supervised by <a href="https://scholar.google.com/citations?user=E-QpN74AAAAJ&hl=en" target="_blank">Dr. Shakery</a> and <a href="https://scholar.google.se/citations?user=m5tCFEoAAAAJ&hl=en" target="_blank">Dr. Faili</a>, centered on zero-shot text-to-speech models for the Persian language. As part of this work, I led the creation of <em>ParsVoice</em>, a large-scale multi-speaker Persian speech corpus consisting of over 3.5K hours of curated audiobook and podcast recordings, and developed TTS models tailored to Persian. I will be joining the EPFL NLP Lab as a research intern in the upcoming spring.
+I am a recent M.Sc. graduate in Computer Software Engineering from the University of Tehran (GPA: 4.0/4.0), with a research focus on conversational AI and speech processing. My master's thesis, supervised by <a href="https://scholar.google.com/citations?user=E-QpN74AAAAJ&hl=en" target="_blank">Dr. Shakery</a> and <a href="https://scholar.google.se/citations?user=m5tCFEoAAAAJ&hl=en" target="_blank">Dr. Faili</a>, centered on zero-shot text-to-speech models for the Persian language. As part of this work, I led the creation of <em>ParsVoice</em>, a large-scale multi-speaker Persian speech corpus consisting of over 3.8K hours of curated audiobook and podcast recordings, and developed TTS models tailored to Persian. I am currently a Research Intern at the <a href="https://nlp.epfl.ch/" target="_blank">EPFL NLP Lab</a>, working under the supervision of <a href="https://scholar.google.com/citations?user=_qMWOOAAAAAJ&hl=en" target="_blank">Dr. Antoine Bosselut</a> on multimodal architectures that integrate speech encoders with LLMs, with a focus on low-resource language performance through joint audio-text pre-training and alignment strategies.
 </p>
-
-    <p>As a Research and Teaching Assistant at the University of Tehran's NLP Lab and Intelligent Information Systems Lab, I lead research on Persian speech synthesis and medical language models. I have designed comprehensive assignments for Machine Learning Methods in NLP and Digital Speech Processing courses, serving over 200+ students across multiple courses. Additionally, I co-founded <a href="https://sofiamind.ir/" target="_blank">SOFIA</a>, where I architected and deployed a multi-platform RAG-based customer service chatbot that has achieved 20,000+ active users on University of Tehran's website.</p>
+    <p>As a Research and Teaching Assistant at the University of Tehran's NLP Lab and Intelligent Information Systems Lab, I led research on Persian speech synthesis and medical language models. I designed comprehensive assignments for Machine Learning Methods in NLP and Digital Speech Processing courses, serving over 200+ students across multiple courses. Additionally, I co-founded <a href="https://sofiamind.ir/" target="_blank">SOFIA</a>, where I architected and deployed a multi-platform RAG-based customer service chatbot that has achieved 20,000+ active users on University of Tehran's website.</p>
     
     <p>Before my graduate studies, I earned my Bachelor's degree in Electrical Engineering from <a href="https://ee.aut.ac.ir/" target="_blank">Amirkabir University of Technology (AUT)</a>, where I worked on facial expression recognition with robotic implementation under the guidance of <a href="https://scholar.google.com/citations?user=0EN-JbQAAAAJ&hl=en" target="_blank">Dr. Menhaj</a> and <a href="https://scholar.google.com/citations?user=4hByEOYAAAAJ&hl=en" target="_blank">Dr. Taheri</a>. I have consistently demonstrated academic excellence, ranking in the top 0.5% in national entrance exams.</p>
 <br />
@@ -33,7 +32,7 @@ I am a recent M.Sc. graduate in Computer Software Engineering from the Universit
             <h2>Education</h2>
             <ul>
                 <li>
-                    <strong>Master of Science in Computer Software Engineering</strong>, 2022 -- Present<br />
+                    <strong>Master of Science in Computer Software Engineering</strong>, 2022 -- 2025<br />
                     <span style="color: silver;">University of Tehran (GPA: Perfect 4.0/4.0)</span><br />
                     <em>Thesis: Zero-Shot Text-to-Speech for Persian Language</em>
                 </li>
@@ -47,12 +46,12 @@ I am a recent M.Sc. graduate in Computer Software Engineering from the Universit
     </div>
     <h2>Publications</h2>
     <ul>
-    
-    <li><strong>MJ. Ranjbar</strong>, Mohammad Amini, Parmis Bathaeyian, Zhengjun Yue, H. Faili, A. Shakery. <em>PARSA-Bench: A Comprehensive Persian Audio-Language Model Benchmark.</em> Under preparation for submission to Interspeech 2026.</li>
-        <li><strong>MJ. Ranjbar</strong>, H. Faili, A. Shakery. <a href= "https://arxiv.org/abs/2510.10774" targer="_blank"> ParsVoice: A Large-Scale Multi-Speaker Persian Speech Corpus for Text-to-Speech Synthesis</a>. Under preparation for submission to Interspeech 2026.</li>
-        <li><strong>MJ. Ranjbar</strong>, A. Shakery, H. Faili. PersianPunc: Neural Punctuation Restoration for Persian Speech Recognition and Text Processing. Under review at EACL SilkRoadNLP Workshop.</li>
-        <li><strong>MJ. Ranjbar</strong>, A.H. Sheikh, S. Ranjbar Kalahroodi, S. Karimi, A. Shakery, H. Faili. <a href="https://arxiv.org/abs/2506.00250"  target="_blank"> PersianMedQA: Evaluating Large Language Models on a Persian-English Bilingual Medical Question Answering Benchmark</a>. Under review at LREC 2026.</li>
-        <li><strong>MJ. Ranjbar</strong>, MB. Menhaj, H. Taheri. <a href="https://ieeexplore.ieee.org/document/10025253" target="_blank">Social Robots: An Open-Source Framework for Personal Assistant Robots.</a> Published in ICRoM 2022.</li>
+        <li><strong>MJ. Ranjbar</strong>, Mohammad Amini, Parmis Bathayian, H. Faili, A. Shakery. <em>PARSA-Bench: A Comprehensive Persian Audio-Language Model Benchmark.</em> Submitted to Interspeech 2026.</li>
+        <li><strong>MJ. Ranjbar</strong>, H. Faili, A. Shakery. <a href="https://arxiv.org/abs/2510.10774" target="_blank">ParsVoice: A Large-Scale Multi-Speaker Persian Speech Corpus for Text-to-Speech Synthesis</a>. Under preparation for submission to EMNLP 2026.</li>
+        <li><strong>MJ. Ranjbar</strong>, A. Shakery, H. Faili. PersianPunc: A Large-Scale Dataset and BERT-Based Approach for Persian Punctuation Restoration. Accepted at <em>SilkRoadNLP 2026 (EACL 2026 Workshop)</em>.</li>
+        <li><strong>MJ. Ranjbar</strong>, A.H. Sheikh, S. Ranjbar Kalahroodi, S. Karimi, A. Shakery, H. Faili. <a href="https://arxiv.org/abs/2506.00250" target="_blank">PersianMedQA: Evaluating Large Language Models on a Persian-English Bilingual Medical Question Answering Benchmark</a>. Accepted at <em>LREC 2026</em>.</li>
+        <li>S. Jafari, T. Azin, M.H. Khan, <strong>MJ. Ranjbar</strong>, et al. <em>APARSIN: A Multi-Variety Sentiment and Translation Benchmark for Iranic Languages.</em> Accepted at <em>SilkRoadNLP 2026 (EACL 2026 Workshop)</em>.</li>
+        <li><strong>MJ. Ranjbar</strong>, MB. Menhaj, H. Taheri. <a href="https://ieeexplore.ieee.org/document/10025253" target="_blank">Social Robots: An Open-Source Framework for Personal Assistant Robots.</a> Published in <em>ICRoM 2022</em>.</li>
     </ul>
 </div>
 <br />
