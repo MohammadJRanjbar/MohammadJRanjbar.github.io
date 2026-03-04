@@ -29,8 +29,8 @@ Education
 
 Professional Experience
 ======
-* **Research Intern**, EPFL NLP Lab (Lausanne, Switzerland), March 2026 – August 2026
-    * Working under Dr. Antoine Bosselut on multilingual Large Language Models.
+* **Research Intern**, EPFL NLP Lab (Lausanne, Switzerland), March 2026 – Present
+  * Working under Antoine Bosselut on multilingual and multimodal Large Language Models, focusing on integrating speech encoders with LLMs and improving low-resource language performance through joint audio–text pre-training and alignment strategies.
 * **Research & Teaching Assistant**, University of Tehran, Jan 2023 – Present
     * Leading research on Persian speech synthesis and medical LLMs at the NLP Lab.
     * Chief TA for *Machine Learning Methods in NLP* and *Digital Speech Processing*.
@@ -45,11 +45,12 @@ Professional Experience
 
 Publications
 ======
-* **M.J. Ranjbar**, M. Amini, P. Bathaeyian, Z. Yue, H. Faili, A. Shakery. "PARSA-Bench: A Comprehensive Persian Audio-Language Model Benchmark." (In Prep for *Interspeech 2026*)
-* **M.J. Ranjbar**, A. Shakery, H. Faili. "PersianPunc: Neural Punctuation Restoration for Persian Speech Recognition." (Under Review at *EACL SilkRoadNLP*)
-* **M.J. Ranjbar**, H. Faili, A. Shakery. "ParsVoice: A Large-Scale Multi-Speaker Persian Speech Corpus for TTS." (In Prep for *Interspeech 2026*)
-* **M.J. Ranjbar**, et al. "PersianMedQA: Evaluating LLMs on a Persian-English Bilingual Medical QA Benchmark." (Under Review at *LREC 2026*)
-* **M.J. Ranjbar**, M.B. Menhaj, H. Taheri. "Social Robots: An Open-Source Framework for Personal Assistant Robots." (*ICRoM 2022*)
+* **M.J. Ranjbar**, M. Amini, P. Bathayian, H. Faili, A. Shakery. "PARSA-Bench: A Comprehensive Persian Audio-Language Model Benchmark." (Submitted to *Interspeech 2026*)
+* **M.J. Ranjbar**, A. Shakery, H. Faili. "PersianPunc: Neural Punctuation Restoration for Persian Speech Recognition." (Accepted at *EACL SilkRoadNLP 2026*)
+* **M.J. Ranjbar**, H. Faili, A. Shakery. "ParsVoice: A Large-Scale Multi-Speaker Persian Speech Corpus for TTS." (In Prep for *EMNLP 2026*)
+* **M.J. Ranjbar**, A.H. Sheikh, S. Ranjbar, S. Karimi, A. Shakery, H. Faili. "PersianMedQA: Evaluating LLMs on a Persian-English Bilingual Medical QA Benchmark." (Accepted at *LREC 2026*)
+* S. Jafari, T. Azin, M.H. Khan, **M.J. Ranjbar**, et al. "APARSIN: A Multi-Variety Sentiment and Translation Benchmark for Iranic Languages." (Accepted at *EACL SilkRoadNLP 2026*)
+* **M.J. Ranjbar**, M.B. Menhaj, H. Taheri. "Social Robots: An Open-Source Framework for Personal Assistant Robots." (Accepted at *ICRoM 2022*)
 
 Skills
 ======
