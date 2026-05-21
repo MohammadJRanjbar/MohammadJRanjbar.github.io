@@ -339,6 +339,28 @@
         .doi-line a { color: var(--primary); text-decoration: none; font-weight: 500; }
         .doi-line a:hover { text-decoration: underline; }
 
+        /* Citation tabs */
+        .cite-tabs {
+            display: flex;
+            background: linear-gradient(135deg, #1e293b, #2d3f55);
+            border-radius: 15px 15px 0 0; overflow: hidden;
+            border: 1px solid rgba(148,163,184,0.12); border-bottom: none;
+        }
+        .cite-tab {
+            padding: 11px 22px; font-size: 0.82rem; font-weight: 600;
+            cursor: pointer; background: none; border: none; border-bottom: 2px solid transparent;
+            color: #64748b; font-family: 'Inter', sans-serif;
+            transition: color .18s, border-color .18s;
+            display: flex; align-items: center; gap: 7px;
+        }
+        .cite-tab.active { color: #e2e8f0; border-bottom-color: var(--primary); }
+        .cite-tab:hover:not(.active) { color: #94a3b8; }
+        .cite-tab-badge {
+            font-size: 0.63rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.08em; background: rgba(20,150,127,0.28);
+            color: #5eead4; padding: 2px 7px; border-radius: 20px;
+        }
+
         /* Footer */
         .footer {
             background: var(--surface); backdrop-filter: blur(20px);
@@ -587,14 +609,27 @@
     <section class="section" id="citation">
         <h2>How to Cite</h2>
         <div class="card">
-            <p style="margin-bottom:1.5rem;">Please use the official LREC 2026 proceedings citation:</p>
+            <p style="margin-bottom:1.2rem;">Choose the citation format that matches your use case. Use the published proceedings entry when citing for academic papers; the arXiv entry when linking to the preprint.</p>
 
-            <div style="background:linear-gradient(135deg,#1e293b,#334155);border-radius:15px;overflow:hidden;position:relative;">
-                <div style="padding:14px 20px 0;display:flex;justify-content:space-between;align-items:center;">
-                    <span style="font-size:0.7rem;font-weight:700;color:#94a3b8;letter-spacing:0.12em;text-transform:uppercase;">BibTeX</span>
-                    <button class="cite-copy" onclick="copyCite(this)" aria-label="Copy BibTeX">Copy</button>
+            <!-- Tabs -->
+            <div class="cite-tabs" role="tablist">
+                <button class="cite-tab active" role="tab" id="tab-lrec" aria-selected="true" aria-controls="pane-lrec" onclick="switchCite('lrec', this)">
+                    LREC 2026 <span class="cite-tab-badge">published</span>
+                </button>
+                <button class="cite-tab" role="tab" id="tab-arxiv" aria-selected="false" aria-controls="pane-arxiv" onclick="switchCite('arxiv', this)">
+                    arXiv preprint
+                </button>
+            </div>
+
+            <!-- Code panes -->
+            <div style="background:linear-gradient(135deg,#1e293b,#334155);border-radius:0 0 15px 15px;overflow:hidden;position:relative;">
+                <div style="padding:12px 18px 0;display:flex;justify-content:space-between;align-items:center;">
+                    <span style="font-size:0.68rem;font-weight:700;color:#94a3b8;letter-spacing:0.12em;text-transform:uppercase;">BibTeX</span>
+                    <button class="cite-copy" id="copyBtn" onclick="copyCite(this)" aria-label="Copy BibTeX">Copy</button>
                 </div>
-                <div class="code-block" id="citeBody" style="margin:0;border-radius:0;border:none;box-shadow:none;">@inproceedings{<span class="v">kalahroodi-etal-2026-persianmedqa</span>,
+
+                <div id="pane-lrec" role="tabpanel" aria-labelledby="tab-lrec">
+                    <div class="code-block" style="margin:0;border-radius:0;border:none;box-shadow:none;">@inproceedings{<span class="v">kalahroodi-etal-2026-persianmedqa</span>,
     <span class="k">title</span>     = {<span class="v">{P}ersian{M}ed{QA}: Evaluating Large Language Models on a {P}ersian-{E}nglish Bilingual Medical Question Answering Benchmark</span>},
     <span class="k">author</span>    = {<span class="v">Ranjbar Kalahroodi, Mohammad Javad  and  Sheikholselami, Amirhossein  and  Karimi Arpanahi, Sepehr  and  Ranjbar Kalahroodi, Sepideh  and  Faili, Heshaam  and  Shakery, Azadeh</span>},
     <span class="k">booktitle</span> = {<span class="v">Proceedings of the Fifteenth Language Resources and Evaluation Conference</span>},
@@ -605,12 +640,25 @@
     <span class="k">doi</span>       = {<span class="v">10.63317/3yixio7ngbkh</span>},
     <span class="k">pages</span>     = {<span class="v">4371--4386</span>},
 }</div>
+                </div>
+
+                <div id="pane-arxiv" role="tabpanel" aria-labelledby="tab-arxiv" style="display:none;">
+                    <div class="code-block" style="margin:0;border-radius:0;border:none;box-shadow:none;">@misc{<span class="v">kalahroodi2025persianmedqa</span>,
+    <span class="k">title</span>         = {<span class="v">{PersianMedQA}: Evaluating Large Language Models on a {Persian}-{English} Bilingual Medical Question Answering Benchmark</span>},
+    <span class="k">author</span>        = {<span class="v">Ranjbar Kalahroodi, Mohammad Javad and Sheikholselami, Amirhossein and Karimi Arpanahi, Sepehr and Ranjbar Kalahroodi, Sepideh and Faili, Heshaam and Shakery, Azadeh</span>},
+    <span class="k">year</span>          = {<span class="v">2025</span>},
+    <span class="k">eprint</span>        = {<span class="v">2506.00250</span>},
+    <span class="k">archivePrefix</span> = {<span class="v">arXiv</span>},
+    <span class="k">primaryClass</span>  = {<span class="v">cs.CL</span>},
+    <span class="k">url</span>           = {<span class="v">https://arxiv.org/abs/2506.00250</span>},
+}</div>
+                </div>
             </div>
 
-            <p class="doi-line" style="margin-top:14px;">
+            <!-- DOI line (changes with tab) -->
+            <p class="doi-line" id="citeDoi" style="margin-top:14px;">
                 DOI: <a href="https://doi.org/10.63317/3yixio7ngbkh" target="_blank" rel="noopener">10.63317/3yixio7ngbkh</a>
-                &nbsp;·&nbsp;
-                arXiv: <a href="https://arxiv.org/abs/2506.00250" target="_blank" rel="noopener">2506.00250</a>
+                &nbsp;·&nbsp; ISBN: 979-8-89176-283-1
             </p>
         </div>
     </section>
@@ -631,8 +679,9 @@
 </footer>
 
 <script>
-function copyCite(btn) {
-    const raw = `@inproceedings{kalahroodi-etal-2026-persianmedqa,
+const CITES = {
+    lrec: {
+        raw: `@inproceedings{kalahroodi-etal-2026-persianmedqa,
     title     = {{P}ersian{M}ed{QA}: Evaluating Large Language Models on a {P}ersian-{E}nglish Bilingual Medical Question Answering Benchmark},
     author    = {Ranjbar Kalahroodi, Mohammad Javad  and  Sheikholselami, Amirhossein  and  Karimi Arpanahi, Sepehr  and  Ranjbar Kalahroodi, Sepideh  and  Faili, Heshaam  and  Shakery, Azadeh},
     booktitle = {Proceedings of the Fifteenth Language Resources and Evaluation Conference},
@@ -642,8 +691,39 @@ function copyCite(btn) {
     url       = {https://doi.org/10.63317/3yixio7ngbkh},
     doi       = {10.63317/3yixio7ngbkh},
     pages     = {4371--4386},
-}`;
-    navigator.clipboard.writeText(raw)
+}`,
+        doi: `DOI: <a href="https://doi.org/10.63317/3yixio7ngbkh" target="_blank" rel="noopener">10.63317/3yixio7ngbkh</a> &nbsp;·&nbsp; ISBN: 979-8-89176-283-1`
+    },
+    arxiv: {
+        raw: `@misc{kalahroodi2025persianmedqa,
+    title         = {{PersianMedQA}: Evaluating Large Language Models on a {Persian}-{English} Bilingual Medical Question Answering Benchmark},
+    author        = {Ranjbar Kalahroodi, Mohammad Javad and Sheikholselami, Amirhossein and Karimi Arpanahi, Sepehr and Ranjbar Kalahroodi, Sepideh and Faili, Heshaam and Shakery, Azadeh},
+    year          = {2025},
+    eprint        = {2506.00250},
+    archivePrefix = {arXiv},
+    primaryClass  = {cs.CL},
+    url           = {https://arxiv.org/abs/2506.00250},
+}`,
+        doi: `arXiv: <a href="https://arxiv.org/abs/2506.00250" target="_blank" rel="noopener">2506.00250 [cs.CL]</a>`
+    }
+};
+let curCite = 'lrec';
+
+function switchCite(key, btn) {
+    curCite = key;
+    document.querySelectorAll('.cite-tab').forEach(t => {
+        t.classList.toggle('active', t === btn);
+        t.setAttribute('aria-selected', t === btn ? 'true' : 'false');
+    });
+    document.getElementById('pane-lrec').style.display  = key === 'lrec'  ? 'block' : 'none';
+    document.getElementById('pane-arxiv').style.display = key === 'arxiv' ? 'block' : 'none';
+    document.getElementById('citeDoi').innerHTML = CITES[key].doi;
+    const cb = document.getElementById('copyBtn');
+    cb.textContent = 'Copy'; cb.classList.remove('copied');
+}
+
+function copyCite(btn) {
+    navigator.clipboard.writeText(CITES[curCite].raw)
         .then(() => { btn.textContent = '✓ Copied'; btn.classList.add('copied'); setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000); })
         .catch(() => { btn.textContent = 'Failed'; setTimeout(() => { btn.textContent = 'Copy'; }, 1500); });
 }
