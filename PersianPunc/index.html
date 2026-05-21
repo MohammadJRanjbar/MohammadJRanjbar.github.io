@@ -3,713 +3,570 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>PersianPunc — Persian Punctuation Restoration</title>
+<title>PersianPunc — Persian Punctuation Restoration Dataset &amp; Model</title>
+
+<!-- SEO -->
+<meta name="description" content="PersianPunc: A large-scale dataset of 17 million samples and fine-tuned ParsBERT model for Persian punctuation restoration. Achieves 91.33% macro F1, outperforming GPT-4o. Published at SilkRoadNLP 2026, EACL 2026."/>
+<meta name="keywords" content="Persian punctuation restoration, PersianPunc, ParsBERT, Persian NLP, sequence labeling, ASR post-processing, BERT Persian, Iranian NLP, SilkRoadNLP, Farsi NLP, low-resource NLP, token classification, speech recognition Persian, natural language processing Farsi, punctuation dataset, morphologically rich languages, NLP dataset, University of Tehran"/>
+<meta name="author" content="Mohammad Javad Ranjbar Kalahroodi, Heshaam Faili, Azadeh Shakery"/>
+<link rel="canonical" href="https://mohammadjranjbar.github.io/PersianPunc/"/>
+
+<!-- Open Graph -->
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="PersianPunc — Persian Punctuation Restoration"/>
+<meta property="og:description" content="17M-sample dataset + fine-tuned ParsBERT achieving 91.33% macro F1 for Persian punctuation restoration. Outperforms GPT-4o while being far more efficient."/>
+<meta property="og:url" content="https://mohammadjranjbar.github.io/PersianPunc/"/>
+<meta property="og:site_name" content="PersianPunc"/>
+<meta property="article:published_time" content="2026-03-29"/>
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="PersianPunc — Persian Punctuation Restoration"/>
+<meta name="twitter:description" content="17M-sample dataset + ParsBERT model for Persian punctuation restoration. 91.33% macro F1. SilkRoadNLP @ EACL 2026."/>
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "name": "PersianPunc: A Large-Scale Dataset and BERT-Based Approach for Persian Punctuation Restoration",
+  "author": [
+    {"@type": "Person", "name": "Mohammad Javad Ranjbar Kalahroodi", "affiliation": {"@type": "Organization", "name": "University of Tehran"}},
+    {"@type": "Person", "name": "Heshaam Faili", "affiliation": {"@type": "Organization", "name": "University of Tehran"}},
+    {"@type": "Person", "name": "Azadeh Shakery", "affiliation": {"@type": "Organization", "name": "University of Tehran"}}
+  ],
+  "datePublished": "2026-03-29",
+  "publisher": {"@type": "Organization", "name": "Association for Computational Linguistics"},
+  "url": "https://aclanthology.org/2026.silkroadnlp-1.11/",
+  "doi": "10.18653/v1/2026.silkroadnlp-1.11",
+  "isPartOf": {"@type": "Book", "name": "Proceedings of the First Workshop on NLP and LLMs for the Iranian Language Family (SilkRoadNLP)"},
+  "keywords": "Persian punctuation restoration, NLP, BERT, ParsBERT, ASR, sequence labeling, Farsi, Iranian language, low-resource NLP"
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
 <style>
+/*
+  PALETTE — Three-colour Persian tricolor:
+  ① Lapis  (lajvardi blue)  — structural, primary
+  ② Ferozi (Persian turquoise) — labels, accents, bars
+  ③ Zard   (saffron gold)   — brand name only, hero stat
+*/
 :root {
-  --navy:      #121826;
-  --navy-mid:  #1c2436;
-  --navy-soft: #243044;
-  --cream:     #f6f3ee;
-  --cream-dark:#ede8e0;
-  --gold:      #c9a84c;
-  --gold-light:#e2c87a;
-  --teal:      #3aafa9;
-  --teal-light:#5ec4bf;
-  --rose:      #d95b5b;
-  --rose-light:#ef8080;
-  --text-light:#cbd3df;
-  --text-dim:  #7e8fa5;
-  --radius:    12px;
+  /* Lapis / Lajvardi — Persian tile deep blue */
+  --lapis:        #1A3EA0;
+  --lapis-deep:   #0E2672;
+  --lapis-mid:    #2A54C8;
+  --lapis-light:  #4D74E0;
+  --lapis-pale:   #EBF0FB;
+  --lapis-tint:   #F3F6FD;
+
+  /* Ferozi — Persian turquoise (mosque tile accent) */
+  --ferozi:       #0A8C84;
+  --ferozi-deep:  #076960;
+  --ferozi-light: #13B5AC;
+  --ferozi-pale:  #E6F7F6;
+
+  /* Zard — saffron gold (brand: PersianPunc only) */
+  --zard:         #B8780A;
+  --zard-light:   #D99A20;
+  --zard-glow:    #F0B030;
+  --zard-pale:    #FDF4E2;
+
+  /* Neutrals — warm ivory ground */
+  --bg:           #F5F3EE;
+  --bg-alt:       #EDEAE3;
+  --surface:      #FFFFFF;
+  --surface-tinted: #FAFAF8;
+
+  /* Typography */
+  --ink:          #0C1830;
+  --ink-mid:      #2E3F62;
+  --ink-soft:     #6E7F9C;
+  --ink-faint:    #A8B4CA;
+
+  /* Borders */
+  --rule:         #D8DDE8;
+  --rule-light:   #ECF0F7;
+
+  /* Semantic */
+  --danger-bg:    #FEF2F2;
+  --danger-border:#F5CCCC;
+  --danger-text:  #B91C1C;
+
+  --radius:    10px;
+  --radius-lg: 16px;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
-
 body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--navy);
-  color: var(--cream);
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
   line-height: 1.7;
   overflow-x: hidden;
 }
 
-/* ─── HERO ─── */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 80px 24px 60px;
-  background:
-    radial-gradient(ellipse 80% 60% at 20% 80%, rgba(58,175,169,0.08) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(201,168,76,0.06) 0%, transparent 70%),
-    var(--navy);
-}
-
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 120px;
-  background: linear-gradient(to bottom, transparent, var(--navy));
-  pointer-events: none;
-}
-
-/* floating shapes */
-.hero-shape {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.12;
-  animation: drift 18s ease-in-out infinite alternate;
-  pointer-events: none;
-}
-.hero-shape--1 { width:380px; height:380px; background:var(--teal); top:-60px; left:-80px; animation-delay:0s; }
-.hero-shape--2 { width:260px; height:260px; background:var(--gold); bottom:10%; right:-60px; animation-delay:-6s; }
-.hero-shape--3 { width:180px; height:180px; background:var(--teal); bottom:30%; left:15%; animation-delay:-12s; opacity:.07; }
-
-@keyframes drift {
-  0%   { transform: translate(0,0) scale(1); }
-  100% { transform: translate(40px, 30px) scale(1.08); }
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(201,168,76,0.12);
-  border: 1px solid rgba(201,168,76,0.35);
-  border-radius: 40px;
-  padding: 7px 18px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--gold-light);
-  margin-bottom: 28px;
-  animation: fadeDown .8s ease both;
-}
-.badge .dot {
-  width: 7px; height: 7px;
-  background: var(--gold);
-  border-radius: 50%;
-  animation: pulse 2s ease infinite;
-}
-@keyframes pulse {
-  0%,100% { opacity:1; transform:scale(1); }
-  50%     { opacity:.5; transform:scale(1.4); }
-}
-
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  font-weight: 700;
-  line-height: 1.2;
-  max-width: 820px;
-  color: var(--cream);
-  animation: fadeUp .9s .15s ease both;
-}
-.hero h1 em {
-  font-style: italic;
-  color: var(--gold-light);
-}
-
-.hero-authors {
-  margin-top: 22px;
-  font-size: 0.95rem;
-  color: var(--text-light);
-  font-weight: 400;
-  animation: fadeUp .9s .3s ease both;
-}
-.hero-authors span { color: var(--text-dim); margin: 0 6px; }
-
-.hero-venue {
-  margin-top: 14px;
-  font-size: 0.82rem;
-  color: var(--text-dim);
-  animation: fadeUp .9s .4s ease both;
-}
-.hero-venue a { color: var(--teal-light); text-decoration: none; }
-.hero-venue a:hover { text-decoration: underline; }
-
-.hero-links {
-  margin-top: 38px;
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  justify-content: center;
-  animation: fadeUp .9s .5s ease both;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 11px 22px;
-  border-radius: 40px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-decoration: none;
-  transition: transform .2s, box-shadow .2s, background .2s;
-  cursor: pointer;
-  border: none;
-}
-.btn:hover { transform: translateY(-2px); }
-
-.btn--primary {
-  background: var(--gold);
-  color: var(--navy);
-  box-shadow: 0 4px 18px rgba(201,168,76,0.3);
-}
-.btn--primary:hover { box-shadow: 0 6px 28px rgba(201,168,76,0.42); background: var(--gold-light); }
-
-.btn--ghost {
-  background: rgba(255,255,255,0.06);
-  color: var(--cream);
-  border: 1px solid rgba(255,255,255,0.14);
-}
-.btn--ghost:hover { background: rgba(255,255,255,0.11); border-color: rgba(255,255,255,0.28); }
-
-.btn svg { width:15px; height:15px; flex-shrink:0; }
-
-/* ─── ANIMATIONS ─── */
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(28px); }
-  to   { opacity:1; transform:translateY(0); }
-}
-@keyframes fadeDown {
-  from { opacity:0; transform:translateY(-16px); }
-  to   { opacity:1; transform:translateY(0); }
-}
-.reveal {
-  opacity: 0;
-  transform: translateY(36px);
-  transition: opacity .7s ease, transform .7s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ─── SECTIONS ─── */
-section { padding: 90px 24px; }
-
-.section-inner {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.section-label {
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--teal);
-  margin-bottom: 10px;
-}
-
-.section-title {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.6rem, 3vw, 2.1rem);
-  font-weight: 700;
-  color: var(--cream);
-  margin-bottom: 10px;
-}
-
-/* ─── ABSTRACT ─── */
-#abstract { background: var(--navy); }
-
-.abstract-box {
-  background: linear-gradient(135deg, var(--navy-mid), var(--navy-soft));
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: var(--radius);
-  padding: 42px 40px;
-  margin-top: 28px;
-}
-.abstract-box p {
-  color: var(--text-light);
-  font-size: 0.96rem;
-  line-height: 1.85;
-}
-
-/* ─── IMPACT VISUAL ─── */
-#impact { background: #161c2c; }
-
-.impact-card {
-  background: var(--navy-mid);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: var(--radius);
-  padding: 36px 34px;
-  margin-top: 30px;
-}
-
-.impact-example { margin-bottom: 34px; }
-.impact-example:last-child { margin-bottom: 0; }
-
-.impact-divider {
-  border: none;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  margin: 30px 0;
-}
-
-.impact-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 18px 22px;
-  border-radius: 10px;
-  margin-bottom: 6px;
-}
-
-.impact-row--bad  { background: rgba(217,91,91,0.1);  border: 1px solid rgba(217,91,91,0.25); }
-.impact-row--good { background: rgba(58,175,169,0.1); border: 1px solid rgba(58,175,169,0.25); }
-
-.impact-row .icon {
-  font-size: 1.1rem;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.impact-row .label {
-  font-size: 0.72rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 3px;
-}
-.impact-row--bad .label  { color: var(--rose-light); }
-.impact-row--good .label { color: var(--teal-light); }
-
-.impact-row .text {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.82rem;
-  color: var(--cream);
-}
-.impact-row .meaning {
-  font-size: 0.82rem;
-  color: var(--text-light);
-  margin-top: 3px;
-}
-
-.impact-arrow {
-  text-align: center;
-  font-size: 0.78rem;
-  color: var(--teal);
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  padding: 4px 0;
-}
-
-/* ─── CONTRIBUTIONS ─── */
-#contributions { background: var(--navy); }
-
-.contrib-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
-  margin-top: 30px;
-}
-
-.contrib-card {
-  background: var(--navy-mid);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: var(--radius);
-  padding: 30px 26px;
-  transition: border-color .3s, transform .3s;
-}
-.contrib-card:hover { border-color: rgba(58,175,169,0.4); transform: translateY(-3px); }
-
-.contrib-card .num {
-  font-family: 'Playfair Display', serif;
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--teal);
-  opacity: .6;
-  line-height: 1;
-  margin-bottom: 12px;
-}
-.contrib-card h4 {
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: var(--cream);
-  margin-bottom: 7px;
-}
-.contrib-card p {
-  font-size: 0.82rem;
-  color: var(--text-dim);
-  line-height: 1.6;
-}
-
-/* ─── RESULTS ─── */
-#results { background: #161c2c; }
-
-.results-wrap {
-  margin-top: 30px;
-  display: grid;
-  gap: 28px;
-}
-
-/* stat cards row */
-.stat-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 14px;
-}
-
-.stat-card {
-  background: var(--navy-mid);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: var(--radius);
-  padding: 24px 18px;
-  text-align: center;
-  transition: border-color .3s;
-}
-.stat-card:hover { border-color: rgba(201,168,76,0.4); }
-
-.stat-card .val {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.9rem;
-  font-weight: 700;
-  color: var(--gold-light);
-  line-height: 1;
-}
-.stat-card .val--teal { color: var(--teal-light); }
-
-.stat-card .lbl {
-  font-size: 0.72rem;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-top: 8px;
-  font-weight: 500;
-}
-
-/* table */
-.table-wrap {
-  overflow-x: auto;
-  background: var(--navy-mid);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: var(--radius);
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.87rem;
-}
-
-thead th {
-  text-align: left;
-  padding: 16px 22px;
-  font-weight: 600;
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  white-space: nowrap;
-}
-
-tbody td {
-  padding: 14px 22px;
-  color: var(--text-light);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-tbody tr:last-child td { border-bottom: none; }
-
-tbody tr.highlight td { color: var(--cream); }
-tbody tr.highlight td:first-child { font-weight: 600; }
-tbody tr.highlight td:not(:first-child) { color: var(--gold-light); font-weight: 600; }
-
-tbody tr:hover { background: rgba(255,255,255,0.03); }
-
-/* ─── PER-CLASS ─── */
-#perclass { background: var(--navy); }
-
-.bar-table { margin-top: 30px; }
-
-.bar-row {
-  display: grid;
-  grid-template-columns: 160px 1fr 80px;
-  align-items: center;
-  gap: 18px;
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-.bar-row:last-child { border-bottom: none; }
-
-.bar-row .name {
-  font-size: 0.86rem;
-  color: var(--text-light);
-  font-weight: 500;
-}
-
-.bar-bg {
-  height: 10px;
-  background: rgba(255,255,255,0.07);
-  border-radius: 5px;
-  overflow: hidden;
-}
-.bar-fill {
-  height: 100%;
-  border-radius: 5px;
-  background: linear-gradient(90deg, var(--teal), var(--teal-light));
-  width: 0;
-  transition: width 1.2s cubic-bezier(.25,.46,.45,.94);
-}
-.bar-fill--gold {
-  background: linear-gradient(90deg, var(--gold), var(--gold-light));
-}
-
-.bar-row .val {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.82rem;
-  color: var(--gold-light);
-  text-align: right;
-  font-weight: 500;
-}
-
-/* ─── DATASET ─── */
-#dataset { background: #161c2c; }
-
-.dataset-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  margin-top: 28px;
-}
-
-.ds-card {
-  background: var(--navy-mid);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: var(--radius);
-  padding: 24px 22px;
-}
-.ds-card h5 {
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--teal-light);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 6px;
-}
-.ds-card p {
-  font-size: 0.82rem;
-  color: var(--text-dim);
-  line-height: 1.5;
-}
-
-/* ─── RESOURCES / LINKS ─── */
-#resources { background: var(--navy); }
-
-.res-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 16px;
-  margin-top: 30px;
-}
-
-.res-card {
-  background: var(--navy-mid);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: var(--radius);
-  padding: 28px 24px;
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  transition: border-color .3s, transform .3s, box-shadow .3s;
-}
-.res-card:hover {
-  border-color: rgba(201,168,76,0.5);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-}
-
-.res-card .res-icon {
-  width: 40px; height: 40px;
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 14px;
-  font-size: 1.1rem;
-}
-.res-card .res-icon--hf { background: rgba(238,204,51,0.12); color: #ffcc33; }
-.res-card .res-icon--model { background: rgba(58,175,169,0.12); color: var(--teal-light); }
-.res-card .res-icon--paper { background: rgba(201,168,76,0.12); color: var(--gold-light); }
-
-.res-card h4 {
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: var(--cream);
-  margin-bottom: 5px;
-}
-.res-card p {
-  font-size: 0.78rem;
-  color: var(--text-dim);
-  line-height: 1.5;
-  flex-grow: 1;
-}
-.res-card .res-link {
-  margin-top: 14px;
-  font-size: 0.76rem;
-  font-weight: 600;
-  color: var(--teal);
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  text-decoration: none;
-}
-.res-card .res-link:hover { color: var(--teal-light); }
-.res-card .res-link svg { width:13px; height:13px; }
-
-/* ─── LIMITATIONS ─── */
-#limitations { background: #161c2c; }
-
-.limit-list { margin-top: 24px; }
-
-.limit-item {
-  display: flex;
-  gap: 16px;
-  padding: 18px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-.limit-item:last-child { border-bottom: none; }
-.limit-item .limit-icon {
-  flex-shrink: 0;
-  width: 28px; height: 28px;
-  background: rgba(217,91,91,0.1);
-  border: 1px solid rgba(217,91,91,0.25);
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.85rem;
-  margin-top: 2px;
-}
-.limit-item p {
-  font-size: 0.88rem;
-  color: var(--text-light);
-  line-height: 1.65;
-}
-
-/* ─── CITATION ─── */
-#citation { background: var(--navy); padding-bottom: 70px; }
-
-.cite-block {
-  margin-top: 24px;
-  background: var(--navy-mid);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-.cite-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 14px 22px;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-  background: rgba(255,255,255,0.03);
-}
-.cite-header span {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-.cite-copy {
-  background: none;
-  border: 1px solid rgba(255,255,255,0.2);
-  color: var(--text-light);
-  border-radius: 6px;
-  padding: 5px 12px;
-  font-size: 0.72rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background .2s, color .2s;
-  font-family: inherit;
-}
-.cite-copy:hover { background: rgba(255,255,255,0.1); color: var(--cream); }
-.cite-copy.copied { border-color: var(--teal); color: var(--teal-light); }
-
-.cite-body {
-  padding: 24px 22px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.78rem;
-  color: var(--text-light);
-  line-height: 1.9;
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-.cite-body .key { color: var(--gold-light); font-weight: 500; }
-
-/* ─── FOOTER ─── */
-footer {
-  background: #0f1320;
-  padding: 40px 24px;
-  text-align: center;
-  border-top: 1px solid rgba(255,255,255,0.06);
-}
-footer p {
-  font-size: 0.77rem;
-  color: var(--text-dim);
-}
-footer a { color: var(--teal-light); text-decoration: none; }
-footer a:hover { text-decoration: underline; }
-
-/* ─── NAV ─── */
+/* ── GEOMETRIC TILE (hero only) ── */
+.tile-bg {
+  background-image:
+    repeating-linear-gradient( 45deg, rgba(26,62,160,0.025) 0, rgba(26,62,160,0.025) 1px, transparent 0, transparent 48%),
+    repeating-linear-gradient(-45deg, rgba(10,140,132,0.025) 0, rgba(10,140,132,0.025) 1px, transparent 0, transparent 48%);
+  background-size: 32px 32px;
+}
+
+/* ── NAV ── */
 nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  padding: 0 24px;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 28px;
-  background: rgba(18,24,38,0.7);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  transform: translateY(-100%);
-  transition: transform .35s ease;
+  position: fixed; top:0; left:0; right:0; z-index:200;
+  height:52px; display:flex; align-items:center; justify-content:center; gap:4px;
+  background: rgba(245,243,238,0.9);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--rule);
+  transform: translateY(-100%); transition: transform .3s ease;
 }
 nav.visible { transform: translateY(0); }
-
 nav a {
-  color: var(--text-dim);
-  text-decoration: none;
-  font-size: 0.76rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  transition: color .2s;
+  color: var(--ink-soft); text-decoration:none;
+  font-size:0.71rem; font-weight:500; letter-spacing:0.09em; text-transform:uppercase;
+  padding:5px 12px; border-radius:6px; transition: color .18s, background .18s;
 }
-nav a:hover { color: var(--gold-light); }
+nav a:hover { color:var(--lapis); background:var(--lapis-pale); }
 
-/* ─── RESPONSIVE ─── */
-@media (max-width: 600px) {
-  section { padding: 60px 18px; }
-  .abstract-box { padding: 28px 22px; }
-  .impact-card { padding: 24px 18px; }
-  .impact-row { padding: 14px 16px; }
-  .bar-row { grid-template-columns: 120px 1fr 60px; }
-  nav { gap: 16px; }
-  nav a { font-size: 0.68rem; }
-  .hero h1 { font-size: 1.7rem; }
+/* ── HERO ── */
+.hero {
+  min-height:100vh; display:flex; flex-direction:column;
+  justify-content:center; align-items:center; text-align:center;
+  padding:100px 24px 88px; position:relative; overflow:hidden;
+  background:
+    radial-gradient(ellipse 65% 50% at 12% 88%, rgba(26,62,160,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 42% at 88% 14%, rgba(10,140,132,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 35% at 55% 60%, rgba(184,120,10,0.04) 0%, transparent 55%),
+    var(--bg);
+}
+
+/* top Persian-border strip: lapis → ferozi → zard → ferozi → lapis */
+.hero::before {
+  content:'';
+  position:absolute; top:0; left:0; right:0; height:4px;
+  background: linear-gradient(90deg,
+    var(--lapis-deep)  0%,
+    var(--lapis)       25%,
+    var(--ferozi)      50%,
+    var(--zard-glow)   72%,
+    var(--ferozi)      84%,
+    var(--lapis-deep) 100%);
+}
+
+/* floating blobs */
+.blob {
+  position:absolute; border-radius:50%; filter:blur(100px);
+  pointer-events:none; animation: drift 22s ease-in-out infinite alternate;
+}
+.blob-1 { width:440px; height:440px; background:var(--lapis);  opacity:.07; top:-120px; left:-120px; animation-delay:0s; }
+.blob-2 { width:300px; height:300px; background:var(--ferozi); opacity:.07; bottom:8%;  right:-80px; animation-delay:-9s; }
+.blob-3 { width:220px; height:220px; background:var(--zard);   opacity:.05; bottom:28%; left:12%;   animation-delay:-16s; }
+@keyframes drift {
+  0%   { transform: translate(0,0) scale(1); }
+  100% { transform: translate(32px,24px) scale(1.09); }
+}
+
+/* badge */
+.hero-badge {
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--ferozi-pale); border:1px solid rgba(10,140,132,0.22);
+  border-radius:40px; padding:6px 18px;
+  font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--ferozi-deep); margin-bottom:30px;
+  animation: fadeDown .8s ease both;
+}
+.hero-badge .dot {
+  width:7px; height:7px; background:var(--ferozi);
+  border-radius:50%; animation: blink 2.4s ease infinite;
+}
+@keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.35;transform:scale(1.6)} }
+
+/* HERO TITLE — PersianPunc in gold, rest in deep ink */
+.hero h1 {
+  font-family:'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.2rem, 5.2vw, 3.9rem);
+  font-weight:700; line-height:1.18;
+  max-width:860px; color:var(--ink);
+  animation: fadeUp .9s .15s ease both;
+}
+.hero h1 .brand {
+  font-style: italic;
+  color: var(--zard);
+  /* subtle text-shadow gives the gold some depth */
+  text-shadow: 0 1px 0 rgba(184,120,10,0.2), 0 2px 12px rgba(184,120,10,0.1);
+}
+/* BERT and the rest: lapis blue */
+.hero h1 .kw { color: var(--lapis); }
+
+.hero-authors {
+  margin-top:22px; font-size:0.94rem; color:var(--ink-mid); font-weight:400;
+  animation: fadeUp .9s .28s ease both;
+}
+.hero-authors span { color:var(--rule); margin:0 8px; }
+.hero-affil {
+  margin-top:5px; font-size:0.77rem; color:var(--ink-soft);
+  animation: fadeUp .9s .36s ease both;
+}
+.hero-venue {
+  margin-top:14px; font-size:0.81rem; color:var(--ink-soft);
+  animation: fadeUp .9s .42s ease both;
+}
+.hero-venue a { color:var(--lapis); text-decoration:none; font-weight:500; }
+.hero-venue a:hover { color:var(--lapis-mid); text-decoration:underline; }
+
+.hero-links {
+  margin-top:40px; display:flex; gap:10px; flex-wrap:wrap; justify-content:center;
+  animation: fadeUp .9s .52s ease both;
+}
+
+/* ── BUTTONS ── */
+.btn {
+  display:inline-flex; align-items:center; gap:7px;
+  padding:11px 22px; border-radius:40px;
+  font-size:0.79rem; font-weight:600; letter-spacing:0.04em;
+  text-decoration:none; transition: transform .2s, box-shadow .2s, background .2s;
+  cursor:pointer; border:none; font-family:'Outfit',sans-serif;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn svg { width:14px; height:14px; flex-shrink:0; }
+
+.btn--lapis {
+  background:var(--lapis); color:#fff;
+  box-shadow:0 4px 18px rgba(26,62,160,0.28);
+}
+.btn--lapis:hover { background:var(--lapis-deep); box-shadow:0 6px 24px rgba(26,62,160,0.38); }
+
+.btn--ferozi {
+  background:var(--ferozi); color:#fff;
+  box-shadow:0 4px 14px rgba(10,140,132,0.28);
+}
+.btn--ferozi:hover { background:var(--ferozi-deep); box-shadow:0 6px 20px rgba(10,140,132,0.36); }
+
+.btn--ghost {
+  background:var(--surface); color:var(--ink-mid);
+  border:1.5px solid var(--rule);
+  box-shadow:0 2px 8px rgba(0,0,0,0.04);
+}
+.btn--ghost:hover { border-color:var(--ferozi); color:var(--ferozi); background:var(--ferozi-pale); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp   { from{opacity:0;transform:translateY(26px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeDown { from{opacity:0;transform:translateY(-14px)} to{opacity:1;transform:translateY(0)} }
+.reveal { opacity:0; transform:translateY(30px); transition:opacity .65s ease,transform .65s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ── SECTIONS ── */
+section { padding:88px 24px; }
+.section-inner { max-width:900px; margin:0 auto; }
+
+.eyebrow {
+  display:flex; align-items:center; gap:10px; margin-bottom:10px;
+}
+.eyebrow .tag {
+  font-size:0.64rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--ferozi); background:var(--ferozi-pale);
+  border:1px solid rgba(10,140,132,0.2); border-radius:4px; padding:3px 9px;
+}
+.eyebrow .rule-line { flex:1; height:1px; background:var(--rule-light); }
+
+.section-title {
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:clamp(1.7rem,3.2vw,2.4rem);
+  font-weight:700; color:var(--lapis-deep);
+  margin-bottom:6px; line-height:1.2;
+}
+/* "PersianPunc" in section titles stays gold */
+.section-title .brand { color:var(--zard); font-style:italic; }
+
+.section-sub { font-size:0.87rem; color:var(--ink-soft); margin-bottom:32px; }
+
+/* ── ABSTRACT ── */
+#abstract { background:var(--surface); }
+.abstract-box {
+  background:var(--lapis-tint);
+  border:1px solid var(--rule);
+  border-left:4px solid var(--lapis);
+  border-radius:var(--radius);
+  padding:38px 36px;
+}
+.abstract-box p { color:var(--ink-mid); font-size:0.95rem; line-height:1.9; }
+.abstract-box p+p { margin-top:14px; }
+.abstract-box strong { color:var(--lapis); }
+.abstract-box .brand-inline { color:var(--zard); font-weight:700; }
+
+/* ── IMPACT ── */
+#impact { background:var(--bg); }
+.impact-card {
+  background:var(--surface); border:1px solid var(--rule);
+  border-radius:var(--radius-lg); padding:38px 36px;
+  box-shadow:0 2px 20px rgba(0,0,0,0.04);
+}
+.impact-example {}
+.impact-divider { border:none; border-top:1px solid var(--rule-light); margin:28px 0; }
+.impact-row {
+  display:flex; align-items:flex-start; gap:14px;
+  padding:18px 20px; border-radius:var(--radius); margin-bottom:8px;
+}
+.impact-row--bad  { background:var(--danger-bg);   border:1px solid var(--danger-border); }
+.impact-row--good { background:var(--ferozi-pale);  border:1px solid rgba(10,140,132,0.2); }
+.impact-row .icon { font-size:1rem; flex-shrink:0; margin-top:3px; }
+.impact-row .label {
+  font-size:0.66rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:4px;
+}
+.impact-row--bad  .label { color:var(--danger-text); }
+.impact-row--good .label { color:var(--ferozi-deep); }
+.impact-row .text { font-family:'JetBrains Mono',monospace; font-size:0.83rem; color:var(--ink); }
+.impact-row .meaning { font-size:0.82rem; color:var(--ink-mid); margin-top:4px; }
+.impact-arrow {
+  text-align:center; font-size:0.75rem; color:var(--ferozi);
+  font-weight:600; letter-spacing:0.06em; padding:6px 0;
+}
+
+/* ── CONTRIBUTIONS ── */
+#contributions { background:var(--surface); }
+.contrib-grid {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(258px,1fr));
+  gap:16px; margin-top:30px;
+}
+.contrib-card {
+  background:var(--bg); border:1px solid var(--rule);
+  border-radius:var(--radius); padding:30px 26px;
+  transition:border-color .3s,transform .3s,box-shadow .3s;
+  position:relative; overflow:hidden;
+}
+.contrib-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg,var(--ferozi),var(--ferozi-light));
+  transform:scaleX(0); transform-origin:left; transition:transform .35s ease;
+}
+.contrib-card:hover::before { transform:scaleX(1); }
+.contrib-card:hover { border-color:var(--ferozi-light); transform:translateY(-3px); box-shadow:0 8px 28px rgba(10,140,132,0.1); }
+.contrib-card .num {
+  font-family:'Cormorant Garamond',serif; font-size:2.4rem; font-weight:700;
+  color:var(--ferozi); opacity:.18; line-height:1; margin-bottom:14px;
+}
+.contrib-card h4 { font-size:0.91rem; font-weight:600; color:var(--ink); margin-bottom:7px; }
+.contrib-card p { font-size:0.81rem; color:var(--ink-soft); line-height:1.65; }
+.contrib-card strong { color:var(--ink-mid); }
+
+/* ── RESULTS ── */
+#results { background:var(--bg); }
+.stat-row {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:14px; margin-bottom:22px; margin-top:28px;
+}
+.stat-card {
+  background:var(--surface); border:1px solid var(--rule);
+  border-radius:var(--radius); padding:26px 16px; text-align:center;
+  transition:border-color .25s,box-shadow .25s;
+}
+.stat-card:hover { border-color:var(--lapis-light); box-shadow:0 4px 18px rgba(26,62,160,0.1); }
+.stat-card .val {
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.1rem; font-weight:700; color:var(--lapis); line-height:1;
+}
+/* only the 17M sample count gets the zard/gold treatment */
+.stat-card .val--brand { color:var(--zard); }
+.stat-card .lbl {
+  font-size:0.67rem; color:var(--ink-faint); text-transform:uppercase;
+  letter-spacing:0.1em; margin-top:8px; font-weight:500;
+}
+
+.table-wrap {
+  overflow-x:auto; background:var(--surface);
+  border:1px solid var(--rule); border-radius:var(--radius);
+  box-shadow:0 2px 12px rgba(0,0,0,0.04);
+}
+table { width:100%; border-collapse:collapse; font-size:0.86rem; }
+thead th {
+  text-align:left; padding:14px 20px;
+  font-size:0.67rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--ink-soft); border-bottom:1px solid var(--rule);
+  background:var(--lapis-tint); white-space:nowrap;
+}
+tbody td { padding:13px 20px; color:var(--ink-mid); border-bottom:1px solid var(--rule-light); }
+tbody tr:last-child td { border-bottom:none; }
+/* Our model row */
+tbody tr.highlight { background:var(--ferozi-pale); }
+tbody tr.highlight td { color:var(--ferozi-deep); font-weight:600; }
+tbody tr.highlight td:first-child { color:var(--ink); font-weight:700; }
+tbody tr:hover:not(.highlight) { background:var(--lapis-tint); }
+/* reference rows (different test sets) */
+tbody tr.ref td { color:var(--ink-faint); font-style:italic; }
+tbody tr.ref td:first-child { font-style:normal; color:var(--ink-soft); }
+.table-note {
+  font-size:0.74rem; color:var(--ink-soft); margin-top:10px;
+  padding:10px 14px; background:var(--zard-pale);
+  border:1px solid rgba(184,120,10,0.18); border-radius:var(--radius);
+}
+
+/* ── PER-CLASS BARS ── */
+#perclass { background:var(--surface); }
+.bar-table { margin-top:28px; }
+.bar-row {
+  display:grid; grid-template-columns:170px 1fr 68px;
+  align-items:center; gap:16px;
+  padding:14px 0; border-bottom:1px solid var(--rule-light);
+}
+.bar-row:last-child { border-bottom:none; }
+.bar-row .name { font-size:0.85rem; color:var(--ink-mid); font-weight:500; }
+.bar-bg { height:9px; background:var(--rule-light); border-radius:5px; overflow:hidden; }
+/* default bar: lapis gradient */
+.bar-fill {
+  height:100%; border-radius:5px; width:0;
+  background:linear-gradient(90deg, var(--lapis-deep), var(--lapis-light));
+  transition:width 1.3s cubic-bezier(.25,.46,.45,.94);
+}
+/* period bar: ferozi (best score) */
+.bar-fill--top  { background:linear-gradient(90deg, var(--ferozi-deep), var(--ferozi-light)); }
+/* macro avg bar: mixed */
+.bar-fill--avg  { background:linear-gradient(90deg, var(--lapis), var(--ferozi)); }
+.bar-row .val {
+  font-family:'JetBrains Mono',monospace; font-size:0.8rem;
+  color:var(--lapis); text-align:right; font-weight:500;
+}
+.bar-row.macro-row {
+  margin-top:8px; padding-top:18px;
+  border-top:1.5px solid var(--rule);
+}
+.bar-row.macro-row .name { font-weight:700; color:var(--ink); }
+.bar-row.macro-row .val { color:var(--ferozi-deep); font-weight:700; }
+
+/* ── DATASET ── */
+#dataset { background:var(--bg); }
+.dataset-grid {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:14px; margin-top:28px;
+}
+.ds-card {
+  background:var(--surface); border:1px solid var(--rule);
+  border-radius:var(--radius); padding:26px 22px;
+  transition:border-color .25s,box-shadow .25s;
+}
+.ds-card:hover { border-color:var(--lapis-light); box-shadow:0 4px 16px rgba(26,62,160,0.08); }
+.ds-card .ds-icon {
+  width:36px; height:36px; border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--lapis-pale); font-size:1rem; margin-bottom:12px;
+}
+.ds-card h5 { font-size:0.84rem; font-weight:600; color:var(--lapis-deep); margin-bottom:7px; }
+.ds-card p { font-size:0.79rem; color:var(--ink-soft); line-height:1.6; }
+
+/* ── RESOURCES ── */
+#resources { background:var(--surface); }
+.res-grid {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(236px,1fr));
+  gap:14px; margin-top:28px;
+}
+.res-card {
+  background:var(--bg); border:1px solid var(--rule);
+  border-radius:var(--radius); padding:28px 24px;
+  display:flex; flex-direction:column; text-decoration:none;
+  transition:border-color .25s,transform .25s,box-shadow .25s;
+}
+.res-card:hover { border-color:var(--lapis); transform:translateY(-4px); box-shadow:0 10px 32px rgba(26,62,160,0.12); }
+.res-card .icon-wrap {
+  width:42px; height:42px; border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:14px; font-size:1.1rem;
+}
+.icon-wrap--paper  { background:var(--lapis-pale); }
+.icon-wrap--hf     { background:#FFF9E0; }
+.icon-wrap--model  { background:var(--ferozi-pale); }
+.res-card h4 { font-size:0.89rem; font-weight:600; color:var(--ink); margin-bottom:6px; }
+.res-card p { font-size:0.77rem; color:var(--ink-soft); line-height:1.55; flex-grow:1; }
+.res-link {
+  margin-top:16px; font-size:0.74rem; font-weight:600; color:var(--lapis);
+  display:flex; align-items:center; gap:5px; text-decoration:none;
+}
+.res-link svg { width:12px; height:12px; }
+.res-card:hover .res-link { color:var(--lapis-deep); }
+.res-card.muted { opacity:.62; pointer-events:none; }
+.res-card.muted .res-link { display:none; }
+.coming-tag {
+  margin-top:14px; font-size:0.7rem; color:var(--ink-soft);
+  background:var(--bg-alt); border:1px solid var(--rule);
+  border-radius:20px; display:inline-block; padding:3px 10px;
+}
+
+/* ── CITATION ── */
+#citation { background:var(--bg); }
+.cite-block {
+  margin-top:24px; background:var(--surface);
+  border:1px solid var(--rule); border-radius:var(--radius);
+  overflow:hidden; box-shadow:0 2px 14px rgba(0,0,0,0.04);
+}
+.cite-header {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:12px 20px; border-bottom:1px solid var(--rule);
+  background:var(--lapis-tint);
+}
+.cite-header span { font-size:0.7rem; font-weight:700; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.12em; }
+.cite-copy {
+  background:none; border:1.5px solid var(--rule); color:var(--ink-mid);
+  border-radius:6px; padding:5px 14px; font-size:0.7rem; font-weight:600;
+  cursor:pointer; transition:all .18s; font-family:'Outfit',sans-serif;
+}
+.cite-copy:hover { border-color:var(--ferozi); color:var(--ferozi); background:var(--ferozi-pale); }
+.cite-copy.copied { border-color:#16A34A; color:#16A34A; }
+.cite-body {
+  padding:26px 24px; font-family:'JetBrains Mono',monospace;
+  font-size:0.76rem; color:var(--ink-mid); line-height:2;
+  white-space:pre-wrap; word-break:break-word;
+}
+.cite-body .k { color:var(--lapis); font-weight:500; }     /* keys  */
+.cite-body .v { color:var(--ferozi-deep); }                 /* values */
+.cite-body .b { color:var(--zard); }                        /* brand */
+.cite-doi {
+  padding:0 24px 20px; font-size:0.8rem; color:var(--ink-soft);
+}
+.cite-doi a { color:var(--lapis); text-decoration:none; font-weight:500; }
+.cite-doi a:hover { text-decoration:underline; }
+
+/* ── FOOTER ── */
+footer {
+  background:var(--lapis-deep); padding:44px 24px;
+  text-align:center; border-top:4px solid var(--ferozi);
+}
+footer .f-logo {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.6rem; font-weight:700; color:#fff; margin-bottom:10px;
+}
+footer .f-logo .brand { font-style:italic; color:var(--zard-glow); }
+footer p { font-size:0.75rem; color:rgba(255,255,255,.45); }
+footer a { color:rgba(255,255,255,.65); text-decoration:none; }
+footer a:hover { color:#fff; text-decoration:underline; }
+footer .f-links {
+  margin-top:14px; display:flex; gap:20px;
+  justify-content:center; flex-wrap:wrap;
+}
+footer .f-links a { font-size:0.72rem; font-weight:500; }
+
+/* ── RESPONSIVE ── */
+@media (max-width:620px) {
+  section { padding:60px 16px; }
+  .abstract-box { padding:26px 20px; }
+  .impact-card  { padding:24px 16px; }
+  .impact-row   { padding:14px 14px; }
+  .bar-row { grid-template-columns:110px 1fr 56px; }
+  nav { gap:2px; }
+  nav a { font-size:0.63rem; padding:4px 8px; }
+  .hero h1 { font-size:1.85rem; }
+  thead th, tbody td { padding:11px 13px; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAV (appears on scroll) -->
-<nav id="nav">
+<nav id="nav" aria-label="Page navigation">
   <a href="#abstract">Abstract</a>
   <a href="#impact">Impact</a>
   <a href="#results">Results</a>
@@ -718,102 +575,106 @@ nav a:hover { color: var(--gold-light); }
   <a href="#citation">Cite</a>
 </nav>
 
-<!-- ─── HERO ─── -->
-<section class="hero">
-  <div class="hero-shape hero-shape--1"></div>
-  <div class="hero-shape hero-shape--2"></div>
-  <div class="hero-shape hero-shape--3"></div>
+<!-- ══ HERO ══ -->
+<header class="hero tile-bg" role="banner">
+  <div class="blob blob-1" aria-hidden="true"></div>
+  <div class="blob blob-2" aria-hidden="true"></div>
+  <div class="blob blob-3" aria-hidden="true"></div>
 
-  <div class="badge"><span class="dot"></span> Accepted · SilkRoadNLP 2026 — EACL 2026 Workshop</div>
+  <div class="hero-badge">
+    <span class="dot" aria-hidden="true"></span>
+    Published · SilkRoadNLP 2026 — EACL 2026 Workshop
+  </div>
 
-  <h1><em>PersianPunc:</em> A Large-Scale Dataset and BERT-Based Approach for Persian Punctuation Restoration</h1>
+  <h1>
+    <span class="brand">PersianPunc:</span> A Large-Scale Dataset<br/>
+    and <span class="kw">BERT</span>-Based Approach for<br/>Persian Punctuation Restoration
+  </h1>
 
   <p class="hero-authors">
-    M. J. Ranjbar <span>·</span> A. Shakery <span>·</span> H. Faili
+    Mohammad Javad Ranjbar Kalahroodi
+    <span aria-hidden="true">·</span>
+    Heshaam Faili
+    <span aria-hidden="true">·</span>
+    Azadeh Shakery
   </p>
+  <p class="hero-affil">University of Tehran &nbsp;·&nbsp; Institute for Research in Fundamental Sciences (IPM)</p>
   <p class="hero-venue">
-    Poster presentation at <a href="#">SilkRoadNLP 2026</a>, the First Workshop on NLP for Iranian Languages, EACL 2026
+    <a href="https://aclanthology.org/2026.silkroadnlp-1.11/" target="_blank" rel="noopener">SilkRoadNLP 2026</a>
+    — First Workshop on NLP &amp; LLMs for the Iranian Language Family · EACL 2026 · Rabat, Morocco
   </p>
 
   <div class="hero-links">
-    <a href="#" class="btn btn--primary">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-      Paper (arXiv)
+    <a href="https://aclanthology.org/2026.silkroadnlp-1.11/" target="_blank" rel="noopener" class="btn btn--lapis">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Paper — ACL Anthology
     </a>
-    <a href="https://huggingface.co/datasets/MohammadJRanjbar/PersianPunc" target="_blank" class="btn btn--ghost">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-      Dataset
+    <a href="https://huggingface.co/datasets/MohammadJRanjbar/PersianPunc" target="_blank" rel="noopener" class="btn btn--ferozi">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      Dataset (HuggingFace)
     </a>
-    <a href="#" class="btn btn--ghost">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-      Model
+    <a href="https://huggingface.co/datasets/MohammadJRanjbar/persian-punctuation-restoration" target="_blank" rel="noopener" class="btn btn--ghost">
+      Full 17M Dataset
     </a>
   </div>
-</section>
+</header>
 
-<!-- ─── ABSTRACT ─── -->
+<!-- ══ ABSTRACT ══ -->
 <section id="abstract">
   <div class="section-inner reveal">
-    <p class="section-label">01 — Overview</p>
+    <div class="eyebrow"><span class="tag">01 — Overview</span><span class="rule-line"></span></div>
     <h2 class="section-title">Abstract</h2>
+    <p class="section-sub">Proceedings of SilkRoadNLP 2026, EACL · Rabat, Morocco · March 29, 2026 · pp. 105–113</p>
     <div class="abstract-box">
-      <p>
-        Punctuation restoration is essential for improving the readability and downstream utility of automatic speech recognition (ASR) outputs, yet remains underexplored for Persian despite its importance. We introduce <strong style="color:var(--gold-light)">PersianPunc</strong>, a large-scale, high-quality dataset for Persian punctuation restoration, constructed through automated processing of existing textual resources. We formulate punctuation restoration as a token-level sequence labeling task and fine-tune BERT-based models to achieve state-of-the-art performance.
-      </p>
-      <p style="margin-top:14px;">
-        Through comparative evaluation, we demonstrate that while large language models can perform punctuation restoration, they suffer from critical limitations: over-correction tendencies and substantially higher computational requirements. Our lightweight BERT-based approach achieves an <strong style="color:var(--gold-light)">F1 score of 97.28%</strong> while maintaining efficiency suitable for real-time applications, significantly outperforming LLM baselines on both accuracy and computational metrics.
-      </p>
+      <p>Punctuation restoration is essential for improving the readability and downstream utility of <strong>automatic speech recognition (ASR)</strong> outputs, yet remains underexplored for Persian despite its importance. We introduce <span class="brand-inline">PersianPunc</span>, a large-scale, high-quality dataset of 17 million samples for Persian punctuation restoration, constructed through systematic aggregation and filtering of existing textual resources.</p>
+      <p>We formulate punctuation restoration as a <strong>token-level sequence labeling task</strong> and fine-tune <strong>ParsBERT</strong> to achieve strong performance. Through comparative evaluation, we demonstrate that while large language models can perform punctuation restoration, they suffer from over-correction tendencies and substantially higher computational requirements. Our lightweight BERT-based approach achieves a <strong>macro-averaged F1 score of 91.33%</strong> while maintaining efficiency suitable for real-time applications.</p>
     </div>
   </div>
 </section>
 
-<!-- ─── IMPACT VISUAL ─── -->
+<!-- ══ IMPACT ══ -->
 <section id="impact">
   <div class="section-inner reveal">
-    <p class="section-label">02 — Why It Matters</p>
+    <div class="eyebrow"><span class="tag">02 — Motivation</span><span class="rule-line"></span></div>
     <h2 class="section-title">The Power of a Single Comma</h2>
+    <p class="section-sub">Persian punctuation placement can completely reverse a sentence's meaning — a critical challenge for ASR pipelines.</p>
     <div class="impact-card">
-
-      <!-- Example 1 -->
       <div class="impact-example">
         <div class="impact-row impact-row--bad">
-          <span class="icon">❌</span>
+          <span class="icon" aria-hidden="true">✗</span>
           <div>
             <div class="label">Without punctuation</div>
             <div class="text">bakhshesh lazem nist e'damesh konid</div>
-            <div class="meaning">"No mercy needed, execute him" — <strong style="color:var(--rose-light)">Negative</strong></div>
+            <div class="meaning">"No mercy needed, execute him" — <strong style="color:var(--danger-text)">Negative</strong></div>
           </div>
         </div>
-        <div class="impact-arrow">↓ &nbsp;Add comma</div>
+        <div class="impact-arrow">↓ Add comma</div>
         <div class="impact-row impact-row--good">
-          <span class="icon">✓</span>
+          <span class="icon" aria-hidden="true">✓</span>
           <div>
             <div class="label">With punctuation</div>
             <div class="text">bakhshesh, lazem nist e'damesh konid</div>
-            <div class="meaning">"Forgiveness, no need to execute him" — <strong style="color:var(--teal-light)">Positive</strong></div>
+            <div class="meaning">"Forgiveness, no need to execute him" — <strong style="color:var(--ferozi-deep)">Positive</strong></div>
           </div>
         </div>
       </div>
-
-      <hr class="impact-divider"/>
-
-      <!-- Example 2 -->
+      <hr class="impact-divider" aria-hidden="true"/>
       <div class="impact-example">
         <div class="impact-row impact-row--bad">
-          <span class="icon">❌</span>
+          <span class="icon" aria-hidden="true">✗</span>
           <div>
             <div class="label">Without punctuation</div>
             <div class="text">nah baba rast migi</div>
-            <div class="meaning">"No way, are you serious?" — <strong style="color:var(--rose-light)">Sarcastic</strong></div>
+            <div class="meaning">"No way, are you serious?" — <strong style="color:var(--danger-text)">Sarcastic</strong></div>
           </div>
         </div>
-        <div class="impact-arrow">↓ &nbsp;Add comma &amp; period</div>
+        <div class="impact-arrow">↓ Add comma &amp; period</div>
         <div class="impact-row impact-row--good">
-          <span class="icon">✓</span>
+          <span class="icon" aria-hidden="true">✓</span>
           <div>
             <div class="label">With punctuation</div>
             <div class="text">nah, baba rast migi.</div>
-            <div class="meaning">"No, dad, you're right." — <strong style="color:var(--teal-light)">Affirmative</strong></div>
+            <div class="meaning">"No, dad, you're right." — <strong style="color:var(--ferozi-deep)">Affirmative</strong></div>
           </div>
         </div>
       </div>
@@ -821,272 +682,303 @@ nav a:hover { color: var(--gold-light); }
   </div>
 </section>
 
-<!-- ─── CONTRIBUTIONS ─── -->
-<section id="contributions" style="background:var(--navy);">
+<!-- ══ CONTRIBUTIONS ══ -->
+<section id="contributions" style="background:var(--surface)">
   <div class="section-inner reveal">
-    <p class="section-label">03 — Contributions</p>
+    <div class="eyebrow"><span class="tag">03 — Contributions</span><span class="rule-line"></span></div>
     <h2 class="section-title">Key Contributions</h2>
+    <p class="section-sub">Three primary contributions to Persian NLP and low-resource language processing.</p>
     <div class="contrib-grid">
-      <div class="contrib-card">
-        <div class="num">01</div>
-        <h4>Large-Scale Dataset</h4>
-        <p>A curated corpus of <strong style="color:var(--cream)">17 million samples</strong> spanning formal and informal Persian text across diverse domains and topics.</p>
-      </div>
-      <div class="contrib-card">
-        <div class="num">02</div>
-        <h4>State-of-the-Art Model</h4>
-        <p>Fine-tuned ParsBERT achieving an <strong style="color:var(--cream)">F1 score of 97.28%</strong>, restoring 4 distinct Persian punctuation marks with real-time efficiency.</p>
-      </div>
-      <div class="contrib-card">
-        <div class="num">03</div>
-        <h4>LLM Comparison</h4>
-        <p>Rigorous evaluation showing our lightweight model outperforms <strong style="color:var(--cream)">GPT-4o and GPT-4o-mini</strong> on accuracy while using far less compute.</p>
-      </div>
+      <article class="contrib-card">
+        <div class="num" aria-hidden="true">01</div>
+        <h4>PersianPunc Dataset</h4>
+        <p>A curated corpus of <strong>17 million filtered and deduplicated samples</strong> spanning formal and informal Persian text across six complementary corpora and diverse domains.</p>
+      </article>
+      <article class="contrib-card">
+        <div class="num" aria-hidden="true">02</div>
+        <h4>Fine-tuned ParsBERT Model</h4>
+        <p>Token-level sequence labeling achieving <strong>91.33% macro F1</strong> and 97.28% micro F1 — restoring 4 distinct Persian punctuation marks with real-time efficiency.</p>
+      </article>
+      <article class="contrib-card">
+        <div class="num" aria-hidden="true">03</div>
+        <h4>Rigorous LLM Comparison</h4>
+        <p>Systematic evaluation showing our lightweight model surpasses <strong>GPT-4o and GPT-4o-mini</strong> on accuracy, full sentence match, and computational efficiency.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- ─── RESULTS ─── -->
+<!-- ══ RESULTS ══ -->
 <section id="results">
   <div class="section-inner reveal">
-    <p class="section-label">04 — Performance</p>
+    <div class="eyebrow"><span class="tag">04 — Performance</span><span class="rule-line"></span></div>
     <h2 class="section-title">Results &amp; Benchmarks</h2>
+    <p class="section-sub">Evaluated on 1,000 held-out Persian sentences from PersianPunc.</p>
 
-    <div class="results-wrap">
-      <!-- stat cards -->
-      <div class="stat-row">
-        <div class="stat-card">
-          <div class="val">97.28</div>
-          <div class="lbl">F1 Score (%)</div>
-        </div>
-        <div class="stat-card">
-          <div class="val">61.80</div>
-          <div class="lbl">Full Match (%)</div>
-        </div>
-        <div class="stat-card">
-          <div class="val val--teal">17M</div>
-          <div class="lbl">Samples</div>
-        </div>
-        <div class="stat-card">
-          <div class="val val--teal">4</div>
-          <div class="lbl">Punctuation Marks</div>
-        </div>
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="val">91.33</div>
+        <div class="lbl">Macro F1 (%)</div>
       </div>
-
-      <!-- comparison table -->
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Model</th>
-              <th>F1 Score (%)</th>
-              <th>Full Sentence Match (%)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>CRF (Hosseini et al.)</td><td>69.00</td><td>N/A</td></tr>
-            <tr><td>ViraPart</td><td>92.13</td><td>N/A</td></tr>
-            <tr><td>GPT-4o-mini</td><td>89.08</td><td>38.01</td></tr>
-            <tr><td>GPT-4o</td><td>93.85</td><td>50.10</td></tr>
-            <tr class="highlight"><td>PersianPunc-ParsBERT <em style="color:var(--teal);font-size:.78rem;">(Ours)</em></td><td>97.28</td><td>61.80</td></tr>
-          </tbody>
-        </table>
+      <div class="stat-card">
+        <div class="val">97.28</div>
+        <div class="lbl">Micro F1 (%)</div>
+      </div>
+      <div class="stat-card">
+        <div class="val">61.80</div>
+        <div class="lbl">Full Sent. Match (%)</div>
+      </div>
+      <div class="stat-card">
+        <div class="val val--brand">17M</div>
+        <div class="lbl">Training Samples</div>
       </div>
     </div>
+
+    <div class="table-wrap">
+      <table>
+        <caption style="display:none">Persian punctuation restoration model comparison</caption>
+        <thead>
+          <tr>
+            <th scope="col">Model</th>
+            <th scope="col">Test Set</th>
+            <th scope="col">Macro F1 (%)</th>
+            <th scope="col">Full Sent. Match (%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="ref">
+            <td>CRF (Hosseini &amp; Sameti, 2017)</td>
+            <td>Hosseini et al. corpus †</td>
+            <td>69.00</td>
+            <td>—</td>
+          </tr>
+          <tr class="ref">
+            <td>ViraPart (Farokhshad et al., 2021)</td>
+            <td>Bijankhan corpus †</td>
+            <td>92.13</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>GPT-4o-mini</td>
+            <td>PersianPunc test set</td>
+            <td>79.54</td>
+            <td>38.01</td>
+          </tr>
+          <tr>
+            <td>GPT-4o (OpenAI, 2023)</td>
+            <td>PersianPunc test set</td>
+            <td>85.96</td>
+            <td>50.10</td>
+          </tr>
+          <tr class="highlight">
+            <td>PersianPunc-ParsBERT <em style="font-size:.75rem;font-weight:400;color:var(--ferozi)">(Ours)</em></td>
+            <td>PersianPunc test set</td>
+            <td>91.33</td>
+            <td>61.80</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">† CRF and ViraPart results are on different test sets and cannot be directly compared to our results; shown for contextual reference only.</p>
   </div>
 </section>
 
-<!-- ─── PER-CLASS ─── -->
-<section id="perclass" style="background:var(--navy);">
+<!-- ══ PER-CLASS ══ -->
+<section id="perclass" style="background:var(--surface)">
   <div class="section-inner reveal">
-    <p class="section-label">05 — Breakdown</p>
+    <div class="eyebrow"><span class="tag">05 — Breakdown</span><span class="rule-line"></span></div>
     <h2 class="section-title">Per-Punctuation F1 Scores</h2>
-    <div class="bar-table">
-      <div class="bar-row">
-        <span class="name">Period (·)</span>
-        <div class="bar-bg"><div class="bar-fill bar-fill--gold" data-width="98.71"></div></div>
+    <p class="section-sub">Performance across each of the four restored punctuation marks on the 1,000-sentence test set.</p>
+    <div class="bar-table" role="list">
+      <div class="bar-row" role="listitem">
+        <span class="name">Period (.)</span>
+        <div class="bar-bg"><div class="bar-fill bar-fill--top" data-width="98.71"></div></div>
         <span class="val">98.71</span>
       </div>
-      <div class="bar-row">
+      <div class="bar-row" role="listitem">
         <span class="name">Colon (:)</span>
         <div class="bar-bg"><div class="bar-fill" data-width="90.45"></div></div>
         <span class="val">90.45</span>
       </div>
-      <div class="bar-row">
-        <span class="name">Question (?)</span>
+      <div class="bar-row" role="listitem">
+        <span class="name">Question (؟)</span>
         <div class="bar-bg"><div class="bar-fill" data-width="88.89"></div></div>
         <span class="val">88.89</span>
       </div>
-      <div class="bar-row">
+      <div class="bar-row" role="listitem">
         <span class="name">Persian Comma (،)</span>
         <div class="bar-bg"><div class="bar-fill" data-width="80.03"></div></div>
         <span class="val">80.03</span>
       </div>
-      <div class="bar-row" style="padding-top:20px; margin-top:6px; border-top:1px solid rgba(255,255,255,0.1);">
-        <span class="name" style="font-weight:600;color:var(--cream);">Macro Avg</span>
-        <div class="bar-bg"><div class="bar-fill bar-fill--gold" data-width="91.33"></div></div>
+      <div class="bar-row macro-row" role="listitem">
+        <span class="name">Macro Average</span>
+        <div class="bar-bg"><div class="bar-fill bar-fill--avg" data-width="91.33"></div></div>
         <span class="val">91.33</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── DATASET ─── -->
+<!-- ══ DATASET ══ -->
 <section id="dataset">
   <div class="section-inner reveal">
-    <p class="section-label">06 — Data</p>
+    <div class="eyebrow"><span class="tag">06 — Data</span><span class="rule-line"></span></div>
     <h2 class="section-title">Dataset Composition</h2>
+    <p class="section-sub">17,102,014 unique samples after SHA-256 hash-based exact deduplication across six source corpora.</p>
     <div class="dataset-grid">
       <div class="ds-card">
-        <h5>📚 Formal Academic</h5>
-        <p>Bijankhan-Peykare Corpus, Persian Medical QA, and Persian Wikipedia — standardised punctuation in formal academic contexts.</p>
+        <div class="ds-icon" aria-hidden="true">📚</div>
+        <h5>Formal Academic Text</h5>
+        <p>Bijankhan-Peykare Corpus, Persian Medical QA, and Persian Wikipedia — standardised punctuation in formal literary, medical, and encyclopedic contexts.</p>
       </div>
       <div class="ds-card">
-        <h5>💬 Informal Contemporary</h5>
-        <p>Persian Telegram Channels, Farsi Stories, and Blog Dataset V2 — modern conversational patterns with varied punctuation styles.</p>
+        <div class="ds-icon" aria-hidden="true">💬</div>
+        <h5>Contemporary Informal Text</h5>
+        <p>Persian Telegram Channels, Farsi Stories, and Blog Dataset V2 — modern conversational patterns covering social media, narrative fiction, and personal blogging.</p>
       </div>
       <div class="ds-card">
-        <h5>🔍 Quality Pipeline</h5>
-        <p>Multi-stage filtering: structural, content, and linguistic checks. SHA-256 hash-based exact deduplication across all sources.</p>
+        <div class="ds-icon" aria-hidden="true">🔍</div>
+        <h5>Quality Pipeline</h5>
+        <p>Multi-stage filtering: structural, content, and linguistic checks. Exact deduplication via SHA-256 with whitespace normalisation across all sources.</p>
       </div>
       <div class="ds-card">
-        <h5>📊 Punctuation Stats</h5>
-        <p>Persian comma (50.1%), Period (35.5%), Colon (10.0%), Exclamation (2.9%), Question (1.6%) — avg 2.51 marks per sentence.</p>
+        <div class="ds-icon" aria-hidden="true">📊</div>
+        <h5>Punctuation Distribution</h5>
+        <p>Persian comma (50.1%), Period (35.5%), Colon (10.0%), Exclamation (2.9%), Question (1.6%). Average 2.51 punctuation marks per sentence.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── RESOURCES ─── -->
-<section id="resources" style="background:var(--navy);">
+<!-- ══ RESOURCES ══ -->
+<section id="resources" style="background:var(--surface)">
   <div class="section-inner reveal">
-    <p class="section-label">07 — Resources</p>
-    <h2 class="section-title">Open Resources</h2>
+    <div class="eyebrow"><span class="tag">07 — Open Resources</span><span class="rule-line"></span></div>
+    <h2 class="section-title">All Resources Are Public</h2>
+    <p class="section-sub">Dataset, model, and paper freely available to support future research in Persian and low-resource NLP.</p>
     <div class="res-grid">
-
-      <a href="https://huggingface.co/datasets/MohammadJRanjbar/PersianPunc" target="_blank" class="res-card">
-        <div class="res-icon res-icon--hf">🤗</div>
-        <h4>PersianPunc Dataset</h4>
-        <p>The curated evaluation & training subset used for model development and benchmarking.</p>
-        <span class="res-link">
-          HuggingFace Datasets
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      <a href="https://aclanthology.org/2026.silkroadnlp-1.11/" target="_blank" rel="noopener" class="res-card">
+        <div class="icon-wrap icon-wrap--paper" aria-hidden="true">📄</div>
+        <h4>Paper — ACL Anthology</h4>
+        <p>Full paper with methodology, experiments, appendices, and zero-shot LLM evaluation prompts. DOI: 10.18653/v1/2026.silkroadnlp-1.11</p>
+        <span class="res-link">ACL Anthology
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
         </span>
       </a>
-
-      <a href="https://huggingface.co/datasets/MohammadJRanjbar/persian-punctuation-restoration" target="_blank" class="res-card">
-        <div class="res-icon res-icon--hf">🤗</div>
-        <h4>Full Persian Punctuation Dataset</h4>
-        <p>The complete large-scale 17M-sample dataset covering formal and informal Persian text.</p>
-        <span class="res-link">
-          HuggingFace Datasets
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      <a href="https://huggingface.co/datasets/MohammadJRanjbar/PersianPunc" target="_blank" rel="noopener" class="res-card">
+        <div class="icon-wrap icon-wrap--hf" aria-hidden="true">🤗</div>
+        <h4>PersianPunc Eval Dataset</h4>
+        <p>The curated 1M-sample subset used for model training and benchmarking, with train / validation / test splits.</p>
+        <span class="res-link">HuggingFace Datasets
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
         </span>
       </a>
-
-      <a href="#" class="res-card">
-        <div class="res-icon res-icon--model">🧠</div>
+      <a href="https://huggingface.co/datasets/MohammadJRanjbar/persian-punctuation-restoration" target="_blank" rel="noopener" class="res-card">
+        <div class="icon-wrap icon-wrap--hf" aria-hidden="true">🤗</div>
+        <h4>Full 17M Dataset</h4>
+        <p>The complete large-scale corpus of 17,102,014 unique Persian sentences spanning formal and informal text across all six source domains.</p>
+        <span class="res-link">HuggingFace Datasets
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </span>
+      </a>
+      <div class="res-card muted" aria-label="Model coming soon">
+        <div class="icon-wrap icon-wrap--model" aria-hidden="true">🧠</div>
         <h4>PersianPunc-ParsBERT</h4>
-        <p>Fine-tuned ParsBERT model for Persian punctuation restoration — lightweight, fast, and production-ready.</p>
-        <span class="res-link">
-          HuggingFace Model
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-        </span>
-      </a>
-
-      <a href="#" class="res-card">
-        <div class="res-icon res-icon--paper">📄</div>
-        <h4>Paper (arXiv)</h4>
-        <p>Full paper with methodology, detailed experiments, appendices, and evaluation prompts.</p>
-        <span class="res-link">
-          arXiv Preprint
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-        </span>
-      </a>
-
+        <p>Fine-tuned ParsBERT for Persian punctuation restoration — lightweight, fast, and ready for real-time ASR pipelines.</p>
+        <span class="coming-tag">Model upload coming soon</span>
+      </div>
     </div>
   </div>
 </section>
 
-
-
-<!-- ─── CITATION ─── -->
-<section id="citation" style="background:var(--navy);">
+<!-- ══ CITATION ══ -->
+<section id="citation">
   <div class="section-inner reveal">
-    <p class="section-label">09 — Reference</p>
+    <div class="eyebrow"><span class="tag">08 — Reference</span><span class="rule-line"></span></div>
     <h2 class="section-title">How to Cite</h2>
+    <p class="section-sub">Please use the official ACL Anthology citation.</p>
     <div class="cite-block">
       <div class="cite-header">
         <span>BibTeX</span>
-        <button class="cite-copy" onclick="copyCite(this)">Copy</button>
+        <button class="cite-copy" onclick="copyCite(this)" aria-label="Copy BibTeX citation">Copy</button>
       </div>
-      <div class="cite-body" id="citeText"><span class="key">@inproceedings</span>{ranjbar2026persianpunc,
-  <span class="key">author</span>    = {Ranjbar, Mohammad Javad and Shakery, Azadeh and Faili, Heshaam},
-  <span class="key">title</span>     = {PersianPunc: A Large-Scale Dataset and BERT-Based Approach for Persian Punctuation Restoration},
-  <span class="key">booktitle</span> = {Proceedings of SilkRoadNLP 2026: The First Workshop on NLP for Iranian Languages},
-  <span class="key">year</span>      = {2026},
-  <span class="key">venue</span>     = {EACL 2026 Workshop},
-  <span class="key">note</span>      = {Poster presentation}
+      <div class="cite-body" id="citeText"><span class="k">@inproceedings</span>{<span class="b">ranjbar-kalahroodi-etal-2026-persianpunc</span>,
+    <span class="k">title</span>     = {<span class="v">{P}ersian{P}unc: A Large-Scale Dataset and {BERT}-Based Approach for {P}ersian Punctuation Restoration</span>},
+    <span class="k">author</span>    = {<span class="v">Ranjbar Kalahroodi, Mohammad Javad  and  Faili, Heshaam  and  Shakery, Azadeh</span>},
+    <span class="k">editor</span>    = {<span class="v">Merchant, Rayyan  and  Megerdoomian, Karine</span>},
+    <span class="k">booktitle</span> = {<span class="v">The Proceedings of the First Workshop on {NLP} and {LLM}s for the {I}ranian Language Family</span>},
+    <span class="k">month</span>     = <span class="v">mar</span>,
+    <span class="k">year</span>      = {<span class="v">2026</span>},
+    <span class="k">address</span>   = {<span class="v">Rabat, Morocco</span>},
+    <span class="k">publisher</span> = {<span class="v">Association for Computational Linguistics</span>},
+    <span class="k">url</span>       = {<span class="v">https://aclanthology.org/2026.silkroadnlp-1.11/</span>},
+    <span class="k">doi</span>       = {<span class="v">10.18653/v1/2026.silkroadnlp-1.11</span>},
+    <span class="k">pages</span>     = {<span class="v">105--113</span>},
+    <span class="k">ISBN</span>      = {<span class="v">979-8-89176-371-5</span>},
 }</div>
+      <p class="cite-doi">
+        DOI: <a href="https://doi.org/10.18653/v1/2026.silkroadnlp-1.11" target="_blank" rel="noopener">10.18653/v1/2026.silkroadnlp-1.11</a>
+        &nbsp;·&nbsp; ISBN: 979-8-89176-371-5
+      </p>
     </div>
   </div>
 </section>
 
-<!-- ─── FOOTER ─── -->
-<footer>
-  <p>© 2026 M. J. Ranjbar, A. Shakery, H. Faili &nbsp;·&nbsp; <a href="#">SilkRoadNLP 2026</a> &nbsp;·&nbsp; EACL 2026</p>
+<!-- ══ FOOTER ══ -->
+<footer role="contentinfo">
+  <div class="f-logo"><span class="brand">PersianPunc</span></div>
+  <p>© 2026 Mohammad Javad Ranjbar Kalahroodi, Heshaam Faili, Azadeh Shakery</p>
+  <div class="f-links">
+    <a href="https://aclanthology.org/2026.silkroadnlp-1.11/" target="_blank" rel="noopener">ACL Anthology</a>
+    <a href="https://huggingface.co/datasets/MohammadJRanjbar/PersianPunc" target="_blank" rel="noopener">HuggingFace</a>
+    <a href="mailto:mohammadjranjbar@ut.ac.ir">Contact</a>
+  </div>
 </footer>
 
-<!-- ─── JS ─── -->
 <script>
-// --- Nav on scroll ---
+// Nav on scroll
 const nav = document.getElementById('nav');
-let lastY = 0;
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 320) nav.classList.add('visible');
-  else nav.classList.remove('visible');
-  lastY = window.scrollY;
+window.addEventListener('scroll', () => { nav.classList.toggle('visible', window.scrollY > 280); }, { passive:true });
+
+// Reveal on scroll
+new IntersectionObserver(
+  entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+  { threshold:.1 }
+).observe || document.querySelectorAll('.reveal').forEach(el => {
+  new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); }, {threshold:.1}).observe(el);
+});
+document.querySelectorAll('.reveal').forEach(el => {
+  new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); }, {threshold:.1}).observe(el);
 });
 
-// --- Reveal on scroll ---
-const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.15 });
-reveals.forEach(el => observer.observe(el));
-
-// --- Animate bars when visible ---
-const barFills = document.querySelectorAll('.bar-fill');
-const barObserver = new IntersectionObserver((entries) => {
+// Animate bars
+document.querySelectorAll('.bar-fill').forEach(b => { b.style.width = '0'; });
+new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.querySelectorAll('.bar-fill').forEach(bar => {
-        bar.style.width = bar.dataset.width + '%';
-      });
-    }
+    if (e.isIntersecting)
+      e.target.querySelectorAll('.bar-fill').forEach(b => { b.style.width = b.dataset.width + '%'; });
   });
-}, { threshold: 0.3 });
-// observe the parent section
-document.querySelectorAll('.bar-table').forEach(el => barObserver.observe(el));
+}, {threshold:.25}).observe(document.querySelector('.bar-table'));
 
-// Initial state: set width 0
-barFills.forEach(b => b.style.width = '0');
-
-// --- Copy citation ---
+// Copy citation
 function copyCite(btn) {
-  const raw = `@inproceedings{ranjbar2026persianpunc,
-  author    = {Ranjbar, Mohammad Javad and Shakery, Azadeh and Faili, Heshaam},
-  title     = {PersianPunc: A Large-Scale Dataset and BERT-Based Approach for Persian Punctuation Restoration},
-  booktitle = {Proceedings of SilkRoadNLP 2026: The First Workshop on NLP for Iranian Languages},
-  year      = {2026},
-  venue     = {EACL 2026 Workshop},
-  note      = {Poster presentation}
+  const raw = `@inproceedings{ranjbar-kalahroodi-etal-2026-persianpunc,
+    title     = {{P}ersian{P}unc: A Large-Scale Dataset and {BERT}-Based Approach for {P}ersian Punctuation Restoration},
+    author    = {Ranjbar Kalahroodi, Mohammad Javad  and  Faili, Heshaam  and  Shakery, Azadeh},
+    editor    = {Merchant, Rayyan  and  Megerdoomian, Karine},
+    booktitle = {The Proceedings of the First Workshop on {NLP} and {LLM}s for the {I}ranian Language Family},
+    month     = mar,
+    year      = {2026},
+    address   = {Rabat, Morocco},
+    publisher = {Association for Computational Linguistics},
+    url       = {https://aclanthology.org/2026.silkroadnlp-1.11/},
+    doi       = {10.18653/v1/2026.silkroadnlp-1.11},
+    pages     = {105--113},
+    ISBN      = {979-8-89176-371-5},
 }`;
-  navigator.clipboard.writeText(raw).then(() => {
-    btn.textContent = '✓ Copied';
-    btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1800);
-  });
+  navigator.clipboard.writeText(raw)
+    .then(() => { btn.textContent='✓ Copied'; btn.classList.add('copied'); setTimeout(()=>{ btn.textContent='Copy'; btn.classList.remove('copied'); }, 2000); })
+    .catch(() => { btn.textContent='Failed'; setTimeout(()=>{ btn.textContent='Copy'; }, 1500); });
 }
 </script>
 </body>
