@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohammad Javad Ranjbar — NLP &amp; Speech Researcher</title>
+<meta name="description" content="Mohammad Javad Ranjbar is an NLP researcher at the EPFL NLP Lab working on multilingual and low-resource speech and language models. Creator of ParsVoice, the largest open Persian speech corpus.">
+<link rel="canonical" href="https://mohammadjranjbar.github.io/">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Mohammad Javad Ranjbar — NLP & Speech Researcher">
+<meta property="og:description" content="NLP researcher at the EPFL NLP Lab. Multilingual and low-resource speech; creator of ParsVoice, the largest open Persian speech corpus.">
+<meta property="og:url" content="https://mohammadjranjbar.github.io/">
+<meta property="og:image" content="https://mohammadjranjbar.github.io/images/profile.jpg">
+<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Mohammad Javad Ranjbar",
+  "alternateName": "Mohammad Javad Ranjbar Kalahroodi",
+  "url": "https://mohammadjranjbar.github.io/",
+  "image": "https://mohammadjranjbar.github.io/images/profile.jpg",
+  "email": "mailto:mohammad.ranjbar@epfl.ch",
+  "jobTitle": "Research Intern",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "EPFL NLP Lab",
+    "url": "https://nlp.epfl.ch/"
+  },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "University of Tehran" },
+    { "@type": "CollegeOrUniversity", "name": "Amirkabir University of Technology" }
+  ],
+  "knowsAbout": ["Natural Language Processing", "Speech Synthesis", "Text-to-Speech", "Multilingual NLP", "Low-Resource Languages", "Persian NLP", "Audio-Language Models"],
+  "sameAs": [
+    "https://github.com/MohammadJRanjbar",
+    "https://www.linkedin.com/in/mohammadj/",
+    "https://huggingface.co/MohammadJRanjbar",
+    "https://arxiv.org/a/ranjbar_m_1"
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-name" href="/">
+      <svg viewBox="-12 -12 24 24" width="13" height="13" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="-8" y="-8" width="16" height="16"/><rect x="-8" y="-8" width="16" height="16" transform="rotate(45)"/></g></svg>
+      Mohammad Javad Ranjbar
+    </a>
+    <div class="nav-links">
+      <a href="/" class="active">Home</a>
+      <a href="/publications/">Publications</a>
+      <a href="/projects/">Projects</a>
+      <a href="/CV.pdf">CV</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch between light and dark theme">☾</button>
+    </div>
+  </div>
+</nav>
+
+<div class="page">
+
+<header class="masthead">
+  <div>
+    <h1>Mohammad Javad Ranjbar</h1>
+    <div class="name-fa" lang="fa" dir="rtl">محمدجواد رنجبر</div>
+    <p class="contact">
+      <a href="mailto:mohammad.ranjbar@epfl.ch">mohammad.ranjbar@epfl.ch</a>
+      &nbsp;·&nbsp; <a href="https://github.com/MohammadJRanjbar">GitHub</a>
+      &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/mohammadj/">LinkedIn</a>
+      &nbsp;·&nbsp; <a href="https://huggingface.co/MohammadJRanjbar">Hugging&nbsp;Face</a>
+    </p>
+  </div>
+  <img class="portrait" src="/images/profile.jpg" alt="Portrait of Mohammad Javad Ranjbar">
+</header>
+
+<div class="now">
+  <div class="now-label">Currently</div>
+  <p>
+    Research intern at the <a href="https://nlp.epfl.ch/">EPFL NLP Lab</a> in Lausanne,
+    working with <a href="https://atcbosselut.github.io/">Antoine Bosselut</a> on native audio
+    understanding for Apertus&nbsp;2, Switzerland's fully open multilingual LLM.
+  </p>
+</div>
+
+<div class="intro">
+  <p>
+    I work on multilingual and low-resource NLP, mostly around speech. My research measures how far
+    synthetic (TTS) speech can substitute for real data in low-resource languages, and builds the
+    corpora and benchmarks that Persian NLP has been missing — including
+    <a href="/ParsVoice/">ParsVoice</a>, the largest open Persian
+    speech corpus (3,500+ hours), created for my M.Sc. thesis at the University of Tehran (GPA 4.0/4.0)
+    under <a href="https://scholar.google.com/citations?user=E-QpN74AAAAJ&amp;hl=en">Azadeh Shakery</a> and
+    <a href="https://scholar.google.se/citations?user=m5tCFEoAAAAJ&amp;hl=en">Heshaam Faili</a>.
+  </p>
+</div>
+
+<section id="listen">
+  <h2>Hear my work <span class="fa" lang="fa" dir="rtl">بشنوید</span></h2>
+  <p class="demo-lede">
+    Zero-shot voice cloning for Persian: give the model a few seconds of a voice it has never heard,
+    plus a sentence — it speaks the sentence in that voice. This line was never recorded by a human —
+    it's my thesis model, cloning a voice from the <a href="/ParsVoice/">ParsVoice demo</a>:
+  </p>
+
+  <div class="voice">
+    <button class="wave-btn" id="waveBtn" data-src="/assets/audio/hero.m4a" aria-label="Play a Persian voice sample cloned by my thesis model">
+      <canvas id="wave"></canvas>
+    </button>
+    <p class="voice-caption">
+      <span class="fa-line" lang="fa" dir="rtl">صدای خنده بچه‌ها در تمام کوچه پیچیده بود</span>
+      <span class="state" id="waveState">▶ press to listen</span>
+    </p>
+    <p class="voice-en">"The sound of children's laughter echoed throughout the alley."</p>
+  </div>
+
+  <p class="demo-links">
+    <a href="/ParsVoice/">Full demo</a>
+    &nbsp;·&nbsp; <a href="https://huggingface.co/datasets/MohammadJRanjbar/ParsVoice">dataset (3,500+ hours)</a>
+    &nbsp;·&nbsp; <a href="https://arxiv.org/abs/2510.10774">paper</a>
+  </p>
+
+  <p class="demo-note">
+    That covers the generation side. On the understanding side, I built
+    <a href="https://arxiv.org/abs/2603.14456">PARSA-Bench</a> — 16 audio-language tasks for Persian,
+    10 of them the first of their kind in any language — and at EPFL I'm now bringing audio and text
+    together inside one open multilingual LLM.
+  </p>
+</section>
+
+<section id="experience">
+  <h2>Experience <span class="fa" lang="fa" dir="rtl">تجربه</span></h2>
+
+  <div class="job">
+    <div class="job-head">
+      <div class="job-org">EPFL NLP Lab <span class="job-role">· Research Intern</span></div>
+      <div class="job-dates">Mar 2026 – present</div>
+    </div>
+    <p class="job-desc">
+      Audio understanding for Apertus 2; exchange-rate and training-curriculum studies quantifying
+      the value of synthetic speech across five low-resource languages.
+    </p>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div class="job-org">University of Tehran <span class="job-role">· Research &amp; Teaching Assistant</span></div>
+      <div class="job-dates">Jan 2023 – Mar 2026</div>
+    </div>
+    <p class="job-desc">
+      Led research on Persian speech synthesis and medical LLMs; chief TA for ML Methods in NLP and
+      Digital Speech Processing; TA for five more courses serving 200+ students.
+    </p>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div class="job-org">Sharif University of Technology <span class="job-role">· Teaching Assistant</span></div>
+      <div class="job-dates">Feb 2024 – Sep 2025</div>
+    </div>
+    <p class="job-desc">
+      ML and deep learning courses: built an LLM-agent assignment and organized an ML contest with
+      200+ participants.
+    </p>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div class="job-org"><a href="https://sofiamind.ir/">Sofia</a> <span class="job-role">· Co-founder &amp; NLP Engineer</span></div>
+      <div class="job-dates">Aug 2023 – Aug 2024</div>
+    </div>
+    <p class="job-desc">
+      Multi-platform RAG customer-service chatbot (Telegram, WhatsApp, web); 20,000+ active users on
+      the University of Tehran website.
+    </p>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div class="job-org">Neuromatch Academy <span class="job-role">· Teaching Assistant</span></div>
+      <div class="job-dates">Summers 2024 &amp; 2025</div>
+    </div>
+    <p class="job-desc">Mentored international students in deep learning with a focus on NLP.</p>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div class="job-org">Amirkabir University of Technology &amp; FIRA Academy <span class="job-role">· Instructor, TA &amp; RA</span></div>
+      <div class="job-dates">2020 – 2022</div>
+    </div>
+    <p class="job-desc">
+      Taught image processing and ML; developed the SWIMBot platform for Diginext; research on facial
+      emotion recognition.
+    </p>
+  </div>
+</section>
+
+<section id="publications">
+  <div class="h2-row">
+    <h2>Selected Publications <span class="fa" lang="fa" dir="rtl">مقالات</span></h2>
+    <a class="see-all" href="/publications/">All publications →</a>
+  </div>
+
+  <div class="pub">
+    <a class="pub-title" href="https://arxiv.org/abs/2510.10774">ParsVoice: A Large-Scale Multi-Speaker Persian Speech Corpus for Text-to-Speech Synthesis</a>
+    <div class="pub-authors"><span class="me">M. J. Ranjbar</span>, H. Faili, A. Shakery</div>
+    <div class="pub-meta"><span class="venue">Under review (EMNLP 2026)</span> · <a href="https://arxiv.org/abs/2510.10774">arXiv</a> · <a href="/ParsVoice/">demo</a> · <a href="https://huggingface.co/datasets/MohammadJRanjbar/ParsVoice">dataset</a></div>
+  </div>
+
+  <div class="pub">
+    <a class="pub-title" href="https://arxiv.org/abs/2603.14456">PARSA-Bench: A Comprehensive Persian Audio-Language Model Benchmark</a>
+    <div class="pub-authors"><span class="me">M. J. Ranjbar</span>, M. Amini, P. Bathayan, H. Faili, A. Shakery</div>
+    <div class="pub-meta"><span class="venue">arXiv preprint</span> · <a href="https://arxiv.org/abs/2603.14456">arXiv</a></div>
+  </div>
+
+  <div class="pub">
+    <a class="pub-title" href="https://arxiv.org/abs/2506.00250">PersianMedQA: Evaluating LLMs on a Persian-English Bilingual Medical Question Answering Benchmark</a>
+    <div class="pub-authors"><span class="me">M. J. Ranjbar</span>, S. Karimi, A. H. Sheikholselami, S. Ranjbar Kalahroodi, H. Faili, A. Shakery</div>
+    <div class="pub-meta"><span class="venue">LREC 2026</span> · <a href="https://arxiv.org/abs/2506.00250">arXiv</a></div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="h2-row">
+    <h2>Selected Projects <span class="fa" lang="fa" dir="rtl">پروژه‌ها</span></h2>
+    <a class="see-all" href="/projects/">All projects →</a>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head">
+      <a class="proj-title" href="/ParsVoice/">ParsVoice — Persian zero-shot TTS</a>
+      <span class="proj-year">2026</span>
+    </div>
+    <p class="proj-desc">Interactive demo of zero-shot voice cloning for Persian, built on the ParsVoice corpus.</p>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head">
+      <a class="proj-title" href="/projects/social-robots/">Social Robots — open-source personal assistant robot</a>
+      <span class="proj-year">2022</span>
+    </div>
+    <p class="proj-desc">Low-cost robot with real-time facial emotion recognition, gesture responses, and speech commands.</p>
+  </div>
+
+  <div class="proj">
+    <div class="proj-head">
+      <a class="proj-title" href="https://sofiamind.ir/">Sofia — RAG customer-service chatbot</a>
+      <span class="proj-year">2023–24</span>
+    </div>
+    <p class="proj-desc">Multi-platform chatbot with a custom RAG pipeline; 20,000+ active users at the University of Tehran.</p>
+  </div>
+</section>
+
+<section id="education">
+  <h2>Education <span class="fa" lang="fa" dir="rtl">تحصیلات</span></h2>
+
+  <div class="job">
+    <div class="job-head">
+      <div class="job-org">University of Tehran <span class="job-role">· M.Sc. Computer Software Engineering</span></div>
+      <div class="job-dates">2022 – 2025</div>
+    </div>
+    <p class="job-desc">
+      GPA 4.0/4.0 · Thesis: <em>Zero-Shot Text-to-Speech for the Persian Language</em>, advised by
+      Azadeh Shakery and Heshaam Faili.
+    </p>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div class="job-org">Amirkabir University of Technology <span class="job-role">· B.Sc. Electrical Engineering</span></div>
+      <div class="job-dates">2016 – 2021</div>
+    </div>
+    <p class="job-desc">
+      Thesis: <em>Facial Expression Recognition with Robotic Implementation</em>, advised by
+      M. B. Menhaj and H. Taheri.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Mohammad Javad Ranjbar · Updated July 2026</span>
+  <span class="fa-foot" lang="fa" dir="rtl" title="Saadi — &quot;Until a man has spoken, his flaws and his art stay hidden.&quot;">تا مرد سخن نگفته باشد، عیب و هنرش نهفته باشد</span>
+</footer>
+
+</div>
+
+<script>window.WAVEFORM = [0.0, 0.0, 0.06, 0.01, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.01, 0.0, 0.16, 0.89, 1.0, 0.92, 0.56, 0.33, 0.76, 0.94, 0.8, 0.66, 0.67, 0.7, 0.65, 0.6, 0.34, 0.04, 0.06, 0.04, 0.03, 0.03, 0.3, 0.42, 0.43, 0.47, 0.54, 0.56, 0.59, 0.62, 0.47, 0.34, 0.59, 0.66, 0.7, 0.72, 0.78, 0.57, 0.23, 0.06, 0.33, 0.46, 0.43, 0.47, 0.47, 0.3, 0.02, 0.0, 0.0, 0.01, 0.02, 0.01, 0.49, 0.55, 0.5, 0.45, 0.45, 0.52, 0.59, 0.64, 0.33, 0.16, 0.38, 0.57, 0.5, 0.51, 0.49, 0.45, 0.42, 0.24, 0.02, 0.0, 0.0, 0.0, 0.0, 0.01, 0.03, 0.04, 0.12, 0.37, 0.42, 0.4, 0.5, 0.54, 0.54, 0.5, 0.44, 0.48, 0.44, 0.39, 0.49, 0.51, 0.59, 0.54, 0.33, 0.03, 0.0, 0.0, 0.02, 0.02, 0.01, 0.04, 0.46, 0.43, 0.25, 0.04, 0.0, 0.01, 0.03, 0.01, 0.53, 0.59, 0.56, 0.22, 0.01, 0.0, 0.01, 0.01, 0.01, 0.06, 0.26, 0.13, 0.02, 0.0, 0.01, 0.03, 0.02, 0.01, 0.24, 0.33, 0.17, 0.02, 0.03, 0.32, 0.31, 0.26, 0.14, 0.1, 0.02, 0.02, 0.08, 0.13, 0.14, 0.13, 0.05, 0.01, 0.0, 0.0, 0.0, 0.0];</script>
+<script src="/assets/site.js"></script>
+</body>
+</html>
