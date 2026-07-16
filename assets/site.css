@@ -381,7 +381,6 @@ footer {
   gap: 1rem;
   flex-wrap: wrap;
 }
-footer .fa-foot { font-family: Charter, "Bitstream Charter", Georgia, serif; }
 
 @media (max-width: 560px) {
   h1 { font-size: 1.7rem; }

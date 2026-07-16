@@ -1,10 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -12 24 24">
   <style>
-    g { stroke: #0c7080; }
-    @media (prefers-color-scheme: dark) { g { stroke: #4fc3d1; } }
+    g { fill: #0c7080; }
+    @media (prefers-color-scheme: dark) { g { fill: #4fc3d1; } }
   </style>
-  <g fill="none" stroke-width="2.4">
-    <rect x="-8" y="-8" width="16" height="16"/>
-    <rect x="-8" y="-8" width="16" height="16" transform="rotate(45)"/>
+  <g>
+    <rect x="-9.9" y="-4" width="2.2" height="8" rx="1.1"/>
+    <rect x="-5.5" y="-7" width="2.2" height="14" rx="1.1"/>
+    <rect x="-1.1" y="-10" width="2.2" height="20" rx="1.1"/>
+    <rect x="3.3" y="-7" width="2.2" height="14" rx="1.1"/>
+    <rect x="7.7" y="-4" width="2.2" height="8" rx="1.1"/>
   </g>
 </svg>
