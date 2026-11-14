@@ -393,3 +393,276 @@ footer {
 @media (prefers-reduced-motion: no-preference) {
   a { transition: color 0.15s ease, text-decoration-color 0.15s ease; }
 }
+
+/* ---------- gold string under the nav ---------- */
+nav { position: relative; }
+nav.has-string { border-bottom-color: transparent; }
+.gold-string {
+  position: absolute;
+  left: 0;
+  top: calc(100% - 22px);
+  width: 100%;
+  height: 44px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ---------- gold thread through the background ---------- */
+body { position: relative; }
+nav { z-index: 2; }
+.page { position: relative; z-index: 1; }
+.gold-thread {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+}
+.gold-thread path { fill: none; stroke: var(--accent2); stroke-width: 1.3; stroke-linecap: round; opacity: 0.5; }
+.gold-thread .bead { fill: var(--accent2); filter: drop-shadow(0 0 4px var(--accent2)); transition: opacity 0.3s ease; }
+
+/* ---------- easter egg: the brass key and the desk drawer ---------- */
+.page footer { align-items: center; }
+.key-egg {
+  background: none;
+  border: 0;
+  padding: 2px;
+  line-height: 0;
+  color: var(--accent2);
+  opacity: 0.5;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.45s cubic-bezier(0.3, 1.5, 0.5, 1);
+}
+.key-egg:hover { opacity: 0.95; transform: rotate(-12deg); }
+.key-egg.turned { opacity: 1; transform: perspective(40px) rotateX(180deg); }
+.key-egg:focus-visible { outline: 2px solid var(--accent2); outline-offset: 3px; border-radius: 3px; }
+.key-egg.glint { animation: key-glint 1.4s ease; }
+@keyframes key-glint {
+  0%, 100% { filter: none; transform: none; }
+  18% { transform: rotate(-24deg); }
+  38% { opacity: 1; filter: drop-shadow(0 0 5px var(--accent2)); transform: rotate(16deg); }
+  58% { transform: rotate(-9deg); }
+  78% { transform: rotate(4deg); }
+}
+.egg-count {
+  margin-left: auto;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  opacity: 0;
+  transition: opacity 0.6s ease, color 0.4s ease;
+}
+.egg-count.show { opacity: 0.75; }
+.egg-count.all { color: var(--accent2); opacity: 1; }
+.egg-count.bump { animation: count-bump 0.7s ease; }
+@keyframes count-bump { 30% { color: var(--accent2); opacity: 1; transform: translateY(-2px); } }
+.room {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.55s ease, opacity 0.35s ease;
+}
+.room.open { grid-template-rows: 1fr; opacity: 1; }
+.room-inner { min-height: 0; overflow: hidden; }
+.drawer {
+  position: relative;
+  margin-top: 0.9rem;
+  padding: 1.25rem 1.3rem 1.2rem;
+  border: 1px solid var(--rule);
+  border-top: 0;
+  border-radius: 0 0 6px 6px;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 46px, color-mix(in srgb, var(--accent2) 5%, transparent) 46px 47px),
+    var(--wash);
+  box-shadow: inset 0 14px 18px -14px rgba(0, 0, 0, 0.5);
+  transform: translateY(-36px);
+  transition: transform 0.65s cubic-bezier(0.2, 1, 0.3, 1);
+}
+.room.open .drawer { transform: none; }
+.drawer-pull {
+  position: absolute;
+  top: 0; left: 50%;
+  width: 44px; height: 6px;
+  transform: translateX(-50%);
+  border-radius: 0 0 6px 6px;
+  background: var(--accent2);
+  opacity: 0.75;
+}
+.drawer-bed { display: flex; align-items: flex-end; justify-content: space-between; gap: 1.2rem; flex-wrap: wrap; }
+
+.envelope {
+  position: relative;
+  display: block;
+  width: 170px; height: 104px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  perspective: 600px;
+  transform: rotate(-2.5deg);
+}
+.envelope[hidden] { display: none; }
+.envelope:focus-visible { outline: 2px solid var(--accent2); outline-offset: 4px; border-radius: 3px; }
+.env-body, .env-front, .env-flap { position: absolute; inset: 0; border-radius: 3px; }
+.env-body { background: #e9dfc9; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.22); }
+.env-front { background: linear-gradient(170deg, #f4ecda, #e9dec6); clip-path: polygon(0 0, 50% 56%, 100% 0, 100% 100%, 0 100%); }
+.env-flap {
+  background: linear-gradient(180deg, #e6dac1, #d6c6a3);
+  clip-path: polygon(0 0, 100% 0, 50% 60%);
+  transform-origin: top;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+.envelope.open .env-flap { transform: rotateX(178deg); }
+.seal {
+  position: absolute;
+  left: 50%; top: 56%;
+  z-index: 2;
+  width: 26px; height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 38% 34%, #e7b85c, #b47b22 62%, #8a5a14);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35), inset 0 0 0 2px rgba(120, 76, 14, 0.35);
+  color: #6e470e;
+  transition: opacity 0.25s ease, transform 0.35s ease;
+}
+.envelope:hover .seal { transform: translate(-50%, -50%) scale(1.06); }
+.envelope.open .seal { opacity: 0; transform: translate(-50%, -50%) scale(0.6) rotate(-20deg); }
+
+.letter {
+  max-width: 30rem;
+  padding: 1rem 1.25rem 0.9rem;
+  border-radius: 3px;
+  background: #f7f1e3;
+  color: #2c2721;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+  font-family: Charter, "Bitstream Charter", "Iowan Old Style", Georgia, serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  transform-origin: top;
+  animation: letter-unfold 0.7s cubic-bezier(0.2, 1, 0.3, 1);
+}
+.letter p { margin: 0 0 0.6rem; }
+.letter a { color: #0c7080; text-decoration-color: rgba(12, 112, 128, 0.4); }
+.letter .sign { margin: 0.2rem 0 0; text-align: right; font-style: normal; letter-spacing: 0.06em; }
+@keyframes letter-unfold {
+  0% { opacity: 0; transform: perspective(700px) rotateX(-80deg) translateY(18px); }
+  100% { opacity: 1; transform: none; }
+}
+
+.coins { display: flex; gap: 0.35rem; padding-bottom: 0.2rem; }
+.coin {
+  position: relative;
+  width: 34px; height: 34px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  perspective: 300px;
+}
+.coin + .coin { transform: translateY(-5px) rotate(12deg); }
+.coin:focus-visible { outline: 2px solid var(--accent2); outline-offset: 3px; }
+.coin-inner { position: absolute; inset: 0; transform-style: preserve-3d; }
+.face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  backface-visibility: hidden;
+  background: radial-gradient(circle at 35% 30%, #f7dc92, #c99633 58%, #8f651c);
+  box-shadow: inset 0 0 0 2px rgba(120, 80, 20, 0.5), 0 2px 4px rgba(0, 0, 0, 0.25);
+  color: #5a3c0b;
+  font-family: Charter, "Bitstream Charter", Georgia, serif;
+  font-size: 0.7rem;
+}
+.face.tails { transform: rotateY(180deg); }
+
+/* ---------- easter egg: the stretchy portrait ---------- */
+.stretchy { cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; position: relative; z-index: 3; }
+.stretchy:active { cursor: grabbing; }
+
+/* ---------- easter egg: the name in other scripts ---------- */
+.verse { cursor: pointer; }
+.verse:hover { text-shadow: -1px 0 rgba(255, 45, 111, 0.45), 1px 0 rgba(45, 226, 255, 0.45); }
+.verse.glitching { animation: verse-glitch 0.42s steps(1) both; }
+.verse.flicker { animation: verse-flicker 0.17s steps(1) both; }
+@keyframes verse-flicker {
+  0%   { text-shadow: -2px 0 #ff2d6f, 2px 0 #2de2ff; transform: translateX(1px); }
+  45%  { text-shadow: 2px 0 #ff2d6f, -2px 0 #2de2ff; transform: translateX(-1px) skewX(-5deg); }
+  100% { text-shadow: none; transform: none; }
+}
+@keyframes verse-glitch {
+  0%   { transform: none; text-shadow: -3px 0 #ff2d6f, 3px 0 #2de2ff; }
+  12%  { transform: translate(-3px, 1px) skewX(-8deg); clip-path: inset(0 0 55% 0); }
+  24%  { transform: translate(4px, -1px); clip-path: inset(40% 0 0 0); text-shadow: 4px 0 #ff2d6f, -4px 0 #2de2ff; }
+  36%  { transform: translate(-2px, 0); clip-path: none; color: transparent;
+         background: radial-gradient(circle, var(--accent) 0.9px, transparent 1.25px) 0 0 / 3.5px 3.5px;
+         -webkit-background-clip: text; background-clip: text; }
+  48%  { transform: translate(2px, 1px) skewX(6deg); }
+  60%  { transform: translate(-1px, -1px); color: var(--accent); background: none; text-shadow: -2px 0 #ff2d6f, 2px 0 #2de2ff; }
+  76%  { transform: translate(1px, 0); text-shadow: -1px 0 #ff2d6f, 1px 0 #2de2ff; }
+  100% { transform: none; text-shadow: none; clip-path: none; }
+}
+
+/* ---------- easter egg: portals ---------- */
+.portal-layer {
+  position: fixed;
+  pointer-events: none;
+  overflow: visible;
+  color: var(--accent);
+  transform: scale(0.08, 0);
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.2, 1.55, 0.35, 1), opacity 0.2s ease;
+}
+.portal-layer.out { color: var(--accent2); }
+.portal-layer.open { transform: none; opacity: 1; }
+.portal-layer.closing { transition: transform 0.35s ease-in, opacity 0.35s ease-in; transform: scale(0.08, 0); opacity: 0; }
+.portal-layer .pool { opacity: 0.22; }
+.portal-layer .swirl.s1 { opacity: 0.6; animation: portal-swirl 1s linear infinite; }
+.portal-layer .swirl.s2 { opacity: 0.45; animation: portal-swirl-back 0.8s linear infinite; }
+@keyframes portal-swirl { to { stroke-dashoffset: -72; } }
+@keyframes portal-swirl-back { to { stroke-dashoffset: 36; } }
+.portal-layer .flash { opacity: 0; transform-box: fill-box; transform-origin: center; }
+.portal-layer.open .flash { animation: portal-flash 0.6s ease-out; }
+@keyframes portal-flash { 0% { opacity: 0.9; transform: scale(0.6); } 100% { opacity: 0; transform: scale(1.7); } }
+.spark {
+  position: fixed;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  z-index: 1001;
+  pointer-events: none;
+}
+
+.egg-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 1001;
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 0.82rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
+  transform: translate(-50%, 16px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.egg-toast.show { transform: translate(-50%, 0); opacity: 1; }
+.egg-toast span { font-family: Charter, "Bitstream Charter", Georgia, serif; color: var(--accent2); }
+
+@media (prefers-reduced-motion: reduce) {
+  .portal-layer, .egg-toast { transition: opacity 0.2s ease; }
+  .portal-layer .swirl, .portal-layer.open .flash { animation: none; }
+  .room, .drawer, .key-egg, .env-flap, .seal { transition: none; }
+  .letter { animation: none; }
+  .verse:hover { text-shadow: none; }
+  .verse.flicker, .key-egg.glint { animation: none; }
+}
