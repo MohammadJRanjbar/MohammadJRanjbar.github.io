@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PARSA-Bench: Persian Audio-Language Benchmark | EACL 2027 Findings</title>
+<meta name="description" content="PARSA-Bench (Findings of EACL 2027): the first Persian benchmark for audio-language models. 16 tasks, 7,645 samples, from speech to poetry metre and music.">
+<meta name="keywords" content="PARSA-Bench, PARSA Bench, Persian audio benchmark, Persian speech benchmark, Persian audio-language benchmark, Farsi speech benchmark, audio-language models, large audio language models, LALM, LALM evaluation, audio LLM benchmark, speech LLM evaluation, multimodal LLM benchmark, Persian ASR, Persian speech recognition, speech translation, Persian-English speech translation, intent detection, spoken NER, code-switching, emotion recognition, age and gender recognition, Persian poetry, poetry metre, vazn, sabk, Saeb Tabrizi, ghazal, Iranian classical music, dastgah, Qwen3-Omni, Gemini 2.5 Flash, GPT-4o audio, Gemma 3n, EACL 2027, EACL 2027 Findings, Findings of EACL, Athens, Mohammad Javad Ranjbar Kalahroodi, Mohammad Amini, University of Tehran, بنچمارک صوتی فارسی, شعر فارسی, دستگاه موسیقی ایرانی">
+<meta name="author" content="Mohammad Javad Ranjbar Kalahroodi">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://mohammadjranjbar.github.io/PARSA-Bench/">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Mohammad Javad Ranjbar">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="PARSA-Bench — Persian Audio-Language Model Benchmark | Findings of EACL 2027">
+<meta property="og:description" content="Do audio-language models understand Persian when they listen? 16 tasks, 7,645 samples, 8 models. Text beats audio almost everywhere, except poetry.">
+<meta property="og:url" content="https://mohammadjranjbar.github.io/PARSA-Bench/">
+<meta property="og:image" content="https://mohammadjranjbar.github.io/PARSA-Bench/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="PARSA-Bench — Persian audio-language benchmark, Findings of EACL 2027">
+<meta property="article:tag" content="EACL 2027">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PARSA-Bench — Persian Audio-Language Model Benchmark | Findings of EACL 2027">
+<meta name="twitter:description" content="16 Persian audio tasks, 10 of them new. Models know the language but struggle to hear it, except in poetry.">
+<meta name="twitter:image" content="https://mohammadjranjbar.github.io/PARSA-Bench/og-cover.png">
+
+<!-- Google Scholar indexing -->
+<meta name="citation_title" content="PARSA-Bench: A Comprehensive Persian Audio-Language Model Benchmark">
+<meta name="citation_author" content="Ranjbar Kalahroodi, Mohammad Javad">
+<meta name="citation_author" content="Amini, Mohammad">
+<meta name="citation_author" content="Bathayan, Parmis">
+<meta name="citation_author" content="Faili, Heshaam">
+<meta name="citation_author" content="Shakery, Azadeh">
+<meta name="citation_author_institution" content="University of Tehran">
+<meta name="citation_conference_title" content="Findings of the Association for Computational Linguistics: EACL 2027">
+<meta name="citation_publisher" content="Association for Computational Linguistics">
+<meta name="citation_publication_date" content="2027">
+<meta name="citation_arxiv_id" content="2603.14456">
+<meta name="citation_pdf_url" content="https://arxiv.org/pdf/2603.14456">
+<meta name="citation_abstract_html_url" content="https://mohammadjranjbar.github.io/PARSA-Bench/">
+
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://mohammadjranjbar.github.io/PARSA-Bench/#paper",
+      "headline": "PARSA-Bench: A Comprehensive Persian Audio-Language Model Benchmark",
+      "name": "PARSA-Bench: A Comprehensive Persian Audio-Language Model Benchmark",
+      "alternativeHeadline": "Persian Audio Reasoning and Speech Assessment Benchmark",
+      "url": "https://mohammadjranjbar.github.io/PARSA-Bench/",
+      "inLanguage": "en",
+      "author": [
+        { "@type": "Person", "name": "Mohammad Javad Ranjbar Kalahroodi", "url": "https://mohammadjranjbar.github.io/", "affiliation": { "@type": "Organization", "name": "University of Tehran" } },
+        { "@type": "Person", "name": "Mohammad Amini", "affiliation": { "@type": "Organization", "name": "University of Tehran" } },
+        { "@type": "Person", "name": "Parmis Bathayan", "affiliation": { "@type": "Organization", "name": "University of Tehran" } },
+        { "@type": "Person", "name": "Heshaam Faili", "affiliation": { "@type": "Organization", "name": "University of Tehran" } },
+        { "@type": "Person", "name": "Azadeh Shakery", "affiliation": { "@type": "Organization", "name": "University of Tehran" } }
+      ],
+      "publisher": { "@type": "Organization", "name": "Association for Computational Linguistics" },
+      "isPartOf": { "@type": "PublicationEvent", "name": "Findings of EACL 2027", "startDate": "2027-03-09", "endDate": "2027-03-14", "url": "https://2027.eacl.org/",
+        "location": { "@type": "Place", "name": "Athens, Greece", "address": { "@type": "PostalAddress", "addressLocality": "Athens", "addressCountry": "GR" } } },
+      "keywords": "Persian, audio-language models, benchmark, speech understanding, poetry metre, Iranian classical music, EACL 2027",
+      "sameAs": "https://arxiv.org/abs/2603.14456",
+      "image": "https://mohammadjranjbar.github.io/PARSA-Bench/og-cover.png"
+    },
+    {
+      "@type": "Dataset",
+      "@id": "https://mohammadjranjbar.github.io/PARSA-Bench/#dataset",
+      "name": "PARSA-Bench",
+      "description": "A benchmark of 16 Persian audio tasks (7,645 samples, 20.6 hours) for evaluating large audio-language models on speech understanding, paralinguistics, and Persian poetry and music.",
+      "url": "https://huggingface.co/datasets/MohammadJRanjbar/PARSA-Bench",
+      "inLanguage": "fa",
+      "creator": { "@type": "Person", "name": "Mohammad Javad Ranjbar Kalahroodi" },
+      "citation": "https://arxiv.org/abs/2603.14456",
+      "isAccessibleForFree": true
+    }
+  ]
+}
+</script>
+<style>
+/* Palette taken from the EACL 2027 logo: its Greek blue on white marble, with
+   laurel olive and amphora terracotta as small accents. Light by default; dark only
+   when the visitor switches to it. Blue and terracotta double as the chart's
+   diverging pair (text wins / audio wins), with a gray zero line between. */
+:root {
+  --bg: #fbfcfe; --text: #1b2433; --muted: #5d697c; --rule: #e1e8f1; --wash: #f1f5fb;
+  --blue: #135aab;  --blue-wash: #e7f0fb;  --blue-line: rgba(19, 90, 171, .28);
+  --terra: #b4532c; --terra-wash: #fbeee7; --terra-line: rgba(180, 83, 44, .3);
+  --olive: #557a2b; --olive-wash: #edf3e3; --olive-line: rgba(85, 122, 43, .3);
+  --mark-text: #2f6fc0; --mark-audio: #d0643b; --zero: #b4bccb;
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --bg: #0f1724; --text: #e6ecf5; --muted: #9aa7ba; --rule: #233148; --wash: #152033;
+  --blue: #8cb4f0;  --blue-wash: rgba(140, 180, 240, .13);  --blue-line: rgba(140, 180, 240, .38);
+  --terra: #f0a07e; --terra-wash: rgba(240, 160, 126, .13); --terra-line: rgba(240, 160, 126, .38);
+  --olive: #a8c97a; --olive-wash: rgba(168, 201, 122, .13); --olive-line: rgba(168, 201, 122, .38);
+  --mark-text: #5d8fd8; --mark-audio: #d4714a; --zero: #3d4b63;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px; line-height: 1.6;
+}
+a { color: var(--blue); text-decoration: underline; text-decoration-color: var(--blue-line); text-underline-offset: 2px; }
+a:hover { text-decoration-color: var(--blue); }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 2px; }
+.serif { font-family: "Iowan Old Style", Charter, "Bitstream Charter", Georgia, serif; }
+
+nav { border-bottom: 1px solid var(--rule); }
+.nav-inner { max-width: 68rem; margin: 0 auto; padding: .85rem 1.25rem; display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.nav-name { display: inline-flex; align-items: center; gap: .5rem; font-family: Charter, "Bitstream Charter", Georgia, serif; font-weight: 700; font-size: 1.02rem; color: var(--text); text-decoration: none; }
+.nav-name svg { color: var(--blue); flex-shrink: 0; }
+.nav-links { display: flex; gap: 1.35rem; align-items: baseline; }
+.nav-links a { font-size: .85rem; color: var(--muted); text-decoration: none; }
+.nav-links a:hover { color: var(--blue); }
+.theme-toggle { font: inherit; font-size: .85rem; background: none; border: none; color: var(--muted); cursor: pointer; padding: 0; line-height: 1; }
+.theme-toggle:hover { color: var(--blue); }
+
+/* ---------- EACL 2027 conference band ---------- */
+.conf-band { border-bottom: 1px solid var(--rule); background: linear-gradient(100deg, var(--blue-wash) 0%, var(--bg) 85%); }
+.conf-inner { max-width: 68rem; margin: 0 auto; padding: .75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem 1.4rem; flex-wrap: wrap; }
+.conf-brand { display: flex; align-items: center; gap: .9rem; min-width: 0; text-decoration: none; color: inherit; }
+/* White plate keeps the logo legible in dark mode whatever its background. */
+.conf-logo { display: block; flex-shrink: 1; height: auto; width: 300px; max-width: 72vw; background: #fff; border-radius: 6px; padding: 5px 9px; box-shadow: 0 0 0 1px rgba(15, 23, 42, .07); }
+.conf-place { display: block; font-family: Charter, "Bitstream Charter", Georgia, serif; font-size: 1.02rem; font-weight: 700; line-height: 1.2; color: var(--blue); }
+.conf-dates { display: block; font-size: .8rem; line-height: 1.4; color: var(--muted); font-variant-numeric: tabular-nums; }
+.conf-brand:hover .conf-place { text-decoration: underline; text-decoration-color: var(--blue-line); text-underline-offset: 2px; }
+.conf-status { margin: 0; display: inline-flex; align-items: center; gap: .5rem; font-size: .82rem; font-weight: 600; color: var(--blue); background: var(--bg); border: 1px solid var(--blue-line); border-radius: 999px; padding: .34rem .85rem; white-space: nowrap; }
+.conf-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+
+.prose { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem; }
+.backlink { font-size: .85rem; margin: 2rem 0 0; }
+header.masthead { margin-top: .6rem; }
+h1 { margin: 0; display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; font-family: "Iowan Old Style", Charter, Georgia, serif; font-size: 2.3rem; font-weight: 700; letter-spacing: -.015em; color: var(--blue); }
+h1 .fa { font-size: 1.5rem; font-weight: 400; color: var(--muted); }
+.tagline { margin: .35rem 0 0; color: var(--muted); font-size: 1rem; }
+.tagline b { color: var(--text); font-weight: 600; }
+.tag-row { margin: .9rem 0 0; display: flex; gap: .5rem; flex-wrap: wrap; }
+.tag { font-size: .72rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; padding: .28rem .6rem; border-radius: 3px; }
+.tag.terra { color: var(--terra); background: var(--terra-wash); }
+.tag.blue { color: var(--blue); background: var(--blue-wash); }
+.tag.olive { color: var(--olive); background: var(--olive-wash); }
+
+.paper-box { margin-top: 2.2rem; padding: 1.5rem 1.6rem; border: 1px solid var(--rule); border-left: 3px solid var(--blue); border-radius: 4px; }
+.paper-eyebrow { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); }
+.paper-title { margin: .5rem 0 0; font-family: "Iowan Old Style", Charter, Georgia, serif; font-size: 1.2rem; font-weight: 700; line-height: 1.4; }
+.paper-authors { margin: .5rem 0 0; font-size: .92rem; }
+.paper-authors .me { font-weight: 600; }
+.paper-note { font-size: .78rem; color: var(--muted); }
+.paper-inst { margin: .15rem 0 0; font-size: .85rem; color: var(--muted); }
+.paper-links { margin-top: 1.1rem; display: flex; gap: .6rem; flex-wrap: wrap; }
+.pill { display: inline-flex; align-items: center; gap: .4rem; font-size: .85rem; color: var(--blue); border: 1px solid var(--blue-line); border-radius: 4px; padding: .4rem .85rem; text-decoration: none; }
+.pill:hover { border-color: var(--blue); background: var(--blue-wash); }
+.bibtex { margin-top: 1.2rem; padding: 1rem 1.1rem; background: var(--text); color: var(--bg); border-radius: 4px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .78rem; line-height: 1.7; overflow-x: auto; }
+.bibtex-toggle { margin-top: 1.1rem; font: inherit; font-size: .82rem; color: var(--muted); background: none; border: none; padding: 0; cursor: pointer; text-decoration: underline; text-decoration-color: var(--rule); }
+.bibtex-toggle:hover { color: var(--blue); }
+
+section { margin-top: 2.8rem; }
+h2 { margin: 0 0 .9rem; font-family: "Iowan Old Style", Charter, Georgia, serif; font-size: 1.35rem; font-weight: 700; color: var(--blue); }
+section > p { margin: 0 0 1rem; font-size: .97rem; }
+
+.stats { margin-top: 1.4rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: .8rem; }
+.stat { padding: .95rem 1rem; border-radius: 4px; background: var(--wash); }
+.stat-num { font-family: "Iowan Old Style", Charter, Georgia, serif; font-size: 1.55rem; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.stat:nth-child(1) .stat-num { color: var(--blue); }
+.stat:nth-child(2) .stat-num { color: var(--terra); }
+.stat:nth-child(3) .stat-num { color: var(--olive); }
+.stat-label { margin-top: .2rem; font-size: .78rem; color: var(--muted); }
+
+/* ---------- the task map ---------- */
+.group { margin-top: 1.3rem; }
+.group-head { display: flex; align-items: baseline; gap: .6rem; margin: 0 0 .55rem; font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.group-head .count { font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--muted); }
+.group.speech .group-head { color: var(--blue); }
+.group.para .group-head { color: var(--olive); }
+.group.culture .group-head { color: var(--terra); }
+.tiles { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(13.5rem, 1fr)); gap: .5rem; }
+.tile { position: relative; padding: .6rem .75rem .6rem .85rem; border-radius: 4px; background: var(--wash); border-left: 3px solid; }
+.group.speech .tile { border-color: var(--blue); }
+.group.para .tile { border-color: var(--olive); }
+.group.culture .tile { border-color: var(--terra); background: var(--terra-wash); }
+.tile-name { font-size: .9rem; font-weight: 600; line-height: 1.3; padding-right: 2.6rem; }
+.tile-name em { font-weight: 400; color: var(--muted); }
+.tile-meta { margin-top: .15rem; font-size: .76rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.new { position: absolute; top: .55rem; right: .6rem; font-size: .62rem; font-weight: 700; letter-spacing: .08em; color: var(--terra); border: 1px solid var(--terra-line); border-radius: 3px; padding: .02rem .3rem; background: var(--bg); }
+
+/* ---------- audio vs text chart ---------- */
+.chart { margin: 1.4rem 0 0; padding: 1.2rem 1.25rem 1rem; border: 1px solid var(--rule); border-radius: 5px; position: relative; }
+.chart-title { margin: 0; font-size: .95rem; font-weight: 600; }
+.chart-sub { margin: .15rem 0 0; font-size: .8rem; color: var(--muted); }
+.legend { margin: .8rem 0 .5rem; display: flex; gap: 1.2rem; flex-wrap: wrap; font-size: .78rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: .4rem; }
+.key { width: 14px; height: 8px; border-radius: 2px; display: inline-block; }
+.key.text { background: var(--mark-text); }
+.key.audio { background: var(--mark-audio); }
+.axis { display: grid; grid-template-columns: 11rem 1fr 3.2rem; font-size: .7rem; color: var(--muted); margin-bottom: .2rem; }
+.axis-scale { display: flex; justify-content: space-between; font-variant-numeric: tabular-nums; }
+.rows { position: relative; }
+.row { display: grid; grid-template-columns: 11rem 1fr 3.2rem; align-items: center; min-height: 30px; border-radius: 3px; cursor: default; }
+.row:hover, .row:focus-visible { background: var(--wash); }
+.row-label { font-size: .84rem; padding-right: .6rem; line-height: 1.25; }
+.track { position: relative; height: 30px; }
+.track::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--zero); }
+.bar { position: absolute; top: 50%; height: 12px; transform: translateY(-50%); }
+.bar.neg { right: 50%; background: var(--mark-text); border-radius: 4px 0 0 4px; }
+.bar.pos { left: 50%; background: var(--mark-audio); border-radius: 0 4px 4px 0; }
+.row-val { font-size: .8rem; text-align: right; font-variant-numeric: tabular-nums; color: var(--text); }
+.row.poetry .row-label { font-weight: 600; }
+.tip { position: absolute; z-index: 2; pointer-events: none; padding: .45rem .65rem; border-radius: 4px; background: var(--text); color: var(--bg); font-size: .76rem; line-height: 1.45; white-space: nowrap; box-shadow: 0 4px 14px rgba(0, 0, 0, .2); opacity: 0; transition: opacity .12s ease; }
+.tip.show { opacity: 1; }
+.tip b { font-weight: 600; }
+.table-view { margin-top: .9rem; font-size: .82rem; }
+.table-view summary { cursor: pointer; color: var(--muted); }
+.table-view table { margin-top: .6rem; width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.table-view th, .table-view td { text-align: left; padding: .35rem .5rem .35rem 0; border-bottom: 1px solid var(--rule); }
+.table-view th { font-size: .7rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); font-weight: 600; }
+.table-view td.num, .table-view th.num { text-align: right; }
+.after { margin-top: 1rem; font-size: .92rem; }
+
+/* ---------- the poetry moment ---------- */
+.verse { margin: 1.5rem 0 1rem; border: 1px solid var(--terra-line); border-radius: 5px; overflow: hidden; }
+.verse-head { padding: .75rem 1.1rem; background: var(--terra-wash); font-size: .76rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--terra); }
+.verse-body { padding: 1.3rem 1.4rem 1.2rem; }
+.couplet { margin: 0; font-family: "Iowan Old Style", Charter, Georgia, "Geeza Pro", serif; text-align: center; }
+.couplet p { margin: 0; }
+.couplet p[lang="fa"] { font-size: 1.35rem; line-height: 1.9; }
+.couplet .translit { margin-bottom: .55rem; font-size: .88rem; font-style: italic; color: var(--muted); }
+.verse-meta { margin: 0 0 .8rem; text-align: center; font-size: .82rem; color: var(--muted); }
+.verse-meta span[lang="fa"] { font-size: 1rem; color: var(--text); }
+.verse-meta b { font-weight: 600; color: var(--terra); }
+.vazn { margin: 1rem 0 0; text-align: center; font-size: .82rem; color: var(--muted); }
+.vazn-label { font-weight: 600; color: var(--terra); margin-right: .4rem; }
+.vazn span[lang="fa"] { font-size: 1rem; color: var(--text); }
+.feet { margin: 1rem auto 0; display: flex; justify-content: center; gap: .9rem; flex-wrap: wrap; }
+.foot { display: flex; flex-direction: column; align-items: center; gap: .35rem; }
+.foot-name { font-family: "Iowan Old Style", Charter, Georgia, "Geeza Pro", serif; font-size: .95rem; color: var(--muted); }
+.beats { display: flex; align-items: center; gap: 5px; height: 12px; }
+.beat.s { width: 9px; height: 9px; border-radius: 50%; border: 2px solid var(--terra); }
+.beat.l { width: 22px; height: 5px; border-radius: 3px; background: var(--terra); }
+.verse-gloss { margin: 1rem 0 0; font-size: .85rem; color: var(--muted); font-style: italic; text-align: center; }
+.verse-key { margin: .5rem 0 0; font-size: .78rem; color: var(--muted); text-align: center; }
+.verse-key .beat { display: inline-block; vertical-align: middle; margin: 0 .25rem 0 .6rem; }
+
+.models { margin: .4rem 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: .4rem; }
+.models li { font-size: .82rem; padding: .3rem .6rem; border-radius: 3px; background: var(--wash); font-variant-numeric: tabular-nums; }
+.models li.lead { background: var(--blue-wash); color: var(--blue); font-weight: 600; }
+
+.sources { margin: 0; padding: 0; list-style: none; }
+.sources li { padding: .6rem 0; border-bottom: 1px solid var(--rule); font-size: .92rem; }
+.sources li:first-child { border-top: 1px solid var(--rule); }
+.sources b { font-weight: 600; }
+
+footer { margin-top: 3.5rem; padding: 1.5rem 1.25rem 2.5rem; border-top: 1px solid var(--rule); text-align: center; font-size: .78rem; color: var(--muted); }
+
+@media (max-width: 720px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .axis, .row { grid-template-columns: 7.8rem 1fr 2.8rem; }
+}
+@media (max-width: 480px) {
+  h1 { font-size: 1.85rem; }
+  h1 .fa { font-size: 1.2rem; }
+  .paper-box { padding: 1.2rem; }
+  .couplet p[lang="fa"] { font-size: 1.12rem; }
+  .row-label { font-size: .78rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-name" href="/">
+      <svg viewBox="-12 -12 24 24" width="13" height="13" aria-hidden="true"><g fill="currentColor"><rect x="-9.9" y="-4" width="2.2" height="8" rx="1.1"/><rect x="-5.5" y="-7" width="2.2" height="14" rx="1.1"/><rect x="-1.1" y="-10" width="2.2" height="20" rx="1.1"/><rect x="3.3" y="-7" width="2.2" height="14" rx="1.1"/><rect x="7.7" y="-4" width="2.2" height="8" rx="1.1"/></g></svg>
+      Mohammad Javad Ranjbar
+    </a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/publications/">Publications</a>
+      <a href="/projects/">Projects</a>
+      <a href="/CV.pdf">CV</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch between light and dark theme">☾</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Venue logos live in /assets/logos so the page never depends on the conference site. -->
+<aside class="conf-band" aria-label="Publication venue">
+  <div class="conf-inner">
+    <a class="conf-brand" href="https://2027.eacl.org/" target="_blank" rel="noopener">
+      <img class="conf-logo" src="/assets/logos/eacl2027.png"
+           alt="EACL 2027 — Conference of the European Chapter of the Association for Computational Linguistics"
+           width="300" height="49" loading="eager" decoding="async">
+    </a>
+    <p class="conf-status"><span class="conf-dot" aria-hidden="true"></span>Accepted to Findings of EACL 2027</p>
+  </div>
+</aside>
+
+<main class="prose">
+  <p class="backlink"><a href="/projects/">← All projects</a></p>
+
+  <header class="masthead">
+    <h1>PARSA-Bench <span class="fa" lang="fa" dir="rtl">پارسا</span></h1>
+    <p class="tagline"><b>P</b>ersian <b>A</b>udio <b>R</b>easoning and <b>S</b>peech <b>A</b>ssessment: the first benchmark for large audio-language models on Persian language and culture</p>
+    <div class="tag-row">
+      <span class="tag terra">16 tasks · 10 new</span>
+      <span class="tag blue">7,645 samples · 20.6 h</span>
+      <span class="tag olive">Findings of EACL 2027</span>
+    </div>
+  </header>
+
+  <div class="paper-box">
+    <div class="paper-eyebrow">Paper</div>
+    <div class="paper-title">PARSA-Bench: A Comprehensive Persian Audio-Language Model Benchmark</div>
+    <div class="paper-authors"><span class="me">Mohammad Javad Ranjbar Kalahroodi*</span>, Mohammad Amini*, Parmis Bathayan, Heshaam Faili, Azadeh Shakery <span class="paper-note">· *equal contribution</span></div>
+    <div class="paper-inst">University of Tehran &amp; Institute for Research in Fundamental Sciences (IPM), Tehran</div>
+    <div class="paper-links">
+      <a class="pill" href="https://arxiv.org/abs/2603.14456" target="_blank" rel="noopener">Read the paper</a>
+      <a class="pill" href="https://huggingface.co/datasets/MohammadJRanjbar/PARSA-Bench" target="_blank" rel="noopener">Access the dataset</a>
+    </div>
+    <button class="bibtex-toggle" id="bibtexToggle" aria-expanded="false" aria-controls="bibtexBox">Show BibTeX</button>
+    <pre class="bibtex" id="bibtexBox" hidden><code>@inproceedings{ranjbar2027parsabench,
+  title={PARSA-Bench: A Comprehensive Persian Audio-Language Model Benchmark},
+  author={Ranjbar Kalahroodi, Mohammad Javad and Amini, Mohammad and Bathayan, Parmis and Faili, Heshaam and Shakery, Azadeh},
+  booktitle={Findings of the Association for Computational Linguistics: EACL 2027},
+  address={Athens, Greece},
+  publisher={Association for Computational Linguistics},
+  year={2027}
+}
+
+@article{ranjbar2026parsabench,
+  title={PARSA-Bench: A Comprehensive Persian Audio-Language Model Benchmark},
+  author={Ranjbar Kalahroodi, Mohammad Javad and Amini, Mohammad and Bathayan, Parmis and Faili, Heshaam and Shakery, Azadeh},
+  journal={arXiv preprint arXiv:2603.14456},
+  year={2026}
+}</code></pre>
+  </div>
+
+  <section>
+    <h2>Persian is hard to hear</h2>
+    <p>
+      Persian brings audio challenges that no existing benchmark captures: a classical poetry tradition
+      built on metre, a traditional music system of its own, and speakers who switch between Persian
+      and English mid-sentence. PARSA-Bench asks whether large audio-language models (LALMs) actually
+      understand Persian when they listen, across speech understanding, paralinguistic analysis, and
+      culturally grounded audio reasoning.
+    </p>
+    <div class="stats">
+      <div class="stat"><div class="stat-num">16</div><div class="stat-label">Tasks, 10 of them new</div></div>
+      <div class="stat"><div class="stat-num">7,645</div><div class="stat-label">Evaluated samples</div></div>
+      <div class="stat"><div class="stat-num">20.6 h</div><div class="stat-label">Of audio</div></div>
+      <div class="stat"><div class="stat-num">8</div><div class="stat-label">Models evaluated</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Sixteen tasks</h2>
+    <div class="group speech">
+      <p class="group-head">Speech understanding <span class="count">10 tasks</span></p>
+      <ul class="tiles">
+        <li class="tile"><div class="tile-name">Speech recognition</div><div class="tile-meta">500 clips · WER</div></li>
+        <li class="tile"><div class="tile-name">Speech translation <em>Fa → En</em></div><div class="tile-meta">500 clips · COMET</div></li>
+        <li class="tile"><div class="tile-name">Speech translation <em>En → Fa</em></div><div class="tile-meta">499 clips · COMET</div></li>
+        <li class="tile"><div class="tile-name">Intent detection</div><div class="tile-meta">500 clips · 56 intents</div><span class="new">NEW</span></li>
+        <li class="tile"><div class="tile-name">Named-entity recognition</div><div class="tile-meta">497 clips · 42 entity types</div><span class="new">NEW</span></li>
+        <li class="tile"><div class="tile-name">Formal vs. informal register</div><div class="tile-meta">496 clips · 2 classes</div><span class="new">NEW</span></li>
+        <li class="tile"><div class="tile-name">Code-switching detection</div><div class="tile-meta">500 clips · 2 classes</div><span class="new">NEW</span></li>
+        <li class="tile"><div class="tile-name">Multiple-choice QA</div><div class="tile-meta">500 clips · 4 options</div><span class="new">NEW</span></li>
+        <li class="tile"><div class="tile-name">Reading comprehension <em>Wikipedia</em></div><div class="tile-meta">500 clips · 4 options</div><span class="new">NEW</span></li>
+        <li class="tile"><div class="tile-name">Reading comprehension <em>stories</em></div><div class="tile-meta">500 clips · 4 options</div><span class="new">NEW</span></li>
+      </ul>
+    </div>
+    <div class="group para">
+      <p class="group-head">Paralinguistic analysis <span class="count">3 tasks</span></p>
+      <ul class="tiles">
+        <li class="tile"><div class="tile-name">Age recognition</div><div class="tile-meta">480 clips · 6 age groups</div></li>
+        <li class="tile"><div class="tile-name">Gender recognition</div><div class="tile-meta">500 clips · 2 classes</div></li>
+        <li class="tile"><div class="tile-name">Emotion recognition</div><div class="tile-meta">388 clips · 6 emotions</div></li>
+      </ul>
+    </div>
+    <div class="group culture">
+      <p class="group-head">Persian poetry and music <span class="count">3 tasks</span></p>
+      <ul class="tiles">
+        <li class="tile"><div class="tile-name">Poetry metre <em lang="fa-Latn">vazn</em></div><div class="tile-meta">347 recitations · 10 metres</div><span class="new">NEW</span></li>
+        <li class="tile"><div class="tile-name">Poetry style <em lang="fa-Latn">sabk</em></div><div class="tile-meta">442 recitations · 4 styles</div><span class="new">NEW</span></li>
+        <li class="tile"><div class="tile-name">Iranian classical music</div><div class="tile-meta">496 clips · 4 options</div><span class="new">NEW</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Models know Persian, but struggle to hear it</h2>
+    <p>
+      On most tasks, a model reading the text does better than the same model listening to the audio.
+      The language knowledge is there; the listening is the bottleneck. The strongest open-weight model,
+      Qwen3-Omni-30B, shows the pattern clearly:
+    </p>
+
+    <figure class="chart" id="gapChart">
+      <figcaption>
+        <p class="chart-title">Audio minus text, Qwen3-Omni-30B</p>
+        <p class="chart-sub">Change in each task's main metric (F1, COMET or accuracy) when the model hears the audio instead of reading the text</p>
+      </figcaption>
+      <div class="legend" aria-hidden="true">
+        <span><i class="key text"></i>Text scores higher</span>
+        <span><i class="key audio"></i>Audio scores higher</span>
+      </div>
+      <div class="axis" aria-hidden="true"><span></span><span class="axis-scale"><span>−0.35</span><span>0</span><span>+0.35</span></span><span></span></div>
+      <div class="rows" id="gapRows" role="list"></div>
+      <div class="tip" id="gapTip" role="status" aria-live="polite"></div>
+      <details class="table-view">
+        <summary>Show as a table</summary>
+        <table>
+          <thead><tr><th>Task</th><th class="num">Audio</th><th class="num">Text</th><th class="num">Audio − text</th></tr></thead>
+          <tbody id="gapTable"></tbody>
+        </table>
+      </details>
+    </figure>
+
+    <p class="after">
+      Give the model the transcript alongside the audio and weak models climb to near their text-only
+      level. Qwen3-Omni-30B's intent-detection F1 goes from 0.46 with audio alone to 0.72 with the transcript added.
+    </p>
+  </section>
+
+  <section>
+    <h2>The exception: poetry</h2>
+    <p>
+      On both poetry tasks, audio beats text. Persian script leaves short vowels unwritten, so a line on
+      the page doesn't say which syllables are long and which are short. A recitation does, and that
+      rhythm is exactly what the metre is made of.
+    </p>
+    <div class="verse">
+      <div class="verse-head">An annotated example from PARSA-Bench</div>
+      <div class="verse-body">
+        <p class="verse-meta"><b>Poet</b> <span lang="fa" dir="rtl">صائب تبریزی</span> (Saeb Tabrizi) · <b>Form</b> <span lang="fa" dir="rtl">غزل</span> (ghazal)</p>
+        <div class="couplet">
+          <p lang="fa" dir="rtl">همت بلند دار که با همت بلند</p>
+          <p class="translit">Hemmat boland dār ke bā hemmat boland</p>
+          <p lang="fa" dir="rtl">هر جا روی به توسن گردون سواره‌ای</p>
+          <p class="translit">Har jā ravi be towsan-e gardun savāre-i</p>
+        </div>
+        <p class="vazn"><span class="vazn-label">Vazn (metre)</span> <span lang="fa" dir="rtl">مضارع مثمن اخرب مکفوف محذوف</span></p>
+        <div class="feet" aria-label="Metre feet: mafʿūlu long long short; fāʿilātu long short long short; mafāʿīlu short long long short; fāʿilun long short long">
+          <div class="foot"><span class="foot-name" lang="fa">مفعول</span><span class="beats"><i class="beat l"></i><i class="beat l"></i><i class="beat s"></i></span></div>
+          <div class="foot"><span class="foot-name" lang="fa">فاعلات</span><span class="beats"><i class="beat l"></i><i class="beat s"></i><i class="beat l"></i><i class="beat s"></i></span></div>
+          <div class="foot"><span class="foot-name" lang="fa">مفاعیل</span><span class="beats"><i class="beat s"></i><i class="beat l"></i><i class="beat l"></i><i class="beat s"></i></span></div>
+          <div class="foot"><span class="foot-name" lang="fa">فاعلن</span><span class="beats"><i class="beat l"></i><i class="beat s"></i><i class="beat l"></i></span></div>
+        </div>
+        <p class="verse-gloss">"Keep your aspirations high—for with high aspiration, wherever you go, you ride the steed of fortune."</p>
+        <p class="verse-key"><span class="beat s" aria-hidden="true"></span>short <span class="beat l" aria-hidden="true"></span>long</p>
+      </div>
+    </div>
+    </div>
+    <p>
+      Metre detection is still hard. Chance is 0.12, and only the largest model, Qwen3-Omni-30B, gets
+      above it (0.20), the first sign that the task becomes learnable at scale.
+    </p>
+  </section>
+
+  <section>
+    <h2>Models evaluated</h2>
+    <ul class="models">
+      <li>Qwen2.5-Omni-3B</li><li>Qwen2.5-Omni-7B</li><li class="lead">Qwen3-Omni-30B-A3B</li>
+      <li>Gemma-3n-E2B</li><li>Gemma-3n-E4B</li>
+      <li>GPT-4o-mini-audio</li><li>GPT-4o-audio</li><li class="lead">Gemini-2.5-Flash</li>
+    </ul>
+    <p style="margin-top:.9rem">
+      Qwen3-Omni-30B is the strongest open-weight model (median ASR word error rate 0.31). Gemini-2.5-Flash
+      leads on translation (En → Fa COMET 0.84) and intent detection (F1 0.79).
+    </p>
+  </section>
+
+  <section>
+    <h2>Where the audio comes from</h2>
+    <ul class="sources">
+      <li><b>Real speech</b> from Mozilla Common Voice, for recognition, age, gender and code-switching.</li>
+      <li><b>Emotional speech</b> from the ShEMO corpus.</li>
+      <li><b>Poetry recitations</b> collected through Ganjoor, the online library of Persian poetry.</li>
+      <li><b>Synthesized speech</b> for text-based tasks such as intent, named entities, QA and reading comprehension,
+        voiced with the <a href="/ParsVoice/">ParsVoice</a> zero-shot TTS using real speakers as reference voices.</li>
+    </ul>
+  </section>
+</main>
+
+<footer>© 2026 Mohammad Javad Ranjbar · PARSA-Bench, University of Tehran · Findings of EACL 2027, Athens</footer>
+
+<script>
+const toggle = document.getElementById('themeToggle');
+// This page is light by default (EACL colours); dark only if the visitor chose it.
+function currentTheme() { return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'; }
+function renderToggle() { toggle.textContent = currentTheme() === 'dark' ? '☀' : '☾'; }
+try { const saved = localStorage.getItem('theme'); if (saved) document.documentElement.dataset.theme = saved; } catch (e) {}
+toggle.addEventListener('click', () => {
+  const next = currentTheme() === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  try { localStorage.setItem('theme', next); } catch (e) {}
+  renderToggle();
+});
+renderToggle();
+
+const bibtexToggle = document.getElementById('bibtexToggle');
+const bibtexBox = document.getElementById('bibtexBox');
+bibtexToggle.addEventListener('click', () => {
+  const show = bibtexBox.hidden;
+  bibtexBox.hidden = !show;
+  bibtexToggle.textContent = show ? 'Hide BibTeX' : 'Show BibTeX';
+  bibtexToggle.setAttribute('aria-expanded', String(show));
+});
+
+// Audio vs text, Qwen3-Omni-30B (paper, Table 4). Sorted from the biggest text advantage.
+const GAPS = [
+  { task: 'Intent detection', metric: 'F1', audio: 0.461, text: 0.787 },
+  { task: 'Translation Fa → En', metric: 'COMET', audio: 0.595, text: 0.830 },
+  { task: 'Named entities', metric: 'F1', audio: 0.136, text: 0.368 },
+  { task: 'Multiple-choice QA', metric: 'accuracy', audio: 0.402, text: 0.594 },
+  { task: 'Formal/informal register', metric: 'F1', audio: 0.735, text: 0.883 },
+  { task: 'Reading comp. (stories)', metric: 'accuracy', audio: 0.780, text: 0.920 },
+  { task: 'Poetry metre', metric: 'accuracy', audio: 0.196, text: 0.102, poetry: true },
+  { task: 'Poetry style', metric: 'accuracy', audio: 0.640, text: 0.541, poetry: true },
+];
+const MAX = 0.35;
+const rows = document.getElementById('gapRows');
+const table = document.getElementById('gapTable');
+const tip = document.getElementById('gapTip');
+const chart = document.getElementById('gapChart');
+const fmt = v => (v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(v).toFixed(2);
+
+GAPS.forEach(g => {
+  const d = +(g.audio - g.text).toFixed(3);
+  const row = document.createElement('div');
+  row.className = 'row' + (g.poetry ? ' poetry' : '');
+  row.setAttribute('role', 'listitem');
+  row.tabIndex = 0;
+  row.setAttribute('aria-label', `${g.task}: audio ${g.audio.toFixed(3)}, text ${g.text.toFixed(3)} ${g.metric}, difference ${fmt(d)}`);
+  row.innerHTML = `<span class="row-label">${g.task}</span>
+    <span class="track"><span class="bar ${d < 0 ? 'neg' : 'pos'}" style="width:${(Math.abs(d) / MAX * 50).toFixed(2)}%"></span></span>
+    <span class="row-val">${fmt(d)}</span>`;
+  const show = () => {
+    tip.innerHTML = `<b>${g.task}</b><br>audio ${g.audio.toFixed(3)} · text ${g.text.toFixed(3)} <span style="opacity:.7">(${g.metric})</span>`;
+    const cr = chart.getBoundingClientRect(), bar = row.querySelector('.bar').getBoundingClientRect();
+    tip.classList.add('show');
+    const x = (d < 0 ? bar.left : bar.right) - cr.left, y = bar.top - cr.top - tip.offsetHeight - 8;
+    tip.style.left = Math.max(8, Math.min(cr.width - tip.offsetWidth - 8, x - tip.offsetWidth / 2)) + 'px';
+    tip.style.top = y + 'px';
+  };
+  const hide = () => tip.classList.remove('show');
+  row.addEventListener('pointerenter', show);
+  row.addEventListener('pointerleave', hide);
+  row.addEventListener('focus', show);
+  row.addEventListener('blur', hide);
+  rows.appendChild(row);
+
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td>${g.task} <span style="color:var(--muted)">(${g.metric})</span></td><td class="num">${g.audio.toFixed(3)}</td><td class="num">${g.text.toFixed(3)}</td><td class="num">${fmt(d)}</td>`;
+  table.appendChild(tr);
+});
+</script>
+</body>
+</html>

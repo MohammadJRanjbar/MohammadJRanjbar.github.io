@@ -6,8 +6,8 @@
 
 <!-- ============================= SEO ============================= -->
 <title>ParsVoice — Persian Zero-Shot TTS | EMNLP 2026 Main Conference</title>
-<meta name="description" content="ParsVoice, accepted to the EMNLP 2026 Main Conference in Budapest: the largest open Persian speech corpus, 1,804 hours of clean audio from 470+ speakers, with an interactive zero-shot voice-cloning demo.">
-<meta name="keywords" content="EMNLP 2026, EMNLP 2026 Budapest, EMNLP main conference, EMNLP 2026 paper, ParsVoice, Persian TTS, Persian speech corpus, Farsi text to speech, Persian speech dataset, zero-shot voice cloning, multi-speaker TTS, XTTS, low-resource speech synthesis, University of Tehran NLP">
+<meta name="description" content="ParsVoice (EMNLP 2026 Main Conference): the largest open Persian speech corpus, 1,804 hours from 470+ speakers, with a zero-shot voice-cloning demo.">
+<meta name="keywords" content="EMNLP 2026, EMNLP 2026 Budapest, EMNLP main conference, EMNLP 2026 paper, ParsVoice, Persian TTS, Persian speech corpus, Farsi text to speech, Persian speech dataset, zero-shot voice cloning, multi-speaker TTS, XTTS, low-resource speech synthesis, University of Tehran NLP, Persian speech dataset, Farsi speech corpus, Persian audiobooks, Persian ASR data, Persian voice cloning, XTTS Persian, Whisper Persian, multi-speaker TTS, speech synthesis dataset, Mohammad Javad Ranjbar Kalahroodi, University of Tehran, ACL Anthology, پارس‌وویس, دیتاست گفتار فارسی, تبدیل متن به گفتار">
 <meta name="author" content="Mohammad Javad Ranjbar Kalahroodi">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://mohammadjranjbar.github.io/ParsVoice/">
@@ -96,6 +96,21 @@
       "creator": { "@type": "Organization", "name": "University of Tehran" },
       "keywords": ["Persian speech", "text-to-speech", "multi-speaker corpus", "voice cloning", "Farsi"],
       "citation": "https://arxiv.org/abs/2510.10774"
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "ParsVoice: data pipeline and zero-shot Persian TTS",
+      "codeRepository": "https://github.com/MohammadJRanjbar/ParsVoice",
+      "programmingLanguage": "Python",
+      "author": { "@type": "Person", "name": "Mohammad Javad Ranjbar Kalahroodi" }
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "ParsVoice-XTTS",
+      "description": "XTTS fine-tuned on ParsVoice for zero-shot Persian voice cloning.",
+      "url": "https://huggingface.co/MohammadJRanjbar/ParsVoice-XTTS",
+      "inLanguage": "fa",
+      "author": { "@type": "Person", "name": "Mohammad Javad Ranjbar Kalahroodi" }
     }
   ]
 }
@@ -360,15 +375,12 @@ footer {
   </div>
 </nav>
 
-<!-- Conference band. The logo is hotlinked from the EMNLP site; consider saving a
-     copy to assets/emnlp_2026_logo.png and pointing src there so the page doesn't
-     break if the conference site reorganises after October. Adjust .conf-logo
-     height if the lockup sits too large or small. -->
+<!-- Conference band. Venue logos live in /assets/logos so the page never depends on the conference site. -->
 <aside class="conf-band" aria-label="Publication venue">
   <div class="conf-inner">
     <a class="conf-brand" href="https://2026.emnlp.org/" target="_blank" rel="noopener">
       <img class="conf-logo"
-           src="https://2026.emnlp.org/assets/images/logos/emnlp_2026_logo_v1.png"
+           src="/assets/logos/emnlp2026.png"
            alt="EMNLP 2026 — Conference on Empirical Methods in Natural Language Processing"
            loading="eager" decoding="async">
       <span>
@@ -400,6 +412,8 @@ footer {
       <a class="pill" href="https://aclanthology.org/2026.emnlp-main.2458/" target="_blank" rel="noopener">Read the paper</a>
       <a class="pill" href="https://arxiv.org/abs/2510.10774" target="_blank" rel="noopener">arXiv</a>
       <a class="pill" href="https://huggingface.co/datasets/MohammadJRanjbar/ParsVoice" target="_blank" rel="noopener">Access the dataset</a>
+      <a class="pill" href="https://huggingface.co/MohammadJRanjbar/ParsVoice-XTTS" target="_blank" rel="noopener">Use the model</a>
+      <a class="pill" href="https://github.com/MohammadJRanjbar/ParsVoice" target="_blank" rel="noopener">Code on GitHub</a>
       <a class="pill" href="#samples">Hear the samples ↓</a>
     </div>
     <button class="bibtex-toggle" id="bibtexToggle" aria-expanded="false">Show BibTeX</button>

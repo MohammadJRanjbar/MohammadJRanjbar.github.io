@@ -3,74 +3,291 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Social Robots — Mohammad Javad Ranjbar</title>
-<meta name="description" content="Social Robots: an open-source architecture for a low-cost personal assistant robot with real-time facial emotion recognition, gesture responses, and speech commands. ICRoM 2022.">
+<title>Social Robots — Open-Source Personal Assistant Robot | ICRoM 2022</title>
+<meta name="description" content="Social Robots (ICRoM 2022): an open-source architecture for a low-cost personal assistant robot with real-time facial emotion recognition, gestures and voice commands.">
+<meta name="keywords" content="social robots, social robot, personal assistant robot, open-source robot, open-source robotics, low-cost robot, human-robot interaction, HRI, facial emotion recognition, facial expression recognition, emotion recognition robot, gesture response, voice commands, speech commands, robot architecture, perception decision actuation, ICRoM 2022, RSI International Conference on Robotics and Mechatronics, Amirkabir University of Technology, Tehran Polytechnic, B.Sc. thesis, Mohammad Javad Ranjbar Kalahroodi, ربات اجتماعی, تشخیص احساسات چهره">
+<meta name="author" content="Mohammad Javad Ranjbar Kalahroodi">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://mohammadjranjbar.github.io/projects/social-robots/">
+
 <meta property="og:type" content="article">
-<meta property="og:title" content="Social Robots — open-source personal assistant robot">
-<meta property="og:description" content="Low-cost robot with real-time facial emotion recognition, gesture responses, and speech commands. ICRoM 2022.">
+<meta property="og:site_name" content="Mohammad Javad Ranjbar">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Social Robots — Open-Source Personal Assistant Robot | ICRoM 2022">
+<meta property="og:description" content="A low-cost, open-source robot that reads facial expressions in real time, answers with gestures, and follows spoken commands.">
 <meta property="og:url" content="https://mohammadjranjbar.github.io/projects/social-robots/">
-<meta property="og:image" content="https://mohammadjranjbar.github.io/Architecture.png">
-<script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<meta property="og:image" content="https://mohammadjranjbar.github.io/projects/social-robots/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Social Robots — open-source personal assistant robot, ICRoM 2022">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Social Robots — Open-Source Personal Assistant Robot | ICRoM 2022">
+<meta name="twitter:description" content="A low-cost, open-source robot that reads faces, answers with gestures, and follows spoken commands.">
+<meta name="twitter:image" content="https://mohammadjranjbar.github.io/projects/social-robots/og-cover.png">
+
+<!-- Google Scholar indexing -->
+<meta name="citation_title" content="Social Robots: An Open-Source Architecture for Personal Assistant Robots">
+<meta name="citation_author" content="Ranjbar Kalahroodi, Mohammad Javad">
+<meta name="citation_author" content="Menhaj, Mohammad Bagher">
+<meta name="citation_author" content="Taheri, Hassan">
+<meta name="citation_author_institution" content="Amirkabir University of Technology">
+<meta name="citation_conference_title" content="2022 10th RSI International Conference on Robotics and Mechatronics (ICRoM)">
+<meta name="citation_publisher" content="IEEE">
+<meta name="citation_publication_date" content="2022/11">
+<meta name="citation_firstpage" content="242">
+<meta name="citation_lastpage" content="247">
+<meta name="citation_doi" content="10.1109/ICRoM57054.2022.10025253">
+<meta name="citation_abstract_html_url" content="https://mohammadjranjbar.github.io/projects/social-robots/">
+
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ScholarlyArticle",
+      "@id": "https://mohammadjranjbar.github.io/projects/social-robots/#paper",
+      "headline": "Social Robots: An Open-Source Architecture for Personal Assistant Robots",
+      "url": "https://mohammadjranjbar.github.io/projects/social-robots/",
+      "inLanguage": "en",
+      "datePublished": "2022-11",
+      "author": [
+        { "@type": "Person", "name": "Mohammad Javad Ranjbar Kalahroodi", "url": "https://mohammadjranjbar.github.io/" },
+        { "@type": "Person", "name": "Mohammad Bagher Menhaj" },
+        { "@type": "Person", "name": "Hassan Taheri" }
+      ],
+      "publisher": { "@type": "Organization", "name": "IEEE" },
+      "isPartOf": { "@type": "PublicationEvent", "name": "ICRoM 2022 — 10th RSI International Conference on Robotics and Mechatronics",
+        "startDate": "2022-11-22", "endDate": "2022-11-24", "location": { "@type": "Place", "name": "Tehran, Iran" } },
+      "sameAs": "https://ieeexplore.ieee.org/document/10025253",
+      "image": "https://mohammadjranjbar.github.io/Architecture.png",
+      "keywords": "social robots, personal assistant robot, facial emotion recognition, human-robot interaction, open source"
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "Social Robots: an open-source framework for personal assistant robots",
+      "codeRepository": "https://github.com/MohammadJRanjbar/Social-robots-an-open-source-framework-for-personal-assistant-robots",
+      "author": { "@type": "Person", "name": "Mohammad Javad Ranjbar Kalahroodi" }
+    }
+  ]
+}
+</script>
+<style>
+/* Palette taken from the ICRoM mark: its royal blue and leaf green, on white.
+   Light by default; dark only when the visitor switches to it. */
+:root {
+  --bg: #fbfcfd; --text: #19212e; --muted: #5b6676; --rule: #e1e7ef; --wash: #f1f5fa;
+  --blue: #1f4f9f;  --blue-wash: #e6eef9;  --blue-line: rgba(31, 79, 159, .3);
+  --green: #437d1f; --green-wash: #ebf4e3; --green-line: rgba(67, 125, 31, .3);
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --bg: #0f151f; --text: #e5ebf3; --muted: #9aa6b8; --rule: #222d3d; --wash: #151e2b;
+  --blue: #8fb2f0;  --blue-wash: rgba(143, 178, 240, .13); --blue-line: rgba(143, 178, 240, .38);
+  --green: #9fd36f; --green-wash: rgba(159, 211, 111, .13); --green-line: rgba(159, 211, 111, .38);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif; font-size: 16px; line-height: 1.6; }
+a { color: var(--blue); text-decoration: underline; text-decoration-color: var(--blue-line); text-underline-offset: 2px; }
+a:hover { text-decoration-color: var(--blue); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 2px; }
+
+nav { border-bottom: 1px solid var(--rule); }
+.nav-inner { max-width: 68rem; margin: 0 auto; padding: .85rem 1.25rem; display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.nav-name { display: inline-flex; align-items: center; gap: .5rem; font-family: Charter, "Bitstream Charter", Georgia, serif; font-weight: 700; font-size: 1.02rem; color: var(--text); text-decoration: none; }
+.nav-name svg { color: var(--blue); flex-shrink: 0; }
+.nav-links { display: flex; gap: 1.35rem; align-items: baseline; }
+.nav-links a { font-size: .85rem; color: var(--muted); text-decoration: none; }
+.nav-links a:hover { color: var(--blue); }
+.theme-toggle { font: inherit; font-size: .85rem; background: none; border: none; color: var(--muted); cursor: pointer; padding: 0; line-height: 1; }
+.theme-toggle:hover { color: var(--blue); }
+
+/* ---------- ICRoM band ---------- */
+.conf-band { border-bottom: 1px solid var(--rule); background: linear-gradient(100deg, var(--blue-wash) 0%, var(--green-wash) 55%, var(--bg) 100%); }
+.conf-inner { max-width: 68rem; margin: 0 auto; padding: .75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem 1.4rem; flex-wrap: wrap; }
+.conf-brand { display: flex; align-items: center; gap: .9rem; min-width: 0; text-decoration: none; color: inherit; }
+.conf-logo { display: block; flex-shrink: 0; height: 46px; width: auto; background: #fff; border-radius: 6px; padding: 5px 9px; box-shadow: 0 0 0 1px rgba(15, 23, 42, .07); }
+.conf-place { display: block; font-family: Charter, "Bitstream Charter", Georgia, serif; font-size: 1rem; font-weight: 700; line-height: 1.25; color: var(--blue); }
+.conf-dates { display: block; font-size: .8rem; line-height: 1.4; color: var(--muted); }
+.conf-status { margin: 0; display: inline-flex; align-items: center; gap: .5rem; font-size: .82rem; font-weight: 600; color: var(--green); background: var(--bg); border: 1px solid var(--green-line); border-radius: 999px; padding: .34rem .85rem; white-space: nowrap; }
+.conf-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+
+.prose { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem; }
+.backlink { font-size: .85rem; margin: 2rem 0 0; }
+h1 { margin: .6rem 0 0; font-family: "Iowan Old Style", Charter, Georgia, serif; font-size: 2.3rem; font-weight: 700; letter-spacing: -.015em; color: var(--blue); }
+.tagline { margin: .35rem 0 0; color: var(--muted); font-size: 1rem; }
+.tag-row { margin: .9rem 0 0; display: flex; gap: .5rem; flex-wrap: wrap; }
+.tag { font-size: .72rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; padding: .28rem .6rem; border-radius: 3px; }
+.tag.blue { color: var(--blue); background: var(--blue-wash); }
+.tag.green { color: var(--green); background: var(--green-wash); }
+
+.paper-box { margin-top: 2.2rem; padding: 1.5rem 1.6rem; border: 1px solid var(--rule); border-left: 3px solid var(--blue); border-radius: 4px; }
+.paper-eyebrow { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); }
+.paper-title { margin: .5rem 0 0; font-family: "Iowan Old Style", Charter, Georgia, serif; font-size: 1.2rem; font-weight: 700; line-height: 1.4; }
+.paper-authors { margin: .5rem 0 0; font-size: .92rem; }
+.paper-authors .me { font-weight: 600; }
+.paper-inst { margin: .15rem 0 0; font-size: .85rem; color: var(--muted); }
+.paper-links { margin-top: 1.1rem; display: flex; gap: .6rem; flex-wrap: wrap; }
+.pill { display: inline-flex; align-items: center; gap: .4rem; font-size: .85rem; color: var(--blue); border: 1px solid var(--blue-line); border-radius: 4px; padding: .4rem .85rem; text-decoration: none; }
+.pill:hover { border-color: var(--blue); background: var(--blue-wash); }
+.bibtex { margin-top: 1.2rem; padding: 1rem 1.1rem; background: var(--text); color: var(--bg); border-radius: 4px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .78rem; line-height: 1.7; overflow-x: auto; }
+.bibtex-toggle { margin-top: 1.1rem; font: inherit; font-size: .82rem; color: var(--muted); background: none; border: none; padding: 0; cursor: pointer; text-decoration: underline; text-decoration-color: var(--rule); }
+.bibtex-toggle:hover { color: var(--blue); }
+
+section { margin-top: 2.8rem; }
+h2 { margin: 0 0 .9rem; font-family: "Iowan Old Style", Charter, Georgia, serif; font-size: 1.35rem; font-weight: 700; color: var(--blue); }
+section > p { margin: 0 0 1rem; font-size: .97rem; }
+figure { margin: 1.2rem 0 0; }
+figure video, figure img { display: block; width: 100%; height: auto; border-radius: 5px; border: 1px solid var(--rule); background: #fff; }
+figcaption { margin-top: .45rem; font-size: .8rem; color: var(--muted); }
+
+.layers { margin: 1.4rem 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: .7rem; counter-reset: layer; }
+.layer { position: relative; padding: .9rem 1rem 1rem; border-radius: 5px; background: var(--wash); border-top: 3px solid var(--blue); }
+.layer:nth-child(2) { border-top-color: var(--green); }
+.layer:nth-child(3) { border-top-color: var(--blue); }
+.layer-k { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.layer-name { margin-top: .15rem; font-family: "Iowan Old Style", Charter, Georgia, serif; font-size: 1.08rem; font-weight: 700; }
+.layer p { margin: .35rem 0 0; font-size: .86rem; color: var(--muted); }
+
+.points { margin: 0; padding: 0; list-style: none; }
+.points li { padding: .6rem 0 .6rem 1.4rem; border-bottom: 1px solid var(--rule); font-size: .94rem; position: relative; }
+.points li:first-child { border-top: 1px solid var(--rule); }
+.points li::before { content: ""; position: absolute; left: .1rem; top: 1.1rem; width: .55rem; height: .55rem; border-radius: 50%; background: var(--green); }
+
+footer { margin-top: 3.5rem; padding: 1.5rem 1.25rem 2.5rem; border-top: 1px solid var(--rule); text-align: center; font-size: .78rem; color: var(--muted); }
+
+@media (max-width: 640px) { .layers { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { h1 { font-size: 1.85rem; } .paper-box { padding: 1.2rem; } .conf-logo { height: 40px; } }
+</style>
 </head>
 <body>
 
 <nav>
   <div class="nav-inner">
     <a class="nav-name" href="/">
-      <svg viewBox="-12 -12 24 24" width="13" height="13" aria-hidden="true"><g fill="currentColor"><rect x="-9.9" y="-4" width="2.2" height="8" rx="1.1"/><rect x="-5.5" y="-7" width="2.2" height="14" rx="1.1"/><rect x="-1.1" y="-10" width="2.2" height="20" rx="1.1"/><rect x="3.3" y="-7" width="2.2" height="14" rx="1.1"/><rect x="7.7" y="-4" width="2.2" height="8" rx="1.1"/></g></svg>
       Mohammad Javad Ranjbar
     </a>
     <div class="nav-links">
       <a href="/">Home</a>
       <a href="/publications/">Publications</a>
-      <a href="/projects/" class="active">Projects</a>
+      <a href="/projects/">Projects</a>
       <a href="/CV.pdf">CV</a>
       <button class="theme-toggle" id="themeToggle" aria-label="Switch between light and dark theme">☾</button>
     </div>
   </div>
 </nav>
 
-<div class="page">
+<!-- Venue logos live in /assets/logos so the page never depends on the conference site. -->
+<aside class="conf-band" aria-label="Publication venue">
+  <div class="conf-inner">
+    <a class="conf-brand" href="https://ieeexplore.ieee.org/document/10025253" target="_blank" rel="noopener">
+      <img class="conf-logo" src="/assets/logos/icrom.png" width="130" height="46"
+           alt="ICRoM — RSI International Conference on Robotics and Mechatronics" decoding="async">
+      <span>
+        <span class="conf-place">10th RSI International Conference on Robotics and Mechatronics</span>
+        <span class="conf-dates">Tehran, Iran · November 22–24, 2022</span>
+      </span>
+    </a>
+    <p class="conf-status"><span class="conf-dot" aria-hidden="true"></span>Published at ICRoM 2022</p>
+  </div>
+</aside>
 
-<p class="backlink"><a href="/projects/">← All projects</a></p>
-<h1 class="page-title">Social Robots</h1>
-<p class="proj-detail-meta">Open-source personal assistant robot · B.Sc. thesis, Amirkabir University of Technology · ICRoM 2022</p>
+<main class="prose">
+  <p class="backlink"><a href="/projects/">← All projects</a></p>
 
-<div class="proj-body">
-  <p>
-    An open-source architecture for a low-cost personal assistant robot. The robot recognizes facial
-    expressions in real time, responds with gestures, and processes spoken commands — designed so the
-    whole stack runs on affordable hardware and can be reproduced by other labs.
-  </p>
+  <header>
+    <h1>Social Robots</h1>
+    <p class="tagline">An open-source architecture for low-cost personal assistant robots that read faces, answer with gestures, and follow spoken commands</p>
+    <div class="tag-row">
+      <span class="tag blue">Real-time emotion recognition</span>
+      <span class="tag green">B.Sc. thesis · Amirkabir University</span>
+      <span class="tag blue">ICRoM 2022 · IEEE</span>
+    </div>
+  </header>
 
-  <figure>
-    <video controls preload="metadata" src="/Robot.mp4"></video>
-    <figcaption>The robot responding to facial expressions and voice commands.</figcaption>
-  </figure>
+  <div class="paper-box">
+    <div class="paper-eyebrow">Paper</div>
+    <div class="paper-title">Social Robots: An Open-Source Architecture for Personal Assistant Robots</div>
+    <div class="paper-authors"><span class="me">Mohammad Javad Ranjbar Kalahroodi</span>, Mohammad Bagher Menhaj, Hassan Taheri</div>
+    <div class="paper-inst">Amirkabir University of Technology (Tehran Polytechnic)</div>
+    <div class="paper-links">
+      <a class="pill" href="https://ieeexplore.ieee.org/document/10025253" target="_blank" rel="noopener">Read the paper</a>
+      <a class="pill" href="https://github.com/MohammadJRanjbar/Social-robots-an-open-source-framework-for-personal-assistant-robots" target="_blank" rel="noopener">Get the code</a>
+    </div>
+    <button class="bibtex-toggle" id="bibtexToggle" aria-expanded="false" aria-controls="bibtexBox">Show BibTeX</button>
+    <pre class="bibtex" id="bibtexBox" hidden><code>@inproceedings{ranjbar2022socialrobots,
+  title={Social Robots: An Open-Source Architecture for Personal Assistant Robots},
+  author={Ranjbar Kalahroodi, Mohammad Javad and Menhaj, Mohammad Bagher and Taheri, Hassan},
+  booktitle={2022 10th RSI International Conference on Robotics and Mechatronics (ICRoM)},
+  address={Tehran, Iran},
+  publisher={IEEE},
+  pages={242--247},
+  year={2022},
+  doi={10.1109/ICRoM57054.2022.10025253}
+}</code></pre>
+  </div>
 
-  <figure>
-    <img src="/Architecture.png" alt="System architecture of the Social Robots framework" loading="lazy">
-    <figcaption>System architecture: perception, decision, and actuation layers.</figcaption>
-  </figure>
+  <section>
+    <h2>See it work</h2>
+    <p>
+      The robot watches the person in front of it, recognizes their facial expression in real time,
+      and responds with gestures, while taking spoken commands at the same time.
+    </p>
+    <figure>
+      <video controls preload="metadata" playsinline src="/Robot.mp4" aria-label="Video of the robot responding to facial expressions and voice commands"></video>
+      <figcaption>The robot responding to facial expressions and voice commands.</figcaption>
+    </figure>
+  </section>
 
-  <p>
-    Built with M. B. Menhaj and H. Taheri. The paper describes the architecture, the emotion-recognition
-    pipeline, and the interaction design.
-  </p>
-</div>
+  <section>
+    <h2>How it's built</h2>
+    <p>The architecture is split into three layers, so each part can be swapped or improved on its own:</p>
+    <ul class="layers">
+      <li class="layer"><div class="layer-k">Layer 1</div><div class="layer-name">Perception</div><p>Camera and microphone input: faces and facial expressions are recognized in real time, and speech becomes commands.</p></li>
+      <li class="layer"><div class="layer-k">Layer 2</div><div class="layer-name">Decision</div><p>Turns what the robot sees and hears into a response: which gesture to make, which command to carry out.</p></li>
+      <li class="layer"><div class="layer-k">Layer 3</div><div class="layer-name">Actuation</div><p>Drives the robot's movements, so it answers with gestures people can read at a glance.</p></li>
+    </ul>
+    <figure>
+      <img src="/Architecture.png" width="1545" height="616" alt="System architecture of the Social Robots framework: perception, decision and actuation layers" loading="lazy">
+      <figcaption>System architecture: perception, decision, and actuation layers.</figcaption>
+    </figure>
+  </section>
 
-<p class="proj-links">
-  <a href="https://ieeexplore.ieee.org/document/10025253">Paper (IEEE, ICRoM 2022)</a>
-  &nbsp;·&nbsp; <a href="https://github.com/MohammadJRanjbar">Code</a>
-</p>
+  <section>
+    <h2>Why open source</h2>
+    <ul class="points">
+      <li>The whole stack is designed to run on affordable hardware.</li>
+      <li>The code is public, so other labs and students can rebuild the robot and extend it.</li>
+      <li>It started as my B.Sc. thesis at Amirkabir University of Technology, advised by M. B. Menhaj and H. Taheri.</li>
+    </ul>
+  </section>
+</main>
 
-<footer><span>© 2026 Mohammad Javad Ranjbar</span></footer>
+<footer>© 2026 Mohammad Javad Ranjbar · Social Robots, Amirkabir University of Technology · ICRoM 2022, Tehran</footer>
 
-</div>
+<script>
+const toggle = document.getElementById('themeToggle');
+// Light by default (the venue's colours); dark only if the visitor chose it.
+function currentTheme() { return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'; }
+function renderToggle() { toggle.textContent = currentTheme() === 'dark' ? '☀' : '☾'; }
+try { const saved = localStorage.getItem('theme'); if (saved) document.documentElement.dataset.theme = saved; } catch (e) {}
+toggle.addEventListener('click', () => {
+  const next = currentTheme() === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  try { localStorage.setItem('theme', next); } catch (e) {}
+  renderToggle();
+});
+renderToggle();
 
-<script src="/assets/site.js"></script>
+const bibtexToggle = document.getElementById('bibtexToggle');
+const bibtexBox = document.getElementById('bibtexBox');
+bibtexToggle.addEventListener('click', () => {
+  const show = bibtexBox.hidden;
+  bibtexBox.hidden = !show;
+  bibtexToggle.textContent = show ? 'Hide BibTeX' : 'Show BibTeX';
+  bibtexToggle.setAttribute('aria-expanded', String(show));
+});
+</script>
 </body>
 </html>
