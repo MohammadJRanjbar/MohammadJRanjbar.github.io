@@ -74,6 +74,7 @@
       "name": "PARSA-Bench",
       "description": "A benchmark of 16 Persian audio tasks (7,645 samples, 20.6 hours) for evaluating large audio-language models on speech understanding, paralinguistics, and Persian poetry and music.",
       "url": "https://huggingface.co/datasets/MohammadJRanjbar/PARSA-Bench",
+      "license": "https://creativecommons.org/licenses/by-nc/4.0/",
       "inLanguage": "fa",
       "creator": { "@type": "Person", "name": "Mohammad Javad Ranjbar Kalahroodi" },
       "citation": "https://arxiv.org/abs/2603.14456",
@@ -158,6 +159,8 @@ h1 .fa { font-size: 1.5rem; font-weight: 400; color: var(--muted); }
 .paper-note { font-size: .78rem; color: var(--muted); }
 .paper-inst { margin: .15rem 0 0; font-size: .85rem; color: var(--muted); }
 .paper-links { margin-top: 1.1rem; display: flex; gap: .6rem; flex-wrap: wrap; }
+.paper-license { margin: .85rem 0 0; font-size: .8rem; color: var(--muted); }
+.paper-license a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 .pill { display: inline-flex; align-items: center; gap: .4rem; font-size: .85rem; color: var(--blue); border: 1px solid var(--blue-line); border-radius: 4px; padding: .4rem .85rem; text-decoration: none; }
 .pill:hover { border-color: var(--blue); background: var(--blue-wash); }
 .bibtex { margin-top: 1.2rem; padding: 1rem 1.1rem; background: var(--text); color: var(--bg); border-radius: 4px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .78rem; line-height: 1.7; overflow-x: auto; }
@@ -326,6 +329,7 @@ footer { margin-top: 3.5rem; padding: 1.5rem 1.25rem 2.5rem; border-top: 1px sol
       <a class="pill" href="https://arxiv.org/abs/2603.14456" target="_blank" rel="noopener">Read the paper</a>
       <a class="pill" href="https://huggingface.co/datasets/MohammadJRanjbar/PARSA-Bench" target="_blank" rel="noopener">Access the dataset</a>
     </div>
+    <div class="paper-license">Dataset license: <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener license">CC BY-NC 4.0</a></div>
     <button class="bibtex-toggle" id="bibtexToggle" aria-expanded="false" aria-controls="bibtexBox">Show BibTeX</button>
     <pre class="bibtex" id="bibtexBox" hidden><code>@inproceedings{ranjbar2027parsabench,
   title={PARSA-Bench: A Comprehensive Persian Audio-Language Model Benchmark},
