@@ -71,7 +71,7 @@
     const text = (a.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 60);
 
     if (u.origin === location.origin || host === 'mohammadjranjbar.github.io') {
-      if (/^cv\.pdf$/i.test(last)) return ['cv', 'CV (PDF)'];
+      if (/^cv([-_][\w-]*)?\.pdf$/i.test(last)) return ['cv', 'CV (PDF)'];
       if (/\.(pdf|zip|bib|csv)$/i.test(last)) return ['download/' + last, 'Download: ' + last];
       return null;  // other pages on this site are counted as page views
     }

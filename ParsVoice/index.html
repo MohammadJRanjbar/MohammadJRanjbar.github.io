@@ -6,7 +6,7 @@
 
 <!-- ============================= SEO ============================= -->
 <title>ParsVoice — Persian Zero-Shot TTS | EMNLP 2026 Main Conference</title>
-<meta name="description" content="ParsVoice (EMNLP 2026 Main Conference): the largest open Persian speech corpus, 1,804 hours from 470+ speakers, with a zero-shot voice-cloning demo.">
+<meta name="description" content="ParsVoice (EMNLP 2026 Main Conference): the largest open Persian speech corpus, with 2,200 TTS-ready hours from 1,815 speaker IDs and a voice-cloning demo.">
 <meta name="keywords" content="EMNLP 2026, EMNLP 2026 Budapest, EMNLP main conference, EMNLP 2026 paper, ParsVoice, Persian TTS, Persian speech corpus, Farsi text to speech, Persian speech dataset, zero-shot voice cloning, multi-speaker TTS, XTTS, low-resource speech synthesis, University of Tehran NLP, Persian speech dataset, Farsi speech corpus, Persian audiobooks, Persian ASR data, Persian voice cloning, XTTS Persian, Whisper Persian, multi-speaker TTS, speech synthesis dataset, Mohammad Javad Ranjbar Kalahroodi, University of Tehran, ACL Anthology, پارس‌وویس, دیتاست گفتار فارسی, تبدیل متن به گفتار">
 <meta name="author" content="Mohammad Javad Ranjbar Kalahroodi">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
@@ -16,7 +16,7 @@
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Mohammad Javad Ranjbar">
 <meta property="og:title" content="ParsVoice — Persian Zero-Shot TTS | EMNLP 2026 Main Conference">
-<meta property="og:description" content="Accepted to the EMNLP 2026 Main Conference, Budapest. The largest open Persian speech corpus: 1,804 hours, 470+ speakers, with a zero-shot voice-cloning demo.">
+<meta property="og:description" content="Accepted to the EMNLP 2026 Main Conference, Budapest. The largest open Persian speech corpus: 2,200 TTS-ready hours from 1,815 speaker IDs, with a zero-shot voice-cloning demo.">
 <meta property="og:url" content="https://mohammadjranjbar.github.io/ParsVoice/">
 <meta property="og:locale" content="en_US">
 <!-- TODO: drop a 1200x630 PNG at this path so link previews render a card. -->
@@ -31,7 +31,7 @@
 <!-- Twitter / X -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ParsVoice — Persian Zero-Shot TTS | EMNLP 2026 Main Conference">
-<meta name="twitter:description" content="1,804 hours of Persian speech from 470+ speakers, openly released. EMNLP 2026 Main Conference, Budapest.">
+<meta name="twitter:description" content="2,200 TTS-ready hours of Persian speech from 1,815 speaker IDs, openly released. EMNLP 2026 Main Conference, Budapest.">
 <meta name="twitter:image" content="https://mohammadjranjbar.github.io/ParsVoice/og-cover.png">
 
 <!-- Google Scholar indexing -->
@@ -89,7 +89,7 @@
       "@type": "Dataset",
       "@id": "https://mohammadjranjbar.github.io/ParsVoice/#dataset",
       "name": "ParsVoice",
-      "description": "The largest open multi-speaker Persian speech corpus for text-to-speech: 1,804 hours of high-quality audio from more than 470 speakers, derived from 2,000 audiobooks through an automated alignment and quality-filtering pipeline.",
+      "description": "The largest open multi-speaker Persian speech corpus for text-to-speech: a 2,200-hour TTS-ready subset with 1.36 million aligned segments from 1,815 automatically inferred speaker IDs, drawn from 4,096 hours of processed audiobook speech through an automated alignment and quality-filtering pipeline.",
       "url": "https://huggingface.co/datasets/MohammadJRanjbar/ParsVoice",
       "inLanguage": "fa",
       "license": "https://creativecommons.org/licenses/by-nc/4.0/",
@@ -374,7 +374,7 @@ footer {
       <a href="/">Home</a>
       <a href="/publications/">Publications</a>
       <a href="/projects/">Projects</a>
-      <a href="/CV.pdf">CV</a>
+      <a href="/CV-MohammadJRanjbar.pdf">CV</a>
       <button class="theme-toggle" id="themeToggle" aria-label="Switch between light and dark theme">☾</button>
     </div>
   </div>
@@ -403,7 +403,7 @@ footer {
     <h1>ParsVoice</h1>
     <p class="tagline">The largest open Persian speech corpus, with zero-shot voice cloning</p>
     <div class="tag-row">
-      <span class="tag teal">1,804h · 470+ speakers</span>
+      <span class="tag teal">2,200h · 1,815 speaker IDs</span>
       <span class="tag violet">EMNLP 2026 Main Conference</span>
     </div>
   </header>
@@ -453,8 +453,9 @@ footer {
       tailored to Persian.
     </p>
     <p>
-      The pipeline processes 2,000 audiobooks into 3,526 hours of clean speech, filtered down to a
-      1,804-hour high-quality subset spanning 470+ speakers. Fine-tuning XTTS on this data reaches a
+      The pipeline processes 2,231 audiobooks into 4,096 hours of segmented speech. Quality filtering
+      keeps 3,008 hours, and the final TTS-ready subset has 2,200 hours (1.36 million segments) from
+      1,815 automatically inferred speaker IDs. Fine-tuning XTTS on this data reaches a
       naturalness MOS of 3.6/5 and a speaker-similarity SMOS of 4.0/5 — comparable to major English
       corpora, and openly released to accelerate Persian speech research.
     </p>
@@ -464,12 +465,12 @@ footer {
     </figure>
     <div class="stats">
       <div class="stat teal">
-        <div class="stat-num">1,804h</div>
-        <div class="stat-label">High-quality audio</div>
+        <div class="stat-num">2,200h</div>
+        <div class="stat-label">TTS-ready audio</div>
       </div>
       <div class="stat violet">
-        <div class="stat-num">470+</div>
-        <div class="stat-label">Speakers</div>
+        <div class="stat-num">1,815</div>
+        <div class="stat-label">Speaker IDs</div>
       </div>
       <div class="stat blue">
         <div class="stat-num">3.6/5</div>
