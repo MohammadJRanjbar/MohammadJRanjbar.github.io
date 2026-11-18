@@ -381,6 +381,10 @@ const eggs = (() => {
       found.push(id);
       store.set('eggs-found', JSON.stringify(found));
       render(true);
+      if (window.track) {
+        track('egg/' + id, 'Found the ' + id + ' easter egg');
+        if (found.length === ALL.length) track('egg/all-found', 'Found all ' + ALL.length + ' easter eggs');
+      }
     },
     render,
   };
@@ -453,6 +457,7 @@ function eggToast(html) {
 
   const env = room.querySelector('.envelope'), letter = room.querySelector('.letter');
   env.addEventListener('click', () => {
+    if (window.track) track('egg/letter-opened', 'Opened the letter in the drawer', { once: true });
     env.classList.add('open');
     env.setAttribute('aria-expanded', 'true');
     setTimeout(() => {
@@ -467,6 +472,7 @@ function eggToast(html) {
     const inner = c.querySelector('.coin-inner');
     let turn = 0;
     c.addEventListener('click', () => {
+      if (window.track) track('egg/coin-flipped', 'Flipped a coin in the drawer', { once: true });
       const from = turn;
       turn += 360 * (3 + Math.floor(Math.random() * 2)) + (Math.random() < 0.5 ? 180 : 0);
       if (reduceMotion) { inner.style.transform = `rotateY(${turn}deg)`; return; }
