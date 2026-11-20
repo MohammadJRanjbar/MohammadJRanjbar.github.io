@@ -201,6 +201,8 @@ h1 {
   line-height: 1.5;
 }
 
+.now p.now-phd { margin-top: 0.7rem; }
+
 .intro { margin-top: 1.5rem; }
 .intro p { margin: 0 0 0.9rem; font-size: 0.97rem; }
 
