@@ -404,9 +404,9 @@ footer {
 /* Dark theme: flip the white figures to dark paper. Inverting lightness and turning
    the hue back half a circle keeps firuzeh as firuzeh and saffron as saffron. */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .teaser img { filter: invert(0.9) hue-rotate(180deg); background: #000; border-color: var(--rule); }
+  :root:not([data-theme="light"]) .teaser img { filter: invert(0.9) hue-rotate(180deg); border-color: var(--rule); }
 }
-:root[data-theme="dark"] .teaser img { filter: invert(0.9) hue-rotate(180deg); background: #000; border-color: var(--rule); }
+:root[data-theme="dark"] .teaser img { filter: invert(0.9) hue-rotate(180deg); border-color: var(--rule); }
 @media (prefers-reduced-motion: no-preference) {
   a { transition: color 0.15s ease, text-decoration-color 0.15s ease; }
 }
