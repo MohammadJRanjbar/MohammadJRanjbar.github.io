@@ -249,7 +249,7 @@ const goldThread = (() => {
   mask.setAttribute('maskUnits', 'userSpaceOnUse');
   const mAll = document.createElementNS(NS, 'rect'), mCol = document.createElementNS(NS, 'rect');
   mAll.setAttribute('fill', '#fff');
-  mCol.setAttribute('fill', '#555');
+  mCol.setAttribute('fill', '#333');
   mask.append(mAll, mCol);
   const defs = document.createElementNS(NS, 'defs');
   defs.append(mask);
@@ -691,7 +691,7 @@ function eggToast(html) {
   ];
   let i = 0, busy = false;
   el.classList.add('verse');
-  el.style.textAlign = 'right';
+  el.style.textAlign = 'left';
   el.addEventListener('click', () => {
     if (busy) return;
     busy = true;
@@ -896,3 +896,16 @@ function eggToast(html) {
 })();
 
 eggs.render();
+
+// Reveal: blocks that start below the fold fade up once as they scroll in.
+// Anything already on screen at load is left alone, so nothing ever flashes.
+(() => {
+  if (reduceMotion || !('IntersectionObserver' in window)) return;
+  const items = [...document.querySelectorAll('.page > section > h2, .page > section > .h2-row, .demo-lede, .voice, .demo-links, .page .entry')]
+    .filter(el => el.getBoundingClientRect().top > innerHeight);
+  const io = new IntersectionObserver(entries => {
+    for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }, { rootMargin: '0px 0px -6% 0px', threshold: 0.12 });
+  for (const el of items) { el.classList.add('reveal'); io.observe(el); }
+})();
+
