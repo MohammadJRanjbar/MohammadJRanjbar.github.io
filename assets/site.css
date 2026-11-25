@@ -252,17 +252,10 @@ a.paper-title:hover { color: var(--accent); text-decoration-color: currentColor;
   align-items: start;
 }
 
-/* Logos: a small white tile, so every mark sits on the paper it was drawn for,
-   in both themes. Shown in full colour; they carry the page's only bright hues. */
+/* Logos sit straight on the page, no tile. Black-ink marks (class "mono")
+   flip to light ink in the dark theme so they stay visible. */
 .row-logo { width: 40px; height: 40px; }
-.row-logo img, .affils img {
-  display: block;
-  object-fit: contain;
-  background: #fff;
-  border: 1px solid var(--rule);
-  border-radius: 8px;
-  padding: 3px;
-}
+.row-logo img, .affils img { display: block; object-fit: contain; }
 .row-logo img { width: 40px; height: 40px; }
 .affils {
   display: flex;
@@ -272,9 +265,9 @@ a.paper-title:hover { color: var(--accent); text-decoration-color: currentColor;
   margin-top: 1.3rem;
 }
 .affils a { line-height: 0; border-radius: 8px; transition: transform 0.15s ease; }
-.affils img { height: 58px; width: auto; max-width: 150px; padding: 6px 10px; }
+.affils img { height: 44px; width: auto; max-width: 140px; }
 .affils a:hover { transform: translateY(-1px); }
-.affils a:hover img { border-color: var(--underline); }
+.affils { gap: 1.4rem; }
 .row + .row { margin-top: 1.15rem; }
 .row-date {
   font-family: var(--sans);
@@ -424,9 +417,9 @@ footer {
   .row { grid-template-columns: 34px 1fr; gap: 0.1rem 0.85rem; }
   .row .row-date { grid-column: 2; grid-row: 1; }
   .row-logo { grid-row: 1 / span 2; grid-column: 1; width: 34px; height: 34px; margin-top: 0.2rem; }
-  .row-logo img { width: 34px; height: 34px; padding: 4px; }
+  .row-logo img { width: 34px; height: 34px; }
   .row > div:last-child { grid-column: 2; grid-row: 2; }
-  .affils img { height: 48px; }
+  .affils img { height: 38px; }
   .job-head, .proj-head { flex-direction: column; gap: 0.05rem; }
   .nav-links { gap: 1rem; }
   h2 .fa { display: none; }
@@ -713,3 +706,10 @@ nav { z-index: 2; }
   .verse:hover { text-shadow: none; }
   .verse.flicker, .key-egg.glint { animation: none; }
 }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) img.mono { filter: invert(1); }
+  :root:not([data-theme="light"]) img.lift { filter: brightness(0) invert(0.82); }
+}
+:root[data-theme="dark"] img.mono { filter: invert(1); }
+:root[data-theme="dark"] img.lift { filter: brightness(0) invert(0.82); }
